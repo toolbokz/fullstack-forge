@@ -28,7 +28,6 @@ export default function Portfolio() {
         <section className="portfolio" id="portfolio">
             <div className="container center-all">
                 <h2>Key Projects</h2>
-                <p>Real results for real clients. <a href="#contact" className="btn">Claim Your Quote</a></p>
                 <div className="portfolio-list">
                     {projects.map((proj, idx) => (
                         <div className="portfolio-card" key={`${proj.name}-${idx}`}>
@@ -49,6 +48,7 @@ export default function Portfolio() {
                         </div>
                     ))}
                 </div>
+                <p>Real results for real clients. <a href="#contact" className="btn">Claim Your Quote</a></p>
             </div>
         </section>
     );

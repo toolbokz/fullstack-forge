@@ -34,7 +34,18 @@ section.visible {
     --accent: #0b5fff;
     --muted: #666;
     --container: 1200px;
-    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    --font-subheading: 'Zalando Sans Expanded', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    --font-navbar: 'Zalando Sans Expanded', cursive;
+    --font-hero: 'Zalando Sans Expanded', cursive;
+    font-family: var(--font-sans);
+}
+
+h2,
+h3 {
+    font-family: var(--font-subheading);
+    letter-spacing: 10px;
+    text-transform: uppercase;
 }
 
 .center-all {
@@ -147,10 +158,24 @@ section.visible {
 }
 
 .nav .logo {
-    font-weight: 700;
-    color: var(--accent);
     text-decoration: none;
-    font-size: 1.2rem;
+    font-family: var(--font-navbar);
+    font-weight: 400;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-style: normal;
+    font-size: 1.7rem;
+}
+
+.logo-mark {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.logo-text {
+    line-height: 1;
 }
 
 .nav-links {
@@ -327,6 +352,8 @@ main .container {
     font-size: 2rem;
     margin: 0 0 .5rem;
     color: white;
+    font-family: var(--font-hero);
+    font-weight: 400;
 }
 
 .hero p {
@@ -461,6 +488,15 @@ main .container {
         padding: 0.5rem 1rem;
     }
 
+    .nav .logo {
+        font-size: 1.2rem;
+    }
+
+    .logo-mark {
+        width: 34px;
+        height: 34px;
+    }
+
     .nav-toggle {
         display: inline-flex;
     }
@@ -499,6 +535,6 @@ main .container {
 
 @media(min-width:768px) {
     .hero h1 {
-        font-size: 2.6rem;
+        font-size: 4rem;
     }
 }

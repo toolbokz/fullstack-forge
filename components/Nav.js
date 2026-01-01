@@ -16,7 +16,10 @@ export default function Nav() {
     return (
         <nav className="nav">
             <div className="container nav-inner">
-                <a href="#hero" className="logo">Fullstack Forge</a>
+                <a href="#hero" className="logo">
+                    <img className="logo-mark" src="/assets/logo-1.png" alt="Fullstack Forge" />
+                    <span className="logo-text">Fullstack Forge</span>
+                </a>
                 <button
                     type="button"
                     className="nav-toggle"
