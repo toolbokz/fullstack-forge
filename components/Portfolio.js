@@ -1,14 +1,14 @@
 const projects = [
     {
         name: "Comfy store",
-        desc: "Example website for a small business, showcasing features and pricing.",
+        desc: "Fullstack e-commerce website for a small business, showcasing features and pricing.",
         tech: "Next.js, Tailwind, Netlify",
         url: "https://react-vite-comfy-store-v2.netlify.app/",
         img: "/assets/portfolio-1.jpeg"
     },
     {
         name: "The Warriors Call",
-        desc: "Example website for a bible community interested in faith and fellowship.",
+        desc: "Fullstack website for a bible community interested in faith and fellowship.",
         tech: "Next.js, Tailwind, Vercel",
         url: "https://www.thewarriorscall.org/",
         img: "/assets/portfolio-2.jpg"
