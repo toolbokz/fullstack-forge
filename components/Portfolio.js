@@ -8,38 +8,45 @@ const projects = [
     },
     {
         name: "The Warriors Call",
-        desc: "Fullstack website for a bible community interested in faith and fellowship.",
+        desc: "Fullstack AI integratedwebsite for a bible community interested in faith and fellowship.",
         tech: "Next.js, Tailwind, Vercel",
         url: "https://www.thewarriorscall.org/",
         img: "/assets/portfolio-2.jpg"
     },
     {
         name: "Everclean Services",
-        desc: "Example website for a small cleaning business, showcasing contact information and services.",
+        desc: "Single page website for a small cleaning business, showcasing contact information and services.",
         tech: "Next.js, Tailwind, Netlify",
         url: "https://cleaning-site-001.netlify.app/",
         img: "/assets/portfolio-3.jpeg"
     },
     {
         name: "Good For business Accountant",
-        desc: "Example website for an accounting business, showcasing contact information and services.",
+        desc: "Single page website for an accounting business, showcasing contact information and services.",
         tech: "Next.js, Tailwind, Netlify",
         url: "https://accountant-good-for-business.netlify.app/",
         img: "/assets/portfolio-4.jpg"
     },
     {
         name: "PlumbFix Services",
-        desc: "Example website for a plumbing business, showcasing contact information and services.",
+        desc: "Single page website for a plumbing business, showcasing contact information and services.",
         tech: "Next.js, Tailwind, Netlify",
         url: "https://plumbfix-site.netlify.app/",
         img: "/assets/portfolio-5.jpg"
     },
     {
         name: "Builders App",
-        desc: "Example website for a Building business, showcasing contact information and services.",
+        desc: "Single page website for a Building business, showcasing contact information and services.",
         tech: "Next.js, Tailwind, Netlify",
         url: "https://builders-app.netlify.app/",
         img: "/assets/portfolio-6.jpg"
+    },
+    {
+        name: "Builders App",
+        desc: "Single page website for an Electrician business, showcasing contact information and services.",
+        tech: "Next.js, Tailwind, Netlify",
+        url: "https://electrician-app-101.netlify.app/",
+        img: "/assets/portfolio-7.jpg"
     }
 
 ];
