@@ -26,6 +26,13 @@ const projects = [
         tech: "Next.js, Tailwind, Netlify",
         url: "https://accountant-good-for-business.netlify.app/",
         img: "/assets/portfolio-4.jpg"
+    },
+    {
+        name: "PlumbFix Services",
+        desc: "Example website for a plumbing business, showcasing contact information and services.",
+        tech: "Next.js, Tailwind, Netlify",
+        url: "https://plumbfix-site.netlify.app/",
+        img: "/assets/portfolio-5.jpg"
     }
 
 ];
