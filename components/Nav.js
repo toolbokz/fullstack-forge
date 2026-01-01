@@ -29,7 +29,6 @@ export default function Nav() {
                     onClick={() => setIsOpen((v) => !v)}
                 >
                     <span className="nav-toggle-icon" aria-hidden="true">{isOpen ? "✕" : "☰"}</span>
-                    <span className="nav-toggle-text">Menu</span>
                 </button>
 
                 <ul id="primary-nav" className={`nav-links${isOpen ? " is-open" : ""}`}>
