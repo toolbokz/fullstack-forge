@@ -44,7 +44,7 @@ section.visible {
 h2,
 h3 {
     font-family: var(--font-subheading);
-    letter-spacing: 10px;
+    letter-spacing: 5px;
     text-transform: uppercase;
 }
 
