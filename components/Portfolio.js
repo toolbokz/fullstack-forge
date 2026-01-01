@@ -2,7 +2,7 @@ const projects = [
     {
         name: "Comfy store",
         desc: "Example website for a small business, showcasing features and pricing.",
-        tech: "Next.js, Tailwind, Vercel",
+        tech: "Next.js, Tailwind, Netlify",
         url: "https://react-vite-comfy-store-v2.netlify.app/",
         img: "/assets/portfolio-1.jpeg"
     },
@@ -16,9 +16,16 @@ const projects = [
     {
         name: "Everclean Services",
         desc: "Example website for a small cleaning business, showcasing contact information and services.",
-        tech: "Next.js, Tailwind, Vercel",
+        tech: "Next.js, Tailwind, Netlify",
         url: "https://cleaning-site-001.netlify.app/",
         img: "/assets/portfolio-3.jpeg"
+    },
+    {
+        name: "Good For business Accountant",
+        desc: "Example website for an accounting business, showcasing contact information and services.",
+        tech: "Next.js, Tailwind, Netlify",
+        url: "https://accountant-good-for-business.netlify.app/",
+        img: "/assets/portfolio-4.jpg"
     }
 
 ];
