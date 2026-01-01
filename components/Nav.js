@@ -11,14 +11,28 @@ const navLinks = [
 ];
 
 export default function Nav() {
+    const [isOpen, setIsOpen] = React.useState(false);
+
     return (
         <nav className="nav">
             <div className="container nav-inner">
                 <a href="#hero" className="logo">Fullstack Forge</a>
-                <ul>
+                <button
+                    type="button"
+                    className="nav-toggle"
+                    aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+                    aria-controls="primary-nav"
+                    aria-expanded={isOpen}
+                    onClick={() => setIsOpen((v) => !v)}
+                >
+                    <span className="nav-toggle-icon" aria-hidden="true">{isOpen ? "✕" : "☰"}</span>
+                    <span className="nav-toggle-text">Menu</span>
+                </button>
+
+                <ul id="primary-nav" className={`nav-links${isOpen ? " is-open" : ""}`}>
                     {navLinks.map(link => (
                         <li key={link.href}>
-                            <a href={link.href}>{link.label}</a>
+                            <a href={link.href} onClick={() => setIsOpen(false)}>{link.label}</a>
                         </li>
                     ))}
                 </ul>

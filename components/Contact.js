@@ -4,7 +4,8 @@ export default function Contact() {
             <div className="container center-all">
                 <h2>Contact</h2>
                 <p>Tell us about your project — we reply within one business day.</p>
-                <form action="/api/contact" method="post">
+                <form action="https://formspree.io/f/mrebgwbl"
+                    method="POST">
                     <input name="name" placeholder="Your name" required />
                     <input name="email" type="email" placeholder="Email" required />
                     <textarea name="message" placeholder="Project details" rows="4" />

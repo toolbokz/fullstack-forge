@@ -14,9 +14,9 @@ export default function Home() {
     const structuredData = {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "Your Website Studio",
-        "url": "https://example.com",
-        "logo": "https://example.com/logo.png",
+        "name": "Fullstack Forge",
+        "url": "https://fullstack-forge.netlify.app/",
+        "logo": "https://fullstack-forge.netlify.app/",
         "sameAs": [
             "https://www.facebook.com/",
             "https://www.twitter.com/"
@@ -29,7 +29,7 @@ export default function Home() {
                 <title>Fullstack Forge</title>
                 <meta name="description" content="We build SEO-optimized, responsive websites for small businesses and e‑commerce. Fast turnaround and affordable prices." />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="canonical" href="https://example.com/" />
+                <link rel="canonical" href="https://fullstack-forge.netlify.app/" />
 
                 {/* Open Graph */}
                 <meta property="og:title" content="Professional Website Design — Affordable, Fast, Responsive" />
