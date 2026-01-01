@@ -42,7 +42,7 @@ const projects = [
         img: "/assets/portfolio-6.jpg"
     },
     {
-        name: "Builders App",
+        name: "Electricians App",
         desc: "Single page website for an Electrician business, showcasing contact information and services.",
         tech: "Next.js, Tailwind, Netlify",
         url: "https://electrician-app-101.netlify.app/",
