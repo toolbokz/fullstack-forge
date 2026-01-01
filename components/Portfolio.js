@@ -33,6 +33,13 @@ const projects = [
         tech: "Next.js, Tailwind, Netlify",
         url: "https://plumbfix-site.netlify.app/",
         img: "/assets/portfolio-5.jpg"
+    },
+    {
+        name: "Builders App",
+        desc: "Example website for a Building business, showcasing contact information and services.",
+        tech: "Next.js, Tailwind, Netlify",
+        url: "https://builders-app.netlify.app/",
+        img: "/assets/portfolio-6.jpg"
     }
 
 ];
