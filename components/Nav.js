@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 const navLinks = [
@@ -37,6 +39,7 @@ export default function Nav() {
                             <a href={link.href} onClick={() => setIsOpen(false)}>{link.label}</a>
                         </li>
                     ))}
+
                 </ul>
             </div>
         </nav>

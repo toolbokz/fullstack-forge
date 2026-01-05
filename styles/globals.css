@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .tech-item {
     display: flex;
     align-items: center;
@@ -407,6 +411,29 @@ main .container {
     color: white;
     border-radius: 6px;
     text-decoration: none;
+}
+
+button.btn {
+    border: none;
+    cursor: pointer;
+    font: inherit;
+}
+
+.btn:disabled,
+button.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.nav-auth {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.nav-user {
+    color: var(--muted);
+    font-size: 0.95em;
 }
 
 .services .grid,
