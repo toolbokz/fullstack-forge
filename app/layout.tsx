@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import type { Metadata } from 'next'
+import AuthProvider from '../components/AuthProvider'
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://fullstack-forge.netlify.app'),
@@ -39,7 +40,9 @@ export default function RootLayout({
                 <script src="/section-animate.js" defer></script>
             </head>
             <body>
-                {children}
+                <AuthProvider>
+                    {children}
+                </AuthProvider>
             </body>
         </html>
     )

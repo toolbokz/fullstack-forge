@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { useSession, signOut } from "next-auth/react";
 
 const navLinks = [
     { href: "/#hero", label: "Home" },
@@ -14,6 +15,7 @@ const navLinks = [
 
 export default function Nav() {
     const [isOpen, setIsOpen] = React.useState(false);
+    const { data: session } = useSession();
 
     return (
         <nav className="nav">
@@ -39,7 +41,34 @@ export default function Nav() {
                             <Link href={link.href} onClick={() => setIsOpen(false)}>{link.label}</Link>
                         </li>
                     ))}
-
+                    <li className="nav-auth">
+                        {session ? (
+                            <span style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                                {session.user?.image ? (
+                                    <img
+                                        src={session.user.image}
+                                        alt=""
+                                        width={28}
+                                        height={28}
+                                        style={{ borderRadius: "50%" }}
+                                    />
+                                ) : null}
+                                <Link href="/dashboard" onClick={() => setIsOpen(false)} style={{ fontWeight: 600 }}>
+                                    {session.user?.name || "Dashboard"}
+                                </Link>
+                                <button
+                                    onClick={() => signOut({ callbackUrl: "/" })}
+                                    style={{ marginLeft: "0.25rem", fontSize: "0.85rem", opacity: 0.7 }}
+                                >
+                                    Log out
+                                </button>
+                            </span>
+                        ) : (
+                            <Link href="/login" onClick={() => setIsOpen(false)} className="btn btn-sm">
+                                Login
+                            </Link>
+                        )}
+                    </li>
                 </ul>
             </div>
         </nav>

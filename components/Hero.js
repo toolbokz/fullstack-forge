@@ -1,7 +1,27 @@
-export default function Hero() {
+import { fetchUnsplashImages } from '../lib/unsplash'
+import HeroSlider from './HeroSlider'
+
+const heroQueries = [
+    'software development coding',
+    'web development programming',
+    'computer code technology',
+    'developer workspace setup',
+    'modern software engineering',
+]
+
+export default async function Hero() {
+    // Fetch one image per query to get diverse software-related photos
+    const imagePromises = heroQueries.map(async (query) => {
+        const images = await fetchUnsplashImages(query, 1)
+        return images[0] || null
+    })
+    const results = await Promise.all(imagePromises)
+    const images = results.filter(Boolean)
+
     return (
         <section className="hero" id="hero">
-            <div className="container center-all">
+            {images.length > 0 && <HeroSlider images={images} />}
+            <div className="container center-all hero-content">
                 <p className="text-primary-light bg-white/10 inline-block px-4 py-1 rounded-full text-sm font-semibold mb-6 backdrop-blur-sm border border-white/20">
                     Trusted by 50+ small businesses across NZ
                 </p>

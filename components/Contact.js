@@ -15,15 +15,6 @@ export default function Contact() {
                     hours with a plan to grow your online presence.
                 </p>
 
-                {/* Hidden form for Netlify build-time detection */}
-                <form name="lead-capture" data-netlify="true" netlify-honeypot="bot-field" hidden>
-                    <input name="bot-field" />
-                    <input name="name" />
-                    <input name="email" />
-                    <select name="business-type" />
-                    <input name="website" />
-                </form>
-
                 <LeadCaptureForm
                     formName="lead-capture"
                     ctaText="Get My Free Consultation"

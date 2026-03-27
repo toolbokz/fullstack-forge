@@ -416,15 +416,6 @@ export default function WebsiteDesignSmallBusiness() {
                             Tell us about your business and we&apos;ll send you a personalised audit showing where your website is losing you customers — and exactly how to fix it.
                         </p>
 
-                        <form name="small-biz-lead" data-netlify="true" netlify-honeypot="bot-field" hidden>
-                            <input name="bot-field" />
-                            <input name="name" />
-                            <input name="email" />
-                            <select name="business-type" />
-                            <input name="website" />
-                            <input name="source-page" />
-                        </form>
-
                         <LeadCaptureForm
                             formName="small-biz-lead"
                             ctaText="Get My Free Audit"

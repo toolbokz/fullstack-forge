@@ -21,7 +21,7 @@ export default function LeadCaptureForm({
         const formData = new FormData(form);
 
         try {
-            const res = await fetch("/", {
+            const res = await fetch("/__forms.html", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: new URLSearchParams(formData).toString(),
@@ -54,16 +54,14 @@ export default function LeadCaptureForm({
     }
 
     const inputClass = `w-full px-4 py-3 rounded-lg border text-base ${darkMode
-            ? "bg-white/10 border-white/20 text-white placeholder-gray-400"
-            : "bg-white border-gray-200 text-gray-900 placeholder-gray-400"
+        ? "bg-white/10 border-white/20 text-white placeholder-gray-400"
+        : "bg-white border-gray-200 text-gray-900 placeholder-gray-400"
         } focus:outline-none focus:ring-2 focus:ring-primary`;
 
     return (
         <form
             name={formName}
             method="POST"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
             onSubmit={handleSubmit}
             className="w-full max-w-lg mx-auto flex flex-col gap-4"
         >

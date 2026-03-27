@@ -98,7 +98,7 @@ export default function WebsiteAudit() {
                 score: String(auditScore),
             });
 
-            fetch("/", {
+            fetch("/__forms.html", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: formData.toString(),
@@ -119,13 +119,6 @@ export default function WebsiteAudit() {
                     Find out how your current website stacks up. Get instant feedback on
                     speed, SEO, mobile-friendliness, and conversion potential.
                 </p>
-
-                {/* Hidden form for Netlify detection */}
-                <form name="website-audit" data-netlify="true" hidden>
-                    <input name="email" />
-                    <input name="audit-url" />
-                    <input name="score" />
-                </form>
 
                 {!results ? (
                     <form
@@ -168,10 +161,10 @@ export default function WebsiteAudit() {
                         <div className="text-center mb-8">
                             <div
                                 className={`inline-flex items-center justify-center w-24 h-24 rounded-full text-3xl font-extrabold mb-3 ${score >= 70
-                                        ? "bg-green-500/20 text-green-400"
-                                        : score >= 40
-                                            ? "bg-yellow-500/20 text-yellow-400"
-                                            : "bg-red-500/20 text-red-400"
+                                    ? "bg-green-500/20 text-green-400"
+                                    : score >= 40
+                                        ? "bg-yellow-500/20 text-yellow-400"
+                                        : "bg-red-500/20 text-red-400"
                                     }`}
                             >
                                 {score}

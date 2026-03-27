@@ -123,15 +123,6 @@ export default function ServicePageLayout({
                         Tell us about your business and we&apos;ll send you a personalised plan to grow your online presence.
                     </p>
 
-                    <form name="service-page-lead" data-netlify="true" netlify-honeypot="bot-field" hidden>
-                        <input name="bot-field" />
-                        <input name="name" />
-                        <input name="email" />
-                        <select name="business-type" />
-                        <input name="website" />
-                        <input name="source-page" />
-                    </form>
-
                     <LeadCaptureForm
                         formName="service-page-lead"
                         ctaText="Get My Free Audit"

@@ -1,0 +1,69 @@
+<!--
+  Static form definitions for Netlify Forms deploy-time detection.
+  Required by @netlify/plugin-nextjs@5 — forms in Next.js pages are not detected.
+  Actual form UI and submission logic lives in React components.
+-->
+<html>
+
+<head></head>
+
+<body>
+    <form name="lead-capture" data-netlify="true" netlify-honeypot="bot-field" hidden>
+        <input type="hidden" name="form-name" value="lead-capture" />
+        <input name="bot-field" />
+        <input name="name" type="text" />
+        <input name="email" type="email" />
+        <select name="business-type"></select>
+        <input name="website" type="url" />
+        <input name="source-page" type="text" />
+    </form>
+
+    <form name="blog-lead" data-netlify="true" netlify-honeypot="bot-field" hidden>
+        <input type="hidden" name="form-name" value="blog-lead" />
+        <input name="bot-field" />
+        <input name="name" type="text" />
+        <input name="email" type="email" />
+        <select name="business-type"></select>
+        <input name="website" type="url" />
+        <input name="source-page" type="text" />
+    </form>
+
+    <form name="service-page-lead" data-netlify="true" netlify-honeypot="bot-field" hidden>
+        <input type="hidden" name="form-name" value="service-page-lead" />
+        <input name="bot-field" />
+        <input name="name" type="text" />
+        <input name="email" type="email" />
+        <select name="business-type"></select>
+        <input name="website" type="url" />
+        <input name="source-page" type="text" />
+    </form>
+
+    <form name="web-design-chch-lead" data-netlify="true" netlify-honeypot="bot-field" hidden>
+        <input type="hidden" name="form-name" value="web-design-chch-lead" />
+        <input name="bot-field" />
+        <input name="name" type="text" />
+        <input name="email" type="email" />
+        <select name="business-type"></select>
+        <input name="website" type="url" />
+        <input name="source-page" type="text" />
+    </form>
+
+    <form name="small-biz-lead" data-netlify="true" netlify-honeypot="bot-field" hidden>
+        <input type="hidden" name="form-name" value="small-biz-lead" />
+        <input name="bot-field" />
+        <input name="name" type="text" />
+        <input name="email" type="email" />
+        <select name="business-type"></select>
+        <input name="website" type="url" />
+        <input name="source-page" type="text" />
+    </form>
+
+    <form name="website-audit" data-netlify="true" hidden>
+        <input type="hidden" name="form-name" value="website-audit" />
+        <input name="email" type="email" />
+        <input name="audit-url" type="url" />
+        <input name="score" type="text" />
+    </form>
+</body>
+
+</html>

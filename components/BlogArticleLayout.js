@@ -66,15 +66,6 @@ export default function BlogArticleLayout({
                     <h2 className="text-2xl font-bold mb-4">Need Help With Your Website?</h2>
                     <p className="text-gray-400 mb-8">Get a free audit and personalised plan for your business.</p>
 
-                    <form name="blog-lead" data-netlify="true" netlify-honeypot="bot-field" hidden>
-                        <input name="bot-field" />
-                        <input name="name" />
-                        <input name="email" />
-                        <select name="business-type" />
-                        <input name="website" />
-                        <input name="source-page" />
-                    </form>
-
                     <LeadCaptureForm
                         formName="blog-lead"
                         ctaText="Get My Free Audit"

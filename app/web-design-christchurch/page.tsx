@@ -399,15 +399,6 @@ export default function WebDesignChristchurch() {
                             Tell us about your Christchurch business and we&apos;ll send you a free, personalised audit showing exactly what&apos;s holding your website back — and how to fix it.
                         </p>
 
-                        <form name="web-design-chch-lead" data-netlify="true" netlify-honeypot="bot-field" hidden>
-                            <input name="bot-field" />
-                            <input name="name" />
-                            <input name="email" />
-                            <select name="business-type" />
-                            <input name="website" />
-                            <input name="source-page" />
-                        </form>
-
                         <LeadCaptureForm
                             formName="web-design-chch-lead"
                             ctaText="Get My Free Audit"
