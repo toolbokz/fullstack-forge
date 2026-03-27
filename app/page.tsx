@@ -1,10 +1,12 @@
 import Nav from '../components/Nav'
 import Hero from '../components/Hero'
-import Services from '../components/Services'
-import Portfolio from '../components/Portfolio'
-import TechStack from '../components/TechStack'
-import About from '../components/About'
+import WhoThisIsFor from '../components/WhoThisIsFor'
+import Solutions from '../components/Solutions'
+import HowItWorks from '../components/HowItWorks'
+import Pricing from '../components/Pricing'
+import WhyChooseUs from '../components/WhyChooseUs'
 import Testimonials from '../components/Testimonials'
+import WebsiteAudit from '../components/WebsiteAudit'
 import CTA from '../components/CTA'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
@@ -17,25 +19,15 @@ export default function HomePage() {
                 <div id="hero">
                     <Hero />
                 </div>
-                <div id="services">
-                    <Services />
-                </div>
-                <div id="portfolio">
-                    <Portfolio />
-                </div>
-                <div id="tech">
-                    <TechStack />
-                </div>
-                <div id="about">
-                    <About />
-                </div>
-                <div id="testimonials">
-                    <Testimonials />
-                </div>
+                <WhoThisIsFor />
+                <Solutions />
+                <HowItWorks />
+                <Pricing />
+                <WhyChooseUs />
+                <Testimonials />
+                <WebsiteAudit />
                 <CTA />
-                <div id="contact">
-                    <Contact />
-                </div>
+                <Contact />
             </main>
             <Footer />
         </>

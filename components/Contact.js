@@ -1,17 +1,39 @@
+import LeadCaptureForm from "./LeadCaptureForm";
+
 export default function Contact() {
     return (
-        <section className="contact" id="contact">
+        <section className="py-20" id="contact">
             <div className="container center-all">
-                <h2>Contact</h2>
-                <p>Tell us about your project — we reply within one business day.</p>
-                <form action="https://formspree.io/f/mrebgwbl"
-                    method="POST">
-                    <input name="name" placeholder="Your name" required />
-                    <input name="email" type="email" placeholder="Email" required />
-                    <textarea name="message" placeholder="Project details" rows="4" />
-                    <button type="submit" className="btn">Send</button>
+                <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-2">
+                    Get Started
+                </p>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                    Let&apos;s Build Your Lead-Generating Website
+                </h2>
+                <p className="text-muted text-lg max-w-2xl mb-10">
+                    Tell us about your business and we&apos;ll get back to you within 24
+                    hours with a plan to grow your online presence.
+                </p>
+
+                {/* Hidden form for Netlify build-time detection */}
+                <form name="lead-capture" data-netlify="true" netlify-honeypot="bot-field" hidden>
+                    <input name="bot-field" />
+                    <input name="name" />
+                    <input name="email" />
+                    <select name="business-type" />
+                    <input name="website" />
                 </form>
+
+                <LeadCaptureForm
+                    formName="lead-capture"
+                    ctaText="Get My Free Consultation"
+                    showWebsite={true}
+                />
+
+                <p className="text-muted text-sm mt-6">
+                    No spam. No obligation. Just a conversation about growing your business.
+                </p>
             </div>
         </section>
-    )
+    );
 }

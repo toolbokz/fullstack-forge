@@ -1,15 +1,15 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 
 const navLinks = [
-    { href: "#hero", label: "Home" },
-    { href: "#services", label: "Services" },
-    { href: "#portfolio", label: "Portfolio" },
-    { href: "#tech", label: "Tech Stack" },
-    { href: "#about", label: "About" },
-    { href: "#testimonials", label: "Testimonials" },
-    { href: "#contact", label: "Contact" }
+    { href: "/#hero", label: "Home" },
+    { href: "/#solutions", label: "Solutions" },
+    { href: "/#pricing", label: "Pricing" },
+    { href: "/blog", label: "Blog" },
+    { href: "/#audit", label: "Free Audit" },
+    { href: "/#contact", label: "Contact" },
 ];
 
 export default function Nav() {
@@ -18,10 +18,10 @@ export default function Nav() {
     return (
         <nav className="nav">
             <div className="container nav-inner">
-                <a href="#hero" className="logo">
+                <Link href="/" className="logo">
                     <img className="logo-mark" src="/assets/logo-1.png" alt="Fullstack Forge" />
                     <span className="logo-text">Fullstack Forge</span>
-                </a>
+                </Link>
                 <button
                     type="button"
                     className="nav-toggle"
@@ -36,7 +36,7 @@ export default function Nav() {
                 <ul id="primary-nav" className={`nav-links${isOpen ? " is-open" : ""}`}>
                     {navLinks.map(link => (
                         <li key={link.href}>
-                            <a href={link.href} onClick={() => setIsOpen(false)}>{link.label}</a>
+                            <Link href={link.href} onClick={() => setIsOpen(false)}>{link.label}</Link>
                         </li>
                     ))}
 
