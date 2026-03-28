@@ -9,9 +9,10 @@ import { fetchUnsplashImage } from '../../../lib/unsplash'
 import UnsplashImage from '../../../components/UnsplashImage'
 
 const SLUG = 'how-to-get-more-leads-from-your-website'
-const TITLE = 'How to Get More Leads From Your Website (Without More Traffic)'
-const DESCRIPTION = "You don't always need more traffic — you need better conversion. Here are 7 proven tactics."
+const TITLE = 'How to Get More Leads From Your Website in 2026 (Without Paying for Ads)'
+const DESCRIPTION = "Your website gets traffic but no enquiries? Here are 10 proven lead generation tactics NZ small businesses are using right now to turn visitors into paying customers."
 const DATE = '2025-03-01'
+const UPDATED = '2026-03-28'
 const THUMBNAIL_QUERY = contentPlan.find((a: any) => a.slug === SLUG)?.imageQuery ?? SLUG
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -37,9 +38,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Article() {
-    const [heroImage, midImage] = await Promise.all([
+    const [heroImage, midImage, bottomImage] = await Promise.all([
         fetchUnsplashImage('lead generation business growth'),
         fetchUnsplashImage('call to action website design'),
+        fetchUnsplashImage('business owner laptop analytics'),
     ])
 
     const schemas = [
@@ -62,45 +64,111 @@ export default async function Article() {
                     title={TITLE}
                     description={DESCRIPTION}
                     datePublished={DATE}
-                    readTime={8}
+                    readTime={12}
                     heroImage={heroImage}
                     relatedLinks={[
-                        { url: '/', label: 'See How We Build Lead-Generating Websites' },
-                        { url: '/website-design-for-small-business', label: 'Website Design for Small Business' },
+                        { url: '/website-design-for-small-business', label: 'Website Design for Small Business NZ' },
                         { url: '/blog/how-to-get-customers-from-your-website', label: 'How to Get Customers From Your Website' },
+                        { url: '/blog/seo-for-small-business-nz', label: 'SEO for Small Business NZ — Beginner\'s Guide' },
+                        { url: '/blog/how-much-does-a-website-cost-in-nz', label: 'How Much Does a Website Cost in NZ?' },
+                        { url: '/affordable-websites-nz', label: 'Affordable Websites NZ — From $699' },
                     ]}
                 >
-                    <h2>The Conversion Problem</h2>
+
+                    {/* ── INTRODUCTION ── */}
                     <p>
-                        Most small business websites convert at <strong>1–2%</strong>. That means out of 100 visitors, only
-                        1 or 2 take action. The websites we build target <strong>5–10% conversion rates</strong>. The
-                        difference? These 7 tactics.
+                        Here&apos;s a frustrating reality for many NZ small business owners: your website gets visitors,
+                        but the phone never rings. You&apos;re paying for hosting, maybe running ads, yet
+                        the enquiry form stays empty. Sound familiar?
+                    </p>
+                    <p>
+                        The problem usually isn&apos;t traffic — it&apos;s <strong>conversion</strong>. The average small
+                        business website converts at just 1–2%. That means 98 out of every 100 visitors leave without
+                        doing anything. But with the right approach
+                        to <Link href="/website-design-for-small-business" className="text-primary hover:underline">website design for small business</Link>,
+                        you can push that to 5–10% — effectively tripling your leads without spending another dollar on ads.
+                    </p>
+                    <p>
+                        This guide covers 10 proven website lead generation tactics that work for real NZ businesses
+                        in 2026 — from plumbers in Auckland to cafés in Christchurch. If you&apos;re serious about
+                        turning your site into a lead machine, keep reading.
                     </p>
 
-                    <h2>7 Ways to Convert More Visitors Into Leads</h2>
-
-                    <h3>1. Add a Lead Magnet</h3>
+                    {/* ── SECTION 1: THE CONVERSION GAP ── */}
+                    <h2>Why Most NZ Business Websites Fail at Lead Generation</h2>
                     <p>
-                        Stop asking people to &quot;contact us.&quot; Instead, offer something valuable for free — a checklist,
-                        audit, or guide. &quot;Get Your Free Website Audit&quot; converts 5x better than &quot;Contact Us.&quot;
+                        Before we get into tactics, let&apos;s diagnose the problem. Most websites built with drag-and-drop
+                        tools — Wix, Squarespace, or a free WordPress theme — look decent but aren&apos;t engineered to
+                        convert. They&apos;re essentially digital brochures: they tell people what you do, but
+                        they don&apos;t <em>persuade</em> anyone to take action.
+                    </p>
+                    <p>
+                        Common conversion killers include:
+                    </p>
+                    <ul>
+                        <li><strong>No clear call-to-action</strong> above the fold</li>
+                        <li><strong>Slow load times</strong> (every extra second costs 7% of conversions)</li>
+                        <li><strong>Generic messaging</strong> that doesn&apos;t speak to a specific audience</li>
+                        <li><strong>Too many form fields</strong> creating friction</li>
+                        <li><strong>Zero social proof</strong> — no reviews, testimonials, or case studies</li>
+                        <li><strong>Poor mobile experience</strong> — and over 60% of NZ traffic is mobile</li>
+                    </ul>
+                    <p>
+                        If your site has even two of these issues, you&apos;re leaving leads on the table. The good news?
+                        Every one of these problems is fixable. Our guide
+                        to <Link href="/blog/best-website-design-for-small-businesses" className="text-primary hover:underline">the best website design for small businesses</Link> covers
+                        the design principles in depth, but here we&apos;ll focus specifically on lead generation.
                     </p>
 
-                    <h3>2. Use Specific, Benefit-Driven Headlines</h3>
+                    {/* ── SECTION 2: THE 10 TACTICS ── */}
+                    <h2>10 Proven Ways to Get More Leads From Your Website</h2>
+
+                    <h3>1. Replace &quot;Contact Us&quot; With a Lead Magnet</h3>
                     <p>
-                        &quot;We Build Websites&quot; → bad. &quot;We Build Websites That Generate Customers for Small Businesses&quot; → good.
-                        Tell visitors exactly what outcome they&apos;ll get.
+                        &quot;Contact us&quot; is the most ignored button on the internet. Nobody wakes up wanting to
+                        fill out a generic form.
+                    </p>
+                    <p>
+                        Instead, offer something valuable for free in exchange for an email address. This is called
+                        a <strong>lead magnet</strong>, and it works because you&apos;re giving before you ask. Examples that work
+                        for NZ businesses:
+                    </p>
+                    <ul>
+                        <li><strong>Tradies:</strong> &quot;Free 5-point quote checklist for homeowners&quot;</li>
+                        <li><strong>Cafés &amp; restaurants:</strong> &quot;Download our catering menu + pricing&quot;</li>
+                        <li><strong>Professional services:</strong> &quot;Free website audit — see how your site scores&quot;</li>
+                        <li><strong>E-commerce:</strong> &quot;10% off your first order&quot;</li>
+                    </ul>
+                    <p>
+                        A well-placed lead magnet converts 3–5x better than a plain contact form. If you&apos;re a
+                        tradie wondering how this applies to your industry, our article
+                        on <Link href="/blog/website-for-tradies-nz" className="text-primary hover:underline">websites for tradies in NZ</Link> walks
+                        through real examples.
                     </p>
 
-                    <h3>3. Add Social Proof Near Every CTA</h3>
+                    <h3>2. Write Benefit-Driven Headlines (Not Feature Lists)</h3>
                     <p>
-                        Place testimonials, ratings, or &quot;trusted by X businesses&quot; next to your call-to-action buttons.
-                        This removes friction right at the moment of decision.
+                        Your homepage headline is the first thing visitors read — and often the last, if it doesn&apos;t
+                        hook them. Here&apos;s the difference:
+                    </p>
+                    <ul>
+                        <li>❌ &quot;We Build Websites&quot;</li>
+                        <li>✅ &quot;We Build Websites That Generate Customers for NZ Small Businesses&quot;</li>
+                    </ul>
+                    <p>
+                        The second version tells the visitor exactly what outcome they&apos;ll get. Every headline
+                        on your site should answer the question: <em>&quot;What&apos;s in it for me?&quot;</em>
                     </p>
 
-                    <h3>4. Reduce Form Fields</h3>
+                    <h3>3. Add Social Proof Next to Every CTA</h3>
                     <p>
-                        Every extra field reduces completions by 10%. Ask for name and email only. Add optional fields
-                        if needed, but never require more than you must.
+                        When someone is about to click your call-to-action button, they&apos;re making a micro-decision:
+                        &quot;Is this worth my time?&quot; Social proof — reviews, star ratings, client logos, or a simple
+                        &quot;trusted by 50+ NZ businesses&quot; — removes that hesitation.
+                    </p>
+                    <p>
+                        Place testimonials <em>right next to</em> your submit button, not buried on a separate page.
+                        A Google review widget beside your contact form can lift conversions by 15–20%.
                     </p>
 
                     {midImage && (
@@ -112,35 +180,206 @@ export default async function Article() {
                         />
                     )}
 
-                    <h3>5. Make Your CTA Stand Out</h3>
+                    <h3>4. Cut Your Form Fields to the Absolute Minimum</h3>
                     <p>
-                        Use a contrasting colour for your main button. Make it big enough to tap on mobile. Use action
-                        words: &quot;Get My Free Audit&quot; beats &quot;Submit&quot; every time.
+                        Every additional form field reduces completions by roughly 10%. For lead capture, you
+                        rarely need more than <strong>name</strong> and <strong>email</strong>. If you need more
+                        detail (e.g. business type or budget), make those optional or collect them in a follow-up email.
+                    </p>
+                    <p>
+                        The rule is simple: the fewer barriers between &quot;interested&quot; and &quot;submitted,&quot; the
+                        more leads you&apos;ll generate online.
+                    </p>
+
+                    <h3>5. Make Your CTA Impossible to Miss</h3>
+                    <p>
+                        Your main call-to-action button should be the most visually prominent element on the page.
+                        Use a contrasting colour, make it large enough to tap easily on mobile, and use first-person
+                        action language:
+                    </p>
+                    <ul>
+                        <li>✅ &quot;Get My Free Audit&quot;</li>
+                        <li>✅ &quot;Start My Project&quot;</li>
+                        <li>❌ &quot;Submit&quot;</li>
+                        <li>❌ &quot;Send&quot;</li>
+                    </ul>
+                    <p>
+                        Pair it with a supporting line like: &quot;No spam. No obligation. We&apos;ll reply within 24 hours.&quot;
+                        This kind of anxiety-reducing copy significantly increases conversions.
                     </p>
 
                     <h3>6. Fix Your Page Speed</h3>
                     <p>
-                        Every second of load time costs 7% in conversions. Compress images, eliminate unnecessary scripts,
-                        and use fast hosting. Test with Google PageSpeed Insights.
+                        Page speed isn&apos;t just a technical metric — it directly affects your bottom line.
+                        A site that loads in 1 second converts <strong>3x better</strong> than one that loads in 5 seconds.
+                        Google also uses Core Web Vitals as a ranking signal, so a slow site hurts both
+                        conversions <em>and</em> your SEO.
+                    </p>
+                    <p>
+                        Quick wins: compress images, remove unused plugins, use modern formats like WebP,
+                        and choose fast hosting. If you want to benchmark your current site, use our free
+                        website audit tool on the <Link href="/#audit" className="text-primary hover:underline">homepage</Link> —
+                        it runs a real Google Lighthouse test and shows you exactly what to fix.
+                    </p>
+                    <p>
+                        Page speed is also a core part
+                        of <Link href="/blog/seo-for-small-business-nz" className="text-primary hover:underline">SEO for small business NZ</Link> —
+                        getting it right means more organic traffic <em>and</em> better conversion from that traffic.
                     </p>
 
-                    <h3>7. Add Multiple CTAs Per Page</h3>
+                    <h3>7. Use Multiple CTAs Per Page</h3>
                     <p>
-                        Don&apos;t just put a contact form at the bottom. Add CTAs in the hero, mid-page, and after key
-                        content sections. Different visitors convert at different points.
+                        A single contact form buried at the bottom is a conversion death sentence. Different visitors
+                        are ready to convert at different points:
+                    </p>
+                    <ul>
+                        <li><strong>Hero section:</strong> Catch high-intent visitors immediately</li>
+                        <li><strong>Mid-page:</strong> After explaining your value proposition</li>
+                        <li><strong>After testimonials:</strong> When trust is highest</li>
+                        <li><strong>Bottom of page:</strong> For those who read everything</li>
+                    </ul>
+                    <p>
+                        Each CTA should feel natural in context — not repetitive. Vary the wording
+                        (&quot;Get a free quote,&quot; &quot;See our work,&quot; &quot;Book a call&quot;) so it feels like a conversation,
+                        not a sales pitch.
                     </p>
 
-                    <h2>The Compound Effect</h2>
+                    <h3>8. Build Trust With a Professional Design</h3>
                     <p>
-                        Improving from 2% to 5% conversion rate means <strong>2.5x more leads from the same traffic</strong>.
-                        That&apos;s more revenue without spending a dollar on ads.
+                        It takes 0.05 seconds for a visitor to form an opinion about your website. A dated, clunky design
+                        signals &quot;unprofessional&quot; — and visitors bounce. A clean, modern layout signals credibility
+                        and makes people <em>want</em> to do business with you.
+                    </p>
+                    <p>
+                        This is where investing
+                        in <Link href="/affordable-websites-nz" className="text-primary hover:underline">affordable website design NZ</Link> pays
+                        for itself. A professionally designed site doesn&apos;t need to cost $10,000 — but it does need
+                        to look the part. If you&apos;re weighing up the options, our comparison
+                        of <Link href="/blog/diy-vs-professional-website" className="text-primary hover:underline">DIY vs professional websites</Link> breaks
+                        down the real ROI.
                     </p>
 
-                    <h2>Need Help?</h2>
+                    <h3>9. Optimise for Local Search</h3>
                     <p>
-                        Every <Link href="/website-design-for-small-business" className="text-primary hover:underline">website we build</Link> is
-                        optimised for conversions using these exact tactics. If your current site isn&apos;t generating leads,
-                        let&apos;s fix that.
+                        If you serve a specific region — Auckland, Christchurch, Wellington — your website needs
+                        to show up when locals search for your service. That means:
+                    </p>
+                    <ul>
+                        <li>Location keywords in your title tags and headings</li>
+                        <li>A Google Business Profile linked to your site</li>
+                        <li>NAP (Name, Address, Phone) consistency across the web</li>
+                        <li>Local schema markup</li>
+                    </ul>
+                    <p>
+                        For example, a Christchurch-based business should have a dedicated landing page
+                        targeting <Link href="/web-design-christchurch" className="text-primary hover:underline">web design Christchurch</Link> keywords.
+                        Local SEO is one of the highest-ROI strategies because the traffic it brings
+                        is already looking for exactly what you offer.
+                    </p>
+
+                    {bottomImage && (
+                        <UnsplashImage
+                            src={bottomImage.url}
+                            alt="Business owner reviewing website analytics and lead generation data"
+                            photographer={bottomImage.photographer}
+                            profileUrl={bottomImage.profileUrl}
+                        />
+                    )}
+
+                    <h3>10. Add Live Chat or a Quick-Response Promise</h3>
+                    <p>
+                        Speed of response is a competitive advantage most NZ businesses ignore. If a potential customer
+                        fills out your form and hears back 3 days later, they&apos;ve probably already hired someone else.
+                    </p>
+                    <p>
+                        Add a &quot;We reply within 24 hours&quot; badge to your contact form. Better yet, use a simple
+                        live-chat widget during business hours. Leads contacted within 5 minutes are <strong>21x more
+                            likely</strong> to convert than those contacted after 30 minutes.
+                    </p>
+
+                    {/* ── SECTION 3: THE COMPOUND EFFECT ── */}
+                    <h2>The Compound Effect: Small Fixes, Massive Results</h2>
+                    <p>
+                        Here&apos;s where it gets exciting. You don&apos;t need to implement all 10 tactics at once.
+                        Even small improvements compound:
+                    </p>
+                    <ul>
+                        <li>Improving from <strong>2% → 4%</strong> conversion = <strong>2x more leads</strong> from the same traffic</li>
+                        <li>Improving from <strong>2% → 6%</strong> conversion = <strong>3x more leads</strong> — without spending a cent more on ads</li>
+                    </ul>
+                    <p>
+                        For a site getting 500 visitors/month, going from 2% to 6% means 20 extra leads per month.
+                        At an average NZ service job value of $500, that&apos;s <strong>$10,000/month in potential revenue</strong> from
+                        website changes alone. If you&apos;re curious what those changes might cost, check
+                        out <Link href="/blog/how-much-does-a-website-cost-in-nz" className="text-primary hover:underline">how much a website costs in NZ</Link> for
+                        a transparent pricing breakdown.
+                    </p>
+
+                    {/* ── SECTION 4: WHAT TO PRIORITISE ── */}
+                    <h2>Where to Start: A Priority Checklist</h2>
+                    <p>
+                        If you&apos;re feeling overwhelmed, here&apos;s the order we recommend for maximum ROI:
+                    </p>
+                    <ol>
+                        <li><strong>Fix page speed</strong> — instant impact on both SEO and conversions</li>
+                        <li><strong>Rewrite your headline</strong> — benefit-driven, specific to your audience</li>
+                        <li><strong>Add a lead magnet</strong> — replace &quot;Contact Us&quot; with a free offer</li>
+                        <li><strong>Cut form fields</strong> — name and email only</li>
+                        <li><strong>Add social proof beside your CTA</strong></li>
+                        <li><strong>Add multiple CTAs</strong> — hero, mid-page, bottom</li>
+                        <li><strong>Optimise for local search</strong></li>
+                    </ol>
+                    <p>
+                        Even doing the first three will make a noticeable difference within weeks.
+                    </p>
+
+                    {/* ── SECTION 5: REAL EXAMPLE ── */}
+                    <h2>Real Example: A Christchurch Cleaning Business</h2>
+                    <p>
+                        One of our clients — a cleaning company in Christchurch — was getting around 400 visitors
+                        a month from Google but only 3–4 enquiries. After we rebuilt their site with a clear lead
+                        magnet (&quot;Get an Instant Quote&quot;), slimmed down their form, added Google reviews beside
+                        the CTA, and improved page speed from 4.2s to 1.1s, their monthly enquiries jumped
+                        to <strong>18–22</strong>.
+                    </p>
+                    <p>
+                        Same traffic. Same ad spend (zero). Just a site that was engineered to convert. If you run
+                        a service business, our article
+                        on <Link href="/blog/website-for-cleaning-business-nz" className="text-primary hover:underline">websites for cleaning businesses in NZ</Link> digs
+                        deeper into this case study.
+                    </p>
+
+                    {/* ── SECTION 6: ECOMMERCE NOTE ── */}
+                    <h2>For E-Commerce: Lead Generation Looks Different</h2>
+                    <p>
+                        If you sell products online, &quot;leads&quot; might mean abandoned-cart recovery emails,
+                        newsletter sign-ups, or wishlist captures. The principles are the same — reduce friction,
+                        offer value, build trust — but the implementation differs.
+                    </p>
+                    <p>
+                        We cover the e-commerce angle in our guide
+                        to <Link href="/ecommerce-websites-nz" className="text-primary hover:underline">ecommerce website development NZ</Link>,
+                        including Shopify vs custom-built stores and which approach generates more revenue per visitor.
+                    </p>
+
+                    {/* ── FINAL CTA ── */}
+                    <h2>Stop Losing Leads — Get a Free Website Audit</h2>
+                    <p>
+                        Your website should be your hardest-working salesperson — bringing in leads 24/7, even while
+                        you sleep. If it&apos;s not doing that, something needs to change.
+                    </p>
+                    <p>
+                        We build <Link href="/website-design-for-small-business" className="text-primary hover:underline">websites for small businesses across NZ</Link> that
+                        are designed from the ground up to generate leads. Every site includes fast hosting, mobile
+                        optimisation, SEO fundamentals, and conversion-focused design — starting
+                        from <Link href="/affordable-websites-nz" className="text-primary hover:underline">just $699</Link>.
+                    </p>
+                    <p>
+                        <strong>Ready to see what&apos;s holding your site back?</strong> Run
+                        our <Link href="/#audit" className="text-primary hover:underline font-semibold">free website audit</Link> and
+                        get an instant score on speed, SEO, mobile-friendliness, and more — powered by Google Lighthouse.
+                        Or <Link href="/#contact" className="text-primary hover:underline font-semibold">get in touch</Link> for
+                        a free consultation and we&apos;ll put together a plan to turn your website into a lead-generating machine.
                     </p>
                 </BlogArticleLayout>
             </main>

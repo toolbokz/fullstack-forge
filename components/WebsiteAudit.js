@@ -2,51 +2,6 @@
 
 import React from "react";
 
-const mockAuditResults = [
-    {
-        category: "Mobile Responsiveness",
-        icon: "📱",
-        getStatus: () => (Math.random() > 0.5 ? "warning" : "pass"),
-        passText: "Your site appears mobile-friendly",
-        warnText: "Your site may not be fully optimized for mobile devices — you could be losing 60% of visitors",
-    },
-    {
-        category: "Page Speed",
-        icon: "⚡",
-        getStatus: () => (Math.random() > 0.4 ? "critical" : "warning"),
-        passText: "Page load time is acceptable",
-        warnText: "Page speed could be improved — slow sites lose 53% of mobile visitors",
-    },
-    {
-        category: "SEO Basics",
-        icon: "🔍",
-        getStatus: () => (Math.random() > 0.5 ? "warning" : "critical"),
-        passText: "Basic SEO elements detected",
-        warnText: "Missing or incomplete meta descriptions — hurting your Google rankings",
-    },
-    {
-        category: "SSL Security",
-        icon: "🔒",
-        getStatus: () => "pass",
-        passText: "SSL certificate detected — your site is secure",
-        warnText: "No SSL detected — visitors see a 'Not Secure' warning",
-    },
-    {
-        category: "Conversion Elements",
-        icon: "📞",
-        getStatus: () => (Math.random() > 0.3 ? "critical" : "warning"),
-        passText: "Clear call-to-action found",
-        warnText: "No clear call-to-action above the fold — visitors don't know what to do next",
-    },
-    {
-        category: "Local SEO",
-        icon: "📍",
-        getStatus: () => (Math.random() > 0.5 ? "warning" : "critical"),
-        passText: "Local business signals detected",
-        warnText: "Missing local SEO signals — you're invisible in local search results",
-    },
-];
-
 const statusColors = {
     pass: "text-green-600 bg-green-50",
     warning: "text-yellow-600 bg-yellow-50",
@@ -65,29 +20,31 @@ export default function WebsiteAudit() {
     const [results, setResults] = React.useState(null);
     const [loading, setLoading] = React.useState(false);
     const [score, setScore] = React.useState(null);
+    const [error, setError] = React.useState(null);
 
-    function runAudit(e) {
+    async function runAudit(e) {
         e.preventDefault();
         setLoading(true);
         setResults(null);
+        setError(null);
 
-        // Simulate audit delay
-        setTimeout(() => {
-            const auditResults = mockAuditResults.map((item) => {
-                const status = item.getStatus();
-                return {
-                    category: item.category,
-                    icon: item.icon,
-                    status,
-                    detail: status === "pass" ? item.passText : item.warnText,
-                };
+        try {
+            const res = await fetch("/api/audit", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ url }),
             });
 
-            const passCount = auditResults.filter((r) => r.status === "pass").length;
-            const auditScore = Math.round((passCount / auditResults.length) * 100);
+            const data = await res.json();
 
-            setResults(auditResults);
-            setScore(auditScore);
+            if (!res.ok) {
+                setError(data.error || "Audit failed. Please try again.");
+                setLoading(false);
+                return;
+            }
+
+            setResults(data.results);
+            setScore(data.score);
             setLoading(false);
 
             // Send lead data via Resend email
@@ -98,10 +55,13 @@ export default function WebsiteAudit() {
                     formName: "website-audit",
                     email,
                     url,
-                    score: auditScore,
+                    score: data.score,
                 }),
             }).catch(() => { });
-        }, 2000);
+        } catch {
+            setError("Something went wrong. Please check the URL and try again.");
+            setLoading(false);
+        }
     }
 
     return (
@@ -139,6 +99,11 @@ export default function WebsiteAudit() {
                             required
                             className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary"
                         />
+
+                        {error && (
+                            <p className="text-red-400 text-sm bg-red-400/10 rounded-lg px-4 py-3">{error}</p>
+                        )}
+
                         <button
                             type="submit"
                             disabled={loading}
@@ -147,12 +112,17 @@ export default function WebsiteAudit() {
                             {loading ? (
                                 <span className="flex items-center justify-center gap-2">
                                     <span className="animate-spin inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full" />
-                                    Analyzing your website…
+                                    Analyzing your website… this may take 15–30s
                                 </span>
                             ) : (
                                 "Run Free Audit"
                             )}
                         </button>
+                        {loading && (
+                            <p className="text-gray-500 text-sm text-center">
+                                We&apos;re running a real Google Lighthouse audit on your site.
+                            </p>
+                        )}
                     </form>
                 ) : (
                     <div className="w-full max-w-2xl">
@@ -182,6 +152,7 @@ export default function WebsiteAudit() {
                                     <div className="flex-1">
                                         <div className="flex items-center gap-2 mb-1">
                                             <span className="font-semibold">{r.category}</span>
+                                            <span className="text-xs text-gray-400 font-mono">{r.score}/100</span>
                                             <span
                                                 className={`text-xs font-bold px-2 py-0.5 rounded-full ${statusColors[r.status]}`}
                                             >
