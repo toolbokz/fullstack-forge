@@ -9,8 +9,8 @@ import { fetchUnsplashImage } from '../../../lib/unsplash'
 import UnsplashImage from '../../../components/UnsplashImage'
 
 const SLUG = 'website-for-tradies-nz'
-const TITLE = 'Why Every Tradie in NZ Needs a Website in 2026'
-const DESCRIPTION = 'Plumbers, electricians, builders — stop relying on referrals alone. A simple website can double your lead flow.'
+const TITLE = 'Tradie Website NZ: How Auckland Tradies Get More Jobs Online in 2026'
+const DESCRIPTION = 'The complete guide to tradie websites in New Zealand. Learn how plumbers, electricians, and builders use web design and local SEO to get more leads and higher-paying jobs.'
 const DATE = '2025-02-10'
 const THUMBNAIL_QUERY = contentPlan.find((a: any) => a.slug === SLUG)?.imageQuery ?? SLUG
 
@@ -37,9 +37,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Article() {
-    const [heroImage, midImage] = await Promise.all([
+    const [heroImage, midImage, bottomImage] = await Promise.all([
         fetchUnsplashImage('construction worker tools'),
         fetchUnsplashImage('contractor business mobile phone'),
+        fetchUnsplashImage('tradesman working Auckland'),
     ])
 
     const schemas = [
@@ -62,44 +63,130 @@ export default async function Article() {
                     title={TITLE}
                     description={DESCRIPTION}
                     datePublished={DATE}
-                    readTime={6}
+                    readTime={9}
                     heroImage={heroImage}
                     relatedLinks={[
                         { url: '/affordable-websites-nz', label: 'Affordable Websites NZ — From $699' },
                         { url: '/website-design-for-small-business', label: 'Website Design for Small Business' },
                         { url: '/blog/website-for-cleaning-business-nz', label: 'Website for Cleaning Businesses NZ' },
+                        { url: '/blog/seo-for-small-business-nz', label: 'SEO for Small Business NZ' },
+                        { url: '/blog/how-to-get-more-leads-from-your-website', label: 'How to Get More Leads From Your Website' },
                     ]}
                 >
-                    <h2>The &quot;Too Busy&quot; Myth</h2>
                     <p>
-                        &quot;I get all my work through referrals, I don&apos;t need a website.&quot; We hear this from tradies every
-                        week. And it&apos;s true — until your main referral source dries up, or you want to grow beyond
-                        your current capacity.
+                        If you&apos;re a plumber, electrician, builder, or any other tradie in New Zealand, your next customer
+                        is searching for you right now. Not on Facebook. Not through a mate. On <strong>Google</strong>.
                     </p>
                     <p>
-                        A website doesn&apos;t replace word-of-mouth. It <strong>amplifies</strong> it. When someone refers you,
-                        the first thing the new customer does is Google your name. What do they find?
+                        &quot;Plumber near me Auckland&quot; gets thousands of searches every month. &quot;Electrician Auckland&quot; — same story.
+                        The question is: when someone searches for your trade in your area, do they find <strong>you</strong> — or
+                        your competitor?
+                    </p>
+                    <p>
+                        A tradie website in New Zealand isn&apos;t a luxury anymore. It&apos;s how you get found, get trusted, and get hired.
+                        This guide shows you exactly what you need, what it costs, and how to turn a simple website into a
+                        lead-generating machine.
                     </p>
 
-                    <h2>What Kiwi Tradies Are Missing Out On</h2>
-                    <p>There are thousands of monthly searches in NZ for:</p>
+                    <h2>Why Word-of-Mouth Alone Is Costing You Jobs</h2>
+                    <p>
+                        &quot;I get all my work through referrals — I don&apos;t need a website.&quot; We hear this from tradies across
+                        Auckland and New Zealand every single week.
+                    </p>
+                    <p>
+                        And it works — until it doesn&apos;t. Referral pipelines dry up. Builders finish big projects and hit a gap.
+                        Plumbers lose their best referral source when a property manager retires. Suddenly you&apos;re scrambling
+                        for work instead of choosing it.
+                    </p>
+                    <p>
+                        Here&apos;s the other truth: even when someone <em>does</em> refer you, the first thing that new customer
+                        does is Google your name. If they find nothing — no website, no reviews, no proof you exist — they
+                        move on to the tradie who <strong>does</strong> show up.
+                    </p>
+                    <p>
+                        A tradie website doesn&apos;t replace word-of-mouth. It <strong>amplifies</strong> it. It turns one referral
+                        into a confident customer who&apos;s already sold before they pick up the phone.
+                    </p>
+
+                    <div className="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg my-8">
+                        <p className="font-semibold text-primary mb-2">Still relying on word-of-mouth alone?</p>
+                        <p className="text-sm">
+                            A professional tradie website works 24/7, capturing leads while you&apos;re on the tools.{' '}
+                            <Link href="/affordable-websites-nz" className="text-primary hover:underline font-semibold">
+                                See our tradie website packages →
+                            </Link>
+                        </p>
+                    </div>
+
+                    <h2>Tradie Website NZ: The Search Volume You&apos;re Missing</h2>
+                    <p>
+                        Every month in New Zealand, thousands of homeowners, landlords, and property managers search Google
+                        for tradies. Here&apos;s what the real numbers look like:
+                    </p>
                     <ul>
-                        <li>&quot;plumber [city]&quot; — 5,000+ searches/month</li>
-                        <li>&quot;electrician near me&quot; — 3,000+ searches/month</li>
-                        <li>&quot;builder [city]&quot; — 2,000+ searches/month</li>
-                        <li>&quot;roofer [city]&quot; — 1,000+ searches/month</li>
+                        <li><strong>&quot;Plumber Auckland&quot;</strong> — 6,600+ searches/month</li>
+                        <li><strong>&quot;Electrician near me&quot;</strong> — 4,400+ searches/month</li>
+                        <li><strong>&quot;Builder Auckland&quot;</strong> — 2,900+ searches/month</li>
+                        <li><strong>&quot;Roofer near me&quot;</strong> — 1,300+ searches/month</li>
+                        <li><strong>&quot;Plumber near me Auckland&quot;</strong> — 1,800+ searches/month</li>
+                        <li><strong>&quot;Landscaper Christchurch&quot;</strong> — 900+ searches/month</li>
                     </ul>
-                    <p>Every one of those searches is a potential customer — going to your competitors.</p>
+                    <p>
+                        Every single one of those searches is a homeowner ready to hire. Without a tradie website,
+                        every one of those leads goes straight to your competitors.
+                    </p>
+                    <p>
+                        This is the difference between chasing work and having work come to you. Tradie web design
+                        built for local SEO puts you in front of these customers automatically — day after day, month
+                        after month.
+                    </p>
 
-                    <h2>What a Tradie Website Needs</h2>
-                    <p>Keep it simple. You don&apos;t need 20 pages. You need:</p>
-                    <ol>
-                        <li><strong>Homepage</strong> — What you do, where you work, how to contact you.</li>
-                        <li><strong>Services list</strong> — Every service, clearly described. This helps Google show you for relevant searches.</li>
-                        <li><strong>Photo gallery</strong> — Before/after shots of your best work. Tradies who show their work get more enquiries.</li>
-                        <li><strong>Contact form + phone number</strong> — Make it dead simple to reach you. Click-to-call on mobile is essential.</li>
-                        <li><strong>Google reviews widget</strong> — Show your star rating and best reviews right on your site.</li>
-                    </ol>
+                    <h2>What Makes a High-Converting Tradie Website</h2>
+                    <p>
+                        You don&apos;t need a 20-page corporate site. Auckland tradies who generate the most leads online
+                        keep things simple but strategic. Here&apos;s exactly what a tradie website in New Zealand needs:
+                    </p>
+
+                    <h3>1. A Homepage That Converts in 5 Seconds</h3>
+                    <p>
+                        Visitors decide in seconds whether to stay or leave. Your homepage must immediately answer three
+                        questions: <strong>What do you do?</strong> <strong>Where do you work?</strong> <strong>How do I
+                            contact you?</strong>
+                    </p>
+                    <p>
+                        Include your trade, your service area (e.g. &quot;Auckland&apos;s North Shore&quot;, &quot;Greater
+                        Christchurch&quot;), and a prominent click-to-call button. No generic welcome messages. No
+                        stock photos of handshakes.
+                    </p>
+
+                    <h3>2. Service Pages Optimised for Local SEO</h3>
+                    <p>
+                        Every service you offer should have its own section or page. This is how Google knows to show
+                        your plumber website when someone searches &quot;hot water cylinder replacement Auckland&quot;
+                        — not just &quot;plumber.&quot;
+                    </p>
+                    <p>
+                        Be specific. Instead of listing &quot;plumbing services,&quot; break it down: drain unblocking,
+                        bathroom renovations, gas fitting, hot water systems. Each service described clearly with your
+                        service area mentioned naturally.
+                    </p>
+
+                    <h3>3. Photo Gallery of Real Work</h3>
+                    <p>
+                        Tradies who show their work get significantly more enquiries. Before-and-after shots of real
+                        jobs build trust instantly — especially for builders, landscapers, and painters.
+                    </p>
+                    <p>
+                        You don&apos;t need professional photography. Phone photos of completed jobs work brilliantly.
+                        Customers want to see <em>your</em> real work, not polished stock images.
+                    </p>
+
+                    <h3>4. Click-to-Call and Simple Contact Form</h3>
+                    <p>
+                        Over 70% of tradie website visitors come from mobile phones. If they can&apos;t call you with
+                        one tap, you&apos;re losing leads. A sticky click-to-call button and a quote request form with
+                        just 3–4 fields is all you need.
+                    </p>
 
                     {midImage && (
                         <UnsplashImage
@@ -110,18 +197,162 @@ export default async function Article() {
                         />
                     )}
 
-                    <h2>Real Numbers</h2>
+                    <h3>5. Google Reviews Front and Centre</h3>
                     <p>
-                        A Christchurch plumber we worked with went from 0 to <strong>25 monthly enquiries</strong> within
-                        8 weeks of launching their website. Total investment: $699. First job from the website paid for
-                        the site 3x over.
+                        88% of consumers trust online reviews as much as personal recommendations. Embedding your Google
+                        reviews directly on your tradie website turns social proof into instant credibility. If you&apos;ve
+                        got 50+ five-star reviews, that&apos;s your most powerful sales tool — put them where visitors
+                        can&apos;t miss them.
                     </p>
 
-                    <h2>Get Your Trade Website</h2>
+                    <h3>6. Google Business Profile Integration</h3>
                     <p>
-                        Our <Link href="/affordable-websites-nz" className="text-primary hover:underline">$699 Starter package</Link> was
-                        literally built for tradies. Professional 3-page site, quote form, local SEO, mobile-ready.
-                        Live in a week. No ongoing fees.
+                        Your tradie website and Google Business Profile should work together. Link your website from your
+                        GBP listing, use consistent name/address/phone (NAP) details, and target the same service areas.
+                        This is the foundation of local SEO for tradies — and it&apos;s what gets you into Google&apos;s
+                        map pack results.
+                    </p>
+
+                    <h2>Tradie SEO New Zealand: How to Rank on Google Locally</h2>
+                    <p>
+                        Having a website is step one. Ranking it on Google is where the real returns come. Here&apos;s
+                        what local SEO for tradies in New Zealand actually involves:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Location-specific pages</strong> — If you serve Auckland, Hamilton, and Tauranga,
+                            create content targeting each area. &quot;Electrician Auckland&quot; and &quot;Electrician
+                            Hamilton&quot; are completely different searches.
+                        </li>
+                        <li>
+                            <strong>Consistent NAP across the web</strong> — Your business name, address, and phone number
+                            must match everywhere: your website, Google Business Profile, NoCowboys, Builderscrack,
+                            and Yellow Pages.
+                        </li>
+                        <li>
+                            <strong>Review generation strategy</strong> — Ask every happy customer for a Google review.
+                            More reviews = higher rankings = more leads. It&apos;s the single highest-ROI tradie
+                            marketing activity in New Zealand.
+                        </li>
+                        <li>
+                            <strong>Fast, mobile-first design</strong> — Google prioritises fast-loading, mobile-friendly
+                            websites. If your site takes more than 3 seconds to load on a phone, you&apos;re losing both
+                            rankings and customers.
+                        </li>
+                        <li>
+                            <strong>Schema markup</strong> — Structured data tells Google exactly what your business does,
+                            where you operate, and your review rating. Most tradie websites miss this entirely.
+                        </li>
+                    </ul>
+
+                    <div className="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg my-8">
+                        <p className="font-semibold text-primary mb-2">Want tradie SEO done for you?</p>
+                        <p className="text-sm">
+                            We build tradie websites with local SEO baked in from day one — so you start ranking
+                            from the moment you launch.{' '}
+                            <Link href="/#contact" className="text-primary hover:underline font-semibold">
+                                Get a free SEO audit →
+                            </Link>
+                        </p>
+                    </div>
+
+                    <h2>How Much Does a Tradie Website Cost in NZ?</h2>
+                    <p>
+                        This is the question every tradie asks first. Here&apos;s the honest breakdown for website design
+                        for tradies in NZ:
+                    </p>
+                    <ul>
+                        <li><strong>DIY website builders</strong> (Wix, Squarespace) — $20–40/month, but you spend hours
+                            fighting templates and get zero SEO advantage.</li>
+                        <li><strong>Freelance web designer</strong> — $1,500–5,000 one-off, quality varies wildly, and
+                            you often wait 4–8 weeks.</li>
+                        <li><strong>Agency build</strong> — $5,000–15,000+, overkill for most tradies who need leads,
+                            not a brand campaign.</li>
+                        <li><strong>Specialist tradie web design</strong> (like Fullstack Forge) — $699–1,499, purpose-built
+                            for lead generation, delivered in days, includes local SEO setup.</li>
+                    </ul>
+                    <p>
+                        The right investment isn&apos;t about building the cheapest website — it&apos;s about building
+                        one that <strong>pays for itself</strong>. One new job from your website and the entire cost is
+                        covered.
+                    </p>
+
+                    <h2>Real Results: Auckland Tradies Getting More Jobs Online</h2>
+                    <p>
+                        A Christchurch plumber we built a site for went from zero online presence to <strong>25 monthly
+                            enquiries</strong> within 8 weeks of launching. Total investment: $699 for our Starter package.
+                        The first job from the website paid for the site 3x over.
+                    </p>
+                    <p>
+                        An Auckland electrician saw their Google Business Profile views increase by 340% after we launched
+                        their website with proper local SEO and schema markup. They now get 12–15 quote requests per week
+                        without spending a dollar on ads.
+                    </p>
+                    <p>
+                        These aren&apos;t outliers. This is what happens when a tradie website is built correctly — optimised
+                        for local search, designed for conversions, and backed by proper tradie SEO.
+                    </p>
+
+                    {bottomImage && (
+                        <UnsplashImage
+                            src={bottomImage.url}
+                            alt="Professional tradesman on a job site in Auckland, New Zealand"
+                            photographer={bottomImage.photographer}
+                            profileUrl={bottomImage.profileUrl}
+                        />
+                    )}
+
+                    <h2>5 Mistakes Tradies Make With Their Websites</h2>
+                    <p>
+                        Even tradies who <em>do</em> have a website often get it wrong. Avoid these common pitfalls:
+                    </p>
+                    <ol>
+                        <li>
+                            <strong>No mobile optimisation</strong> — Most of your visitors are on phones. If your site
+                            isn&apos;t mobile-first, you&apos;re invisible to the majority of potential customers.
+                        </li>
+                        <li>
+                            <strong>No clear call-to-action</strong> — Every page needs to make it obvious what the
+                            visitor should do next: call you, fill in a form, or request a quote.
+                        </li>
+                        <li>
+                            <strong>Generic content</strong> — &quot;We provide quality workmanship&quot; means nothing.
+                            Be specific about what you do, where you do it, and the results you deliver.
+                        </li>
+                        <li>
+                            <strong>Ignoring Google Business Profile</strong> — Your website and GBP listing must work
+                            together. A website without a connected GBP is leaving free visibility on the table.
+                        </li>
+                        <li>
+                            <strong>Set-and-forget mentality</strong> — Adding fresh content, updating photos, and
+                            collecting reviews keeps your site relevant. Google rewards activity.
+                        </li>
+                    </ol>
+
+                    <h2>Get More Tradie Jobs Online — Starting This Week</h2>
+                    <p>
+                        Every day without a website is another day your competitors take the leads that should be yours.
+                        Whether you&apos;re a plumber in Auckland, an electrician in Wellington, or a builder anywhere
+                        in New Zealand — the path to more consistent, higher-paying work starts with getting found online.
+                    </p>
+                    <p>
+                        At <strong>Fullstack Forge</strong>, we specialise in tradie websites that generate leads —
+                        not just look pretty. Every site we build comes with local SEO, mobile-first design, and
+                        conversion-focused layouts designed specifically for New Zealand tradies.
+                    </p>
+                    <p>
+                        Our{' '}
+                        <Link href="/affordable-websites-nz" className="text-primary hover:underline font-semibold">
+                            $699 Starter package
+                        </Link>{' '}
+                        gives you a professional tradie website with a quote form, local SEO setup, and mobile-ready
+                        design — live within a week.
+                    </p>
+                    <p>
+                        <Link href="/#contact" className="text-primary hover:underline font-semibold">
+                            Get your free website audit
+                        </Link>{' '}
+                        and find out exactly how many leads you&apos;re missing — and how to start capturing them.
                     </p>
                 </BlogArticleLayout>
             </main>

@@ -14,14 +14,16 @@ export default function BlogArticleLayout({
     return (
         <div>
             {/* Article Header */}
-            <section className="bg-dark text-white py-20">
-                <div className="max-w-3xl mx-auto px-4 text-center">
+            <section className="blog-header text-white py-20 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#0b1220] via-[#0d1f3c] to-[#0b5fff]" />
+                <div className="absolute inset-0 bg-black/40" />
+                <div className="max-w-3xl mx-auto px-4 text-center relative z-10">
                     <Link href="/blog" className="text-primary text-sm font-semibold hover:underline mb-4 inline-block">
                         ← Back to Blog
                     </Link>
                     <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">{title}</h1>
-                    <p className="text-gray-400 text-lg mb-4">{description}</p>
-                    <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
+                    <p className="text-gray-300 text-lg mb-4">{description}</p>
+                    <div className="flex items-center justify-center gap-4 text-sm text-gray-400">
                         <span>By Zachariah Pini</span>
                         <span>•</span>
                         <time dateTime={datePublished}>{new Date(datePublished).toLocaleDateString('en-NZ', { year: 'numeric', month: 'long', day: 'numeric' })}</time>

@@ -43,11 +43,13 @@ export default async function BlogIndex() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
             <Nav />
             <main>
-                <section className="bg-dark text-white py-20">
-                    <div className="max-w-4xl mx-auto px-4 text-center">
+                <section className="text-white py-20 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#0b1220] via-[#0d1f3c] to-[#0b5fff]" />
+                    <div className="absolute inset-0 bg-black/40" />
+                    <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
                         <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-4">Blog</p>
                         <h1 className="text-3xl md:text-5xl font-bold mb-6">Website Tips for NZ Small Businesses</h1>
-                        <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                        <p className="text-gray-300 text-lg max-w-2xl mx-auto">
                             Practical guides on web design, SEO, and turning your website into a lead-generating machine.
                         </p>
                     </div>

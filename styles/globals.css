@@ -162,6 +162,7 @@ section.visible {
 
 .nav-links {
     display: flex;
+    align-items: center;
     gap: 1.5rem;
     flex-wrap: wrap;
     justify-content: center;
@@ -179,6 +180,23 @@ section.visible {
 }
 
 .nav-links li a:hover {
+    color: var(--accent);
+}
+
+.nav-socials {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.nav-socials a {
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.nav-socials a:hover {
     color: var(--accent);
 }
 
