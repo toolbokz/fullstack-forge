@@ -90,18 +90,16 @@ export default function WebsiteAudit() {
             setScore(auditScore);
             setLoading(false);
 
-            // Submit lead data to Netlify Forms
-            const formData = new URLSearchParams({
-                "form-name": "website-audit",
-                email,
-                "audit-url": url,
-                score: String(auditScore),
-            });
-
-            fetch("/__forms.html", {
+            // Send lead data via Resend email
+            fetch("/api/contact", {
                 method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: formData.toString(),
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    formName: "website-audit",
+                    email,
+                    url,
+                    score: auditScore,
+                }),
             }).catch(() => { });
         }, 2000);
     }

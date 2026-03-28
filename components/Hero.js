@@ -1,26 +1,15 @@
-import { fetchUnsplashImages } from '../lib/unsplash'
-import HeroSlider from './HeroSlider'
+import { fetchPixabayVideo } from '../lib/pixabay'
+import HeroVideo from './HeroVideo'
 
-const heroQueries = [
-    'software development coding',
-    'web development programming',
-    'computer code technology',
-    'developer workspace setup',
-    'modern software engineering',
-]
+const HERO_VIDEO_ID = '174086'
 
 export default async function Hero() {
-    // Fetch one image per query to get diverse software-related photos
-    const imagePromises = heroQueries.map(async (query) => {
-        const images = await fetchUnsplashImages(query, 1)
-        return images[0] || null
-    })
-    const results = await Promise.all(imagePromises)
-    const images = results.filter(Boolean)
+    const video = await fetchPixabayVideo(HERO_VIDEO_ID)
+    const videoUrl = video?.medium || video?.large || null
 
     return (
         <section className="hero" id="hero">
-            {images.length > 0 && <HeroSlider images={images} />}
+            <HeroVideo videoUrl={videoUrl} />
             <div className="container center-all hero-content">
                 <p className="text-primary-light bg-white/10 inline-block px-4 py-1 rounded-full text-sm font-semibold mb-6 backdrop-blur-sm border border-white/20">
                     Trusted by 50+ small businesses across NZ
