@@ -3,6 +3,7 @@ import Nav from '../../../components/Nav'
 import Footer from '../../../components/Footer'
 import BlogArticleLayout from '../../../components/BlogArticleLayout'
 import { articleSchema, breadcrumbSchema, SITE_URL } from '../../../lib/schema'
+import { contentPlan } from '../../../lib/seo-data'
 import Link from 'next/link'
 import { fetchUnsplashImage } from '../../../lib/unsplash'
 import UnsplashImage from '../../../components/UnsplashImage'
@@ -11,12 +12,28 @@ const SLUG = 'how-to-get-more-leads-from-your-website'
 const TITLE = 'How to Get More Leads From Your Website (Without More Traffic)'
 const DESCRIPTION = "You don't always need more traffic — you need better conversion. Here are 7 proven tactics."
 const DATE = '2025-03-01'
+const THUMBNAIL_QUERY = contentPlan.find((a: any) => a.slug === SLUG)?.imageQuery ?? SLUG
 
-export const metadata: Metadata = {
-    title: `${TITLE} — Fullstack Forge`,
-    description: DESCRIPTION,
-    alternates: { canonical: `${SITE_URL}/blog/${SLUG}` },
-    openGraph: { title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/blog/${SLUG}`, type: 'article' },
+export async function generateMetadata(): Promise<Metadata> {
+    const thumbnail = await fetchUnsplashImage(THUMBNAIL_QUERY)
+    return {
+        title: `${TITLE} — Fullstack Forge`,
+        description: DESCRIPTION,
+        alternates: { canonical: `${SITE_URL}/blog/${SLUG}` },
+        openGraph: {
+            title: TITLE,
+            description: DESCRIPTION,
+            url: `${SITE_URL}/blog/${SLUG}`,
+            type: 'article',
+            ...(thumbnail ? { images: [{ url: thumbnail.url, alt: thumbnail.alt }] } : {}),
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: TITLE,
+            description: DESCRIPTION,
+            ...(thumbnail ? { images: [thumbnail.url] } : {}),
+        },
+    }
 }
 
 export default async function Article() {

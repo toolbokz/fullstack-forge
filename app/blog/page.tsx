@@ -18,6 +18,13 @@ export const metadata: Metadata = {
         description: 'Website tips, SEO guides, and business growth strategies for NZ small businesses.',
         url: `${SITE_URL}/blog`,
         type: 'website',
+        images: [{ url: '/assets/hero.png', width: 2560, height: 1440, alt: 'Fullstack Forge Blog' }],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Blog — Fullstack Forge',
+        description: 'Website tips, SEO guides, and business growth strategies for NZ small businesses.',
+        images: ['/assets/hero.png'],
     },
 }
 

@@ -13,9 +13,13 @@ export const metadata: Metadata = {
             'Get a high-converting website in 7 days designed to bring in leads, calls, and sales.',
         type: 'website',
         url: 'https://fullstack-forge.netlify.app/',
+        images: [{ url: '/assets/hero.png', width: 2560, height: 1440, alt: 'Fullstack Forge — Websites That Generate Customers' }],
     },
     twitter: {
         card: 'summary_large_image',
+        title: 'Fullstack Forge — Websites That Generate Customers',
+        description: 'Get a high-converting website in 7 days designed to bring in leads, calls, and sales.',
+        images: ['/assets/hero.png'],
     },
     alternates: {
         canonical: 'https://fullstack-forge.netlify.app/',

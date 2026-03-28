@@ -3,6 +3,7 @@ import Nav from '../../../components/Nav'
 import Footer from '../../../components/Footer'
 import BlogArticleLayout from '../../../components/BlogArticleLayout'
 import { articleSchema, breadcrumbSchema, SITE_URL } from '../../../lib/schema'
+import { contentPlan } from '../../../lib/seo-data'
 import Link from 'next/link'
 import { fetchUnsplashImage } from '../../../lib/unsplash'
 import UnsplashImage from '../../../components/UnsplashImage'
@@ -11,12 +12,28 @@ const SLUG = 'website-for-tradies-nz'
 const TITLE = 'Why Every Tradie in NZ Needs a Website in 2026'
 const DESCRIPTION = 'Plumbers, electricians, builders — stop relying on referrals alone. A simple website can double your lead flow.'
 const DATE = '2025-02-10'
+const THUMBNAIL_QUERY = contentPlan.find((a: any) => a.slug === SLUG)?.imageQuery ?? SLUG
 
-export const metadata: Metadata = {
-    title: `${TITLE} — Fullstack Forge`,
-    description: DESCRIPTION,
-    alternates: { canonical: `${SITE_URL}/blog/${SLUG}` },
-    openGraph: { title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/blog/${SLUG}`, type: 'article' },
+export async function generateMetadata(): Promise<Metadata> {
+    const thumbnail = await fetchUnsplashImage(THUMBNAIL_QUERY)
+    return {
+        title: `${TITLE} — Fullstack Forge`,
+        description: DESCRIPTION,
+        alternates: { canonical: `${SITE_URL}/blog/${SLUG}` },
+        openGraph: {
+            title: TITLE,
+            description: DESCRIPTION,
+            url: `${SITE_URL}/blog/${SLUG}`,
+            type: 'article',
+            ...(thumbnail ? { images: [{ url: thumbnail.url, alt: thumbnail.alt }] } : {}),
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: TITLE,
+            description: DESCRIPTION,
+            ...(thumbnail ? { images: [thumbnail.url] } : {}),
+        },
+    }
 }
 
 export default async function Article() {
