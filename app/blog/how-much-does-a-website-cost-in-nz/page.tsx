@@ -76,8 +76,8 @@ export default async function Article() {
                     <h2>Quick Answer: Website Cost in NZ (2026)</h2>
                     <p>
                         In New Zealand, a website costs anywhere from <strong>$0 (DIY)</strong> to <strong>$30,000+
-                        (full agency build)</strong>. For most small businesses, the sweet spot is <strong>$699–$2,499
-                        NZD</strong> for a professionally built, conversion-focused website that actually generates
+                            (full agency build)</strong>. For most small businesses, the sweet spot is <strong>$699–$2,499
+                                NZD</strong> for a professionally built, conversion-focused website that actually generates
                         leads.
                     </p>
                     <p>
@@ -104,7 +104,7 @@ export default async function Article() {
                     </table>
                     <p>
                         The biggest factor isn&apos;t the upfront cost — it&apos;s whether the website <strong>pays for
-                        itself</strong>. A $699 website that generates 10 enquiries a month is a better investment than
+                            itself</strong>. A $699 website that generates 10 enquiries a month is a better investment than
                         a $15,000 site that sits there looking pretty.
                     </p>
 
@@ -351,7 +351,7 @@ export default async function Article() {
                     <h3>Auckland Tradie — $699</h3>
                     <p>
                         A Christchurch plumber invested $699 in our Starter package. Within 8 weeks: <strong>25
-                        monthly enquiries</strong>, first job from the website covered the cost 3x over. No ongoing
+                            monthly enquiries</strong>, first job from the website covered the cost 3x over. No ongoing
                         fees. Total year-one cost including domain: <strong>$749 NZD</strong>.
                     </p>
 
@@ -365,7 +365,7 @@ export default async function Article() {
                     <h3>NZ Ecommerce Store — $1,499</h3>
                     <p>
                         A boutique retailer launched with our ecommerce package. <strong>$8,000+ in sales within the
-                        first month</strong> — a 5x return on their website investment before any advertising spend.
+                            first month</strong> — a 5x return on their website investment before any advertising spend.
                     </p>
 
                     <h2>Website Cost NZ: Frequently Asked Questions</h2>
