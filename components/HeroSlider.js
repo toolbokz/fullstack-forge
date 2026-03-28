@@ -1,10 +1,11 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 
 export default function HeroSlider({ images }) {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [loaded, setLoaded] = useState({})
+    const imgRefs = useRef([])
 
     const advance = useCallback(() => {
         setCurrentIndex((prev) => (prev + 1) % images.length)
@@ -25,6 +26,15 @@ export default function HeroSlider({ images }) {
         img.src = images[nextIndex].url
     }, [currentIndex, images])
 
+    // Catch images that loaded before React hydrated (SSR case)
+    useEffect(() => {
+        imgRefs.current.forEach((el, i) => {
+            if (el && el.complete && el.naturalWidth > 0) {
+                setLoaded((prev) => ({ ...prev, [i]: true }))
+            }
+        })
+    }, [])
+
     function handleLoad(index) {
         setLoaded((prev) => ({ ...prev, [index]: true }))
     }
@@ -43,6 +53,7 @@ export default function HeroSlider({ images }) {
                         className={`hero-slide${i === currentIndex ? ' hero-slide-active' : ''}`}
                     >
                         <img
+                            ref={(el) => { imgRefs.current[i] = el }}
                             src={img.url}
                             alt=""
                             onLoad={() => handleLoad(i)}
