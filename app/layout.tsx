@@ -4,21 +4,21 @@ import AuthProvider from '../components/AuthProvider'
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://fullstack-forge.netlify.app'),
-    title: 'Fullstack Forge — Websites That Generate Customers for Small Businesses',
+    title: 'Fullstack Forge — Get More Jobs From Your Website | NZ Tradies',
     description:
-        'Get a high-converting website in 7 days designed to bring in leads, calls, and sales. Pre-built solutions for local services, e-commerce, and professional businesses.',
+        'We help NZ tradies and local businesses get found on Google, generate leads, and book more jobs. Free website audit. Results in 7 days.',
     openGraph: {
-        title: 'Fullstack Forge — Websites That Generate Customers',
+        title: 'Fullstack Forge — Get More Jobs From Your Website',
         description:
-            'Get a high-converting website in 7 days designed to bring in leads, calls, and sales.',
+            'We help NZ tradies get found on Google and generate leads on autopilot. Free website audit available.',
         type: 'website',
         url: 'https://fullstack-forge.netlify.app/',
-        images: [{ url: '/assets/hero.png', width: 2560, height: 1440, alt: 'Fullstack Forge — Websites That Generate Customers' }],
+        images: [{ url: '/assets/hero.png', width: 2560, height: 1440, alt: 'Fullstack Forge — More Jobs for NZ Tradies' }],
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Fullstack Forge — Websites That Generate Customers',
-        description: 'Get a high-converting website in 7 days designed to bring in leads, calls, and sales.',
+        title: 'Fullstack Forge — Get More Jobs From Your Website',
+        description: 'We help NZ tradies get found on Google and generate leads on autopilot.',
         images: ['/assets/hero.png'],
     },
     alternates: {

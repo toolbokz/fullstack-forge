@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import LeadCaptureForm from './LeadCaptureForm';
+import { PixabayImage, PixabayVideo, PixabayImageGrid } from './PixabayMedia';
 
 export default function ServicePageLayout({
     badge,
@@ -11,6 +12,9 @@ export default function ServicePageLayout({
     caseStudies,
     relatedPages,
     relatedArticles,
+    heroImage,
+    images,
+    video,
 }) {
     return (
         <div>
@@ -36,6 +40,20 @@ export default function ServicePageLayout({
                     </div>
                 </div>
             </section>
+
+            {/* Hero Image */}
+            {heroImage && (
+                <section className="py-0">
+                    <PixabayImage
+                        src={heroImage.largeSrc || heroImage.src}
+                        alt={heroImage.alt}
+                        user={heroImage.user}
+                        pageURL={heroImage.pageURL}
+                        priority={true}
+                        className="w-full max-h-[400px] overflow-hidden [&_img]:rounded-none [&_img]:max-h-[400px] [&_figcaption]:py-2 [&_figcaption]:bg-gray-50"
+                    />
+                </section>
+            )}
 
             {/* Features / What You Get */}
             <section className="py-20">
@@ -87,6 +105,25 @@ export default function ServicePageLayout({
                                 </div>
                             ))}
                         </div>
+                    </div>
+                </section>
+            )}
+
+            {/* Video Showcase */}
+            {video && (
+                <section className="py-16 bg-white">
+                    <div className="max-w-4xl mx-auto px-4">
+                        <h2 className="text-xl md:text-2xl font-bold text-center mb-6">See What We Build</h2>
+                        <PixabayVideo video={video} className="max-w-3xl mx-auto" />
+                    </div>
+                </section>
+            )}
+
+            {/* Image Gallery */}
+            {images && images.length > 0 && (
+                <section className="py-16 bg-gray-50">
+                    <div className="max-w-5xl mx-auto px-4">
+                        <PixabayImageGrid images={images} columns={images.length >= 3 ? 3 : 2} />
                     </div>
                 </section>
             )}

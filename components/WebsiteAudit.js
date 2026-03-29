@@ -65,17 +65,16 @@ export default function WebsiteAudit() {
     }
 
     return (
-        <section className="bg-dark text-white py-20" id="audit">
+        <section className="text-white py-20" id="audit" style={{ background: 'linear-gradient(135deg, #0b1220 0%, #0d1f3c 50%, #0b2e6e 100%)' }}>
             <div className="container center-all">
                 <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-2">
                     Free Tool
                 </p>
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                    Free Website Audit
+                    See What&apos;s Costing You Jobs — In 30 Seconds
                 </h2>
                 <p className="text-gray-400 text-lg max-w-2xl mb-10">
-                    Find out how your current website stacks up. Get instant feedback on
-                    speed, SEO, mobile-friendliness, and conversion potential.
+                    Enter your website URL and we&apos;ll instantly show you what&apos;s broken — speed, Google visibility, mobile experience, and lead capture.
                 </p>
 
                 {!results ? (
@@ -167,11 +166,10 @@ export default function WebsiteAudit() {
 
                         <div className="bg-primary/10 border border-primary/30 rounded-xl p-6 text-center">
                             <h3 className="text-xl font-bold mb-2">
-                                Want to Fix These Issues?
+                                Want Us to Fix These Issues?
                             </h3>
                             <p className="text-gray-400 mb-4">
-                                We&apos;ll build you a website that scores 90+ across all
-                                categories — and actually generates leads.
+                                We&apos;ll rebuild your website to score 90+ across all categories — and actually bring in jobs.
                             </p>
                             <a href="#contact" className="btn text-lg px-8 py-3">
                                 Get a Free Consultation

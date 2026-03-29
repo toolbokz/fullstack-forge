@@ -7,76 +7,81 @@ const plans = [
     {
         name: "Starter",
         price: "$699",
+        period: "one-time",
         description:
-            "For small businesses that need a professional online presence",
+            "Get online fast with a professional site that makes the phone ring",
         features: [
             "1–3 page website",
-            "Mobile optimized",
-            "Basic SEO setup",
-            "Contact form",
-            "Fast delivery (2–4 days)",
+            "Mobile-friendly design",
+            "Click-to-call buttons",
+            "Google Maps integration",
+            "Basic local SEO setup",
+            "Live in 5–7 days",
         ],
         cta: "Get Started",
         popular: false,
     },
     {
         name: "Growth",
-        price: "$1,199",
+        price: "$1,499",
+        period: "one-time",
         description:
-            "For businesses that want consistent leads and customers",
+            "For tradies serious about getting consistent leads from Google",
         features: [
             "Everything in Starter",
             "4–6 pages",
-            "Conversion-focused design",
-            "Lead capture system",
-            "SEO structure",
-            "Performance optimization",
+            "Full local SEO optimisation",
+            "Lead capture forms + quote requests",
+            "Google Business Profile setup",
+            "Speed & performance tuning",
+            "Live in 7–10 days",
         ],
-        cta: "Get More Customers",
+        cta: "Get More Jobs",
         popular: true,
     },
     {
-        name: "Pro",
-        price: "$2,499",
+        name: "Monthly Growth",
+        price: "$299",
+        period: "/month",
         description:
-            "For businesses ready to scale aggressively",
+            "Ongoing optimisation so you keep ranking and keep getting jobs",
         features: [
-            "Everything in Growth",
-            "Full funnel setup (landing pages)",
-            "Advanced SEO",
-            "Analytics integration",
-            "Custom features",
+            "Monthly SEO updates",
+            "Content & blog posts for rankings",
+            "Google ranking monitoring",
+            "Lead tracking & reporting",
+            "Website updates & maintenance",
             "Priority support",
         ],
-        cta: "Scale My Business",
+        cta: "Start Growing Monthly",
         popular: false,
     },
 ];
 
 const faqs = [
     {
-        q: "How long does it take?",
-        a: "Starter sites launch in 2–4 days. Growth and Pro packages take 5–7 business days depending on scope. We always confirm your timeline before we start.",
+        q: "I already have a website. Can you just fix it?",
+        a: "Absolutely. We'll audit your existing site (for free) and tell you exactly what needs fixing. Often we can optimise what you have rather than starting from scratch.",
     },
     {
-        q: "Can I customize the design?",
-        a: "Absolutely. Every site is customized to your brand — your colors, fonts, images, and content. These aren't cookie-cutter templates.",
+        q: "How long before I see results?",
+        a: "Your site goes live within 7–10 days. Most clients see increased enquiries within the first 2–4 weeks. SEO rankings typically improve within 4–8 weeks.",
     },
     {
-        q: "Do you provide hosting?",
-        a: "We deploy to fast, reliable hosting (Netlify or Vercel) included at no extra charge. You own everything — domain, code, and content.",
+        q: "I'm not tech-savvy. Is that a problem?",
+        a: "Not at all. We handle everything. You just tell us about your business and we do the rest. No technical knowledge needed — that's literally what you're paying us for.",
     },
     {
-        q: "Will my site rank on Google?",
-        a: "Every plan includes SEO fundamentals. Growth and Pro plans include advanced SEO structure designed to help you rank for local and industry searches.",
+        q: "What if it doesn't work?",
+        a: "We offer a results guarantee. If your website doesn't generate more leads within 30 days, we'll keep working on it for free until it does.",
     },
     {
-        q: "What happens after launch?",
-        a: "Pro plan includes 30 days of post-launch support. All plans include deployment and a handoff walkthrough. Additional support packages are available.",
+        q: "Do I need the monthly plan?",
+        a: "The one-time plans get you a great website. But Google rewards sites that are regularly updated. The monthly plan keeps you climbing the rankings and bringing in more work.",
     },
     {
-        q: "Is there a money-back guarantee?",
-        a: "Yes. If we don't deliver within the agreed timeline, you get a full refund. No risk, no hassle.",
+        q: "Can I cancel the monthly plan?",
+        a: "Yes. No lock-in contracts. Cancel anytime. But most clients stay because it keeps the jobs coming in.",
     },
 ];
 
@@ -113,70 +118,72 @@ export default function Pricing() {
     return (
         <section className="py-20 bg-gray-50" id="pricing">
             <div className="max-w-6xl mx-auto px-4 sm:px-6">
-                {/* ── Header ── */}
+                {/* Header */}
                 <div className="text-center mb-14">
                     <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">
                         Pricing
                     </p>
                     <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-                        Simple pricing. Built to grow your business.
+                        Simple Pricing. No Surprises. Just Results.
                     </h2>
                     <p className="text-muted text-lg max-w-2xl mx-auto">
-                        Choose a plan that fits your needs — all designed to generate
-                        leads, customers, and sales.
+                        Pick the plan that suits your business. Every option is built to get you more jobs.
                     </p>
                 </div>
 
-                {/* ── Price Cards ── */}
+                {/* Price Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-center mb-16">
                     {plans.map((plan) => (
                         <PriceCard key={plan.name} {...plan} />
                     ))}
                 </div>
 
-                {/* ── Custom callout ── */}
+                {/* Custom callout */}
                 <p className="text-center text-muted text-sm mb-20">
-                    All prices in NZD. Need something custom?{" "}
+                    All prices in NZD. Need something different?{" "}
                     <a
                         href="#contact"
                         className="text-primary font-semibold hover:underline"
                     >
-                        Let&apos;s talk
+                        Let&apos;s have a yarn
                     </a>
                 </p>
 
-                {/* ── Guarantee / Risk Reversal ── */}
-                <div className="bg-white rounded-2xl border border-gray-200 p-8 md:p-12 text-center mb-20 max-w-3xl mx-auto">
+                {/* Guarantee / Risk Reversal */}
+                <div className="bg-white rounded-2xl border-2 border-green-200 p-8 md:p-12 text-center mb-20 max-w-3xl mx-auto">
                     <div className="text-4xl mb-4">🛡️</div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                        Our Promise to You
+                        Our &quot;More Jobs&quot; Guarantee
                     </h3>
+                    <p className="text-muted mb-6 max-w-xl mx-auto">
+                        If your new website doesn&apos;t generate more enquiries within 30 days, we&apos;ll keep optimising it for free until it does. Zero risk.
+                    </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-6 text-sm">
                         <div className="flex items-center gap-2 justify-center">
                             <span className="text-green-500 font-bold text-base">✓</span>
                             <span className="text-gray-700">
-                                Launch in days or your money back
+                                30-day results guarantee
                             </span>
                         </div>
                         <div className="flex items-center gap-2 justify-center">
                             <span className="text-green-500 font-bold text-base">✓</span>
                             <span className="text-gray-700">
-                                Built to generate leads, not just look good
+                                No lock-in contracts
                             </span>
                         </div>
                         <div className="flex items-center gap-2 justify-center">
                             <span className="text-green-500 font-bold text-base">✓</span>
                             <span className="text-gray-700">
-                                You own everything — code, content, domain
+                                You own everything
                             </span>
                         </div>
                     </div>
                 </div>
 
-                {/* ── FAQ ── */}
+                {/* FAQ */}
                 <div className="max-w-2xl mx-auto mb-20">
                     <h3 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-10">
-                        Frequently Asked Questions
+                        Questions Tradies Ask Us
                     </h3>
                     <div className="border-t border-gray-200">
                         {faqs.map((faq) => (
@@ -185,20 +192,22 @@ export default function Pricing() {
                     </div>
                 </div>
 
-                {/* ── Final CTA ── */}
-                <div className="text-center">
+                {/* Urgency CTA */}
+                <div className="text-center bg-primary/5 border border-primary/20 rounded-2xl p-8 md:p-12 max-w-3xl mx-auto">
+                    <p className="text-red-500 font-bold text-sm uppercase tracking-widest mb-3">
+                        ⚠️ Limited Availability
+                    </p>
                     <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-                        Ready to grow your business?
+                        We Only Take On 5 New Clients Per Month
                     </h3>
                     <p className="text-muted text-lg max-w-xl mx-auto mb-8">
-                        Stop losing customers to a website that doesn&apos;t work.
-                        Find out exactly what&apos;s holding you back — for free.
+                        To deliver quality results, we limit how many projects we take on. Don&apos;t wait until all spots are filled.
                     </p>
                     <a
                         href="#audit"
-                        className="btn btn-lg text-lg px-10 py-4 shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/30"
+                        className="btn btn-lg btn-cta-pulse text-lg px-10 py-4"
                     >
-                        Get Your Free Website Audit
+                        Claim Your Free Audit Now
                     </a>
                 </div>
             </div>

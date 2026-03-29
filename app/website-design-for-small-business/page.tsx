@@ -3,6 +3,8 @@ import Link from 'next/link'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import LeadCaptureForm from '../../components/LeadCaptureForm'
+import { PixabayImage, PixabayVideo, PixabayImageGrid } from '../../components/PixabayMedia'
+import { searchPixabayImages, searchPixabayVideos } from '../../lib/pixabay'
 import { serviceSchema, faqSchema, breadcrumbSchema, SITE_URL } from '../../lib/schema'
 
 export const metadata: Metadata = {
@@ -29,7 +31,12 @@ const faqs = [
     { q: 'What if I need e-commerce?', a: 'Our Growth plan covers service businesses. For online stores with product catalogs, shopping carts, and payment processing, see our dedicated e-commerce website packages starting at $1,199.' },
 ]
 
-export default function WebsiteDesignSmallBusiness() {
+export default async function WebsiteDesignSmallBusiness() {
+    const [images, videos] = await Promise.all([
+        searchPixabayImages('small business owner office laptop', 4),
+        searchPixabayVideos('small business entrepreneur', 1),
+    ])
+
     const schemas = [
         serviceSchema({
             name: 'Website Design for Small Business NZ',
@@ -79,6 +86,22 @@ export default function WebsiteDesignSmallBusiness() {
                         </div>
                     </div>
                 </section>
+
+                {/* ══════════════════════════════════════════════
+                    HERO IMAGE
+                ══════════════════════════════════════════════ */}
+                {images[0] && (
+                    <section className="py-0">
+                        <PixabayImage
+                            src={images[0].largeSrc || images[0].src}
+                            alt={images[0].alt}
+                            user={images[0].user}
+                            pageURL={images[0].pageURL}
+                            priority={true}
+                            className="w-full max-h-[400px] overflow-hidden [&_img]:rounded-none [&_img]:max-h-[400px] [&_figcaption]:py-2 [&_figcaption]:bg-gray-50"
+                        />
+                    </section>
+                )}
 
                 {/* ══════════════════════════════════════════════
                     SMALL BUSINESS PROBLEMS
@@ -246,6 +269,18 @@ export default function WebsiteDesignSmallBusiness() {
                 </section>
 
                 {/* ══════════════════════════════════════════════
+                    VIDEO SHOWCASE
+                ══════════════════════════════════════════════ */}
+                {videos[0] && (
+                    <section className="py-16 bg-white">
+                        <div className="max-w-4xl mx-auto px-4">
+                            <h2 className="text-xl md:text-2xl font-bold text-center mb-6">Your Business Deserves a Website That Works</h2>
+                            <PixabayVideo video={videos[0]} className="max-w-3xl mx-auto" />
+                        </div>
+                    </section>
+                )}
+
+                {/* ══════════════════════════════════════════════
                     WHY MOST WEBSITES FAIL
                 ══════════════════════════════════════════════ */}
                 <section className="py-20 bg-gray-50">
@@ -323,6 +358,17 @@ export default function WebsiteDesignSmallBusiness() {
                         </div>
                     </div>
                 </section>
+
+                {/* ══════════════════════════════════════════════
+                    STOCK IMAGE GALLERY
+                ══════════════════════════════════════════════ */}
+                {images.length > 1 && (
+                    <section className="py-16">
+                        <div className="max-w-5xl mx-auto px-4">
+                            <PixabayImageGrid images={images.slice(1, 4)} columns={3} />
+                        </div>
+                    </section>
+                )}
 
                 {/* ══════════════════════════════════════════════
                     PRICING SNAPSHOT

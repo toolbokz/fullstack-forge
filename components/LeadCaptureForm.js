@@ -92,14 +92,17 @@ export default function LeadCaptureForm({
                 className={inputClass}
             />
             <select name="business-type" required className={inputClass}>
-                <option value="">Select your business type</option>
-                <option value="local-service">Local Service Business</option>
-                <option value="ecommerce">E-Commerce / Online Store</option>
-                <option value="restaurant">Restaurant / Food Service</option>
-                <option value="professional">Professional Services</option>
-                <option value="healthcare">Healthcare / Wellness</option>
-                <option value="real-estate">Real Estate</option>
-                <option value="other">Other</option>
+                <option value="">What type of trade / business?</option>
+                <option value="plumber">Plumber</option>
+                <option value="electrician">Electrician</option>
+                <option value="builder">Builder / Construction</option>
+                <option value="painter">Painter</option>
+                <option value="roofer">Roofer</option>
+                <option value="cleaner">Cleaner</option>
+                <option value="landscaper">Landscaper</option>
+                <option value="hvac">HVAC / Gasfitter</option>
+                <option value="other-trade">Other Trade</option>
+                <option value="local-service">Other Local Service</option>
             </select>
             {showWebsite && (
                 <input

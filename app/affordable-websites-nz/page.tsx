@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ServicePageLayout from '../../components/ServicePageLayout'
+import { searchPixabayImages, searchPixabayVideos } from '../../lib/pixabay'
 import { serviceSchema, faqSchema, breadcrumbSchema, SITE_URL } from '../../lib/schema'
 
 export const metadata: Metadata = {
@@ -47,7 +48,12 @@ const relatedArticles = [
     { url: '/blog/best-website-builder-for-small-business-nz', label: 'Best Website Builder for Small Business NZ' },
 ]
 
-export default function AffordableWebsitesNZ() {
+export default async function AffordableWebsitesNZ() {
+    const [images, videos] = await Promise.all([
+        searchPixabayImages('affordable website design laptop', 3),
+        searchPixabayVideos('website development design', 1),
+    ])
+
     const schemas = [
         serviceSchema({
             name: 'Affordable Website Design NZ',
@@ -78,6 +84,9 @@ export default function AffordableWebsitesNZ() {
                     caseStudies={[]}
                     relatedPages={relatedPages}
                     relatedArticles={relatedArticles}
+                    heroImage={images[0] || null}
+                    images={images.slice(1)}
+                    video={videos[0] || null}
                 />
             </main>
             <Footer />

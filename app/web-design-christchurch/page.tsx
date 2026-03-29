@@ -3,44 +3,52 @@ import Link from 'next/link'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import LeadCaptureForm from '../../components/LeadCaptureForm'
+import { PixabayImage, PixabayVideo, PixabayImageGrid } from '../../components/PixabayMedia'
+import { searchPixabayImages, searchPixabayVideos } from '../../lib/pixabay'
 import { serviceSchema, faqSchema, breadcrumbSchema, localBusinessSchema, SITE_URL } from '../../lib/schema'
 
 export const metadata: Metadata = {
-    title: 'Web Design Christchurch — Websites That Generate Customers | Fullstack Forge',
-    description: 'Professional web design in Christchurch that generates leads, calls, and sales. Fast delivery from $699. Local SEO included. See real results from Christchurch businesses.',
+    title: 'Web Design NZ — Websites That Get You More Jobs | Fullstack Forge',
+    description: 'Professional web design across New Zealand that generates leads, calls, and sales for tradies and local businesses. Fast delivery from $699. Local SEO included.',
     alternates: {
         canonical: `${SITE_URL}/web-design-christchurch`,
     },
     openGraph: {
-        title: 'Web Design Christchurch — Websites That Generate Customers',
-        description: 'Professional web design in Christchurch. Conversion-focused, SEO-optimised, launching in 7 days from $699.',
+        title: 'Web Design NZ — Websites That Get You More Jobs',
+        description: 'Professional web design for NZ tradies and local businesses. Conversion-focused, SEO-optimised, launching in 7 days from $699.',
         url: `${SITE_URL}/web-design-christchurch`,
         type: 'website',
     },
 }
 
 const faqs = [
-    { q: 'How much does web design cost in Christchurch?', a: 'Professional web design in Christchurch ranges from $500 for a basic freelancer site to $15,000+ from a large agency. At Fullstack Forge, our packages start at $699 for a professional 3-page site with SEO. Most Christchurch businesses choose our Growth plan at $1,199 for lead capture and conversion optimization — delivering agency-quality results without the agency price tag.' },
-    { q: 'How long does it take to build a website in Christchurch?', a: 'Most agencies take 6–12 weeks. We deliver in 5–7 business days. We achieve this by using proven, pre-built designs that we customise for your brand — rather than starting from scratch every time. Starter sites can be ready in as little as 2–4 days.' },
-    { q: 'Will my website actually rank on Google in Christchurch?', a: 'Every site we build includes on-page SEO foundations — proper heading structure, meta tags, structured data, fast loading, and mobile optimization. Our Growth and Pro plans include local SEO targeting for Christchurch searches. We can\'t guarantee #1 (no one honestly can), but we build every site to give you the best possible shot at ranking.' },
-    { q: 'Do I need to provide content and images for my website?', a: 'It helps if you have photos of your work, team, or premises — real images outperform stock photos every time. For written content, we\'ll guide you through a simple questionnaire to capture your key messages, and we handle the rest. You review and approve everything before launch.' },
-    { q: 'What happens if I need changes after the site launches?', a: 'Our Pro plan includes 30 days of post-launch support. All plans include a handoff walkthrough so you understand how to make basic updates. We also offer ongoing support packages for businesses that want hands-off management.' },
-    { q: 'I already have a website — can you redesign it?', a: 'Absolutely. We\'ll audit your current site first, identify what\'s working and what\'s not, and recommend whether a redesign or a full rebuild makes more sense. Many Christchurch businesses come to us after outgrowing their DIY site or being let down by another provider.' },
+    { q: 'How much does web design cost in New Zealand?', a: 'Professional web design in NZ ranges from $500 for a basic freelancer site to $15,000+ from a large agency. At Fullstack Forge, our packages start at $699 for a professional 3-page site with SEO. Most NZ tradies and local businesses choose our Growth plan at $1,499 for full local SEO and lead capture — delivering agency-quality results without the agency price tag.' },
+    { q: 'How long does it take to build a website?', a: 'Most agencies take 6–12 weeks. We deliver in 5–7 business days. We achieve this by using proven, pre-built designs that we customise for your brand — rather than starting from scratch every time. Starter sites can be ready in as little as 5 days.' },
+    { q: 'Will my website actually rank on Google in my area?', a: 'Every site we build includes on-page SEO foundations — proper heading structure, meta tags, structured data, fast loading, and mobile optimisation. Our Growth plan includes local SEO targeting for your city and region. We can\'t guarantee #1 (no one honestly can), but we build every site to give you the best possible shot at ranking for local searches.' },
+    { q: 'Do I need to provide content and images?', a: 'It helps if you have photos of your work, team, or van — real images outperform stock photos every time. For written content, we\'ll guide you through a simple questionnaire to capture your key messages, and we handle the rest. You review and approve everything before launch.' },
+    { q: 'What happens if I need changes after the site launches?', a: 'Our Monthly Growth plan includes ongoing updates and support. All plans include a handoff walkthrough so you understand how to make basic updates. We also offer one-off support for businesses that want changes down the track.' },
+    { q: 'I already have a website — can you fix it?', a: 'Absolutely. We\'ll audit your current site first (for free), identify what\'s working and what\'s not, and recommend whether an optimisation or a full rebuild makes more sense. Many NZ tradies come to us after outgrowing their DIY site or being let down by another provider.' },
+    { q: 'Do you work with businesses outside Christchurch?', a: 'Yes — we work with tradies and local businesses right across New Zealand. Auckland, Wellington, Hamilton, Tauranga, Dunedin, and everywhere in between. Everything is done remotely, so your location doesn\'t matter. We optimise your site for your specific town or region.' },
     { q: 'Do you offer hosting?', a: 'We deploy all sites to Netlify — a fast, reliable hosting platform used by major companies worldwide. Hosting is free for most sites. Your only ongoing cost is your domain name (roughly $20/year). No hidden monthly fees.' },
 ]
 
-export default function WebDesignChristchurch() {
+export default async function WebDesignChristchurch() {
+    const [images, videos] = await Promise.all([
+        searchPixabayImages('web design coding laptop', 4),
+        searchPixabayVideos('website development coding', 1),
+    ])
+
     const schemas = [
         localBusinessSchema(),
         serviceSchema({
-            name: 'Web Design Christchurch',
-            description: 'Professional web design services in Christchurch, New Zealand. Conversion-focused websites that generate leads, calls, and sales for local businesses.',
+            name: 'Web Design New Zealand',
+            description: 'Professional web design services across New Zealand. Conversion-focused websites that generate leads, calls, and jobs for tradies and local businesses.',
             url: `${SITE_URL}/web-design-christchurch`,
         }),
         faqSchema(faqs),
         breadcrumbSchema([
             { name: 'Home', url: SITE_URL },
-            { name: 'Web Design Christchurch', url: `${SITE_URL}/web-design-christchurch` },
+            { name: 'Web Design NZ', url: `${SITE_URL}/web-design-christchurch` },
         ]),
     ]
 
@@ -57,20 +65,20 @@ export default function WebDesignChristchurch() {
                 <section className="bg-dark text-white py-20 md:py-28">
                     <div className="max-w-4xl mx-auto px-4 text-center">
                         <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-4">
-                            Web Design Christchurch
+                            Web Design for NZ Tradies &amp; Local Businesses
                         </p>
                         <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-                            Web Design Christchurch — Websites That Generate Customers
+                            Web Design NZ — Websites That Get You More Jobs
                         </h1>
                         <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-8">
-                            Most Christchurch businesses have a website that looks &ldquo;okay&rdquo; but brings in zero leads. We build websites that rank on Google, convert visitors, and fill your pipeline with real customers.
+                            Most NZ tradies have a website that looks &ldquo;okay&rdquo; but brings in zero leads. We build websites that rank on Google in your area, convert visitors into enquiries, and fill your calendar with real jobs.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <a href="#lead-form" className="btn btn-lg">
+                            <a href="#lead-form" className="btn btn-lg btn-cta-pulse">
                                 Get a Free Website Audit
                             </a>
                             <Link href="/#solutions" className="btn btn-outline-light btn-lg">
-                                View Live Demos
+                                See What We Do
                             </Link>
                         </div>
                         <div className="flex flex-wrap justify-center gap-6 text-white/70 text-sm mt-8">
@@ -82,22 +90,38 @@ export default function WebDesignChristchurch() {
                 </section>
 
                 {/* ══════════════════════════════════════════════
+                    HERO IMAGE
+                ══════════════════════════════════════════════ */}
+                {images[0] && (
+                    <section className="py-0">
+                        <PixabayImage
+                            src={images[0].largeSrc || images[0].src}
+                            alt={images[0].alt}
+                            user={images[0].user}
+                            pageURL={images[0].pageURL}
+                            priority={true}
+                            className="w-full max-h-[400px] overflow-hidden [&_img]:rounded-none [&_img]:max-h-[400px] [&_figcaption]:py-2 [&_figcaption]:bg-gray-50"
+                        />
+                    </section>
+                )}
+
+                {/* ══════════════════════════════════════════════
                     PROBLEM SECTION
                 ══════════════════════════════════════════════ */}
                 <section className="py-20">
                     <div className="max-w-3xl mx-auto px-4">
                         <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">
-                            Why Most Christchurch Websites Fail to Get Results
+                            Why Most Tradie Websites Fail to Get Results
                         </h2>
                         <p className="text-muted text-lg text-center max-w-2xl mx-auto mb-12">
-                            Christchurch has hundreds of businesses with decent-looking websites that generate almost no leads. Here&apos;s why.
+                            Thousands of NZ tradies have websites that generate almost no leads. Here&apos;s why.
                         </p>
 
                         <div className="space-y-8">
                             <div>
                                 <h3 className="text-lg font-bold mb-2">They Were Built Without SEO</h3>
                                 <p className="text-muted leading-relaxed">
-                                    A website without SEO is like a shop with no signage on a back street. If you&apos;re not showing up when someone searches &ldquo;plumber Christchurch&rdquo; or &ldquo;cleaning service near me,&rdquo; your website is invisible to the people actively looking for what you offer. Most Christchurch web designers focus on making things look pretty — but never touch the meta tags, heading structure, page speed, or structured data that Google actually cares about.
+                                    A website without SEO is like a van with no signage parked in a dead-end street. If you&apos;re not showing up when someone searches &ldquo;plumber near me&rdquo; or &ldquo;electrician Auckland,&rdquo; your website is invisible to the people actively looking for what you do. Most web designers focus on making things look pretty — but never touch the meta tags, heading structure, page speed, or structured data that Google actually cares about.
                                 </p>
                             </div>
                             <div>
@@ -109,14 +133,14 @@ export default function WebDesignChristchurch() {
                             <div>
                                 <h3 className="text-lg font-bold mb-2">They Load Too Slowly</h3>
                                 <p className="text-muted leading-relaxed">
-                                    Many Christchurch sites are built on bloated platforms — WordPress with 30 plugins, Wix with heavy templates, or Squarespace with unoptimised images. Google&apos;s own data shows 53% of mobile users leave if a page takes more than 3 seconds to load. Slow sites lose customers <em>and</em> rank lower on Google. It&apos;s a double penalty.
+                                    Many NZ tradie sites are built on bloated platforms — WordPress with 30 plugins, Wix with heavy templates, or Squarespace with unoptimised images. Google&apos;s own data shows 53% of mobile users leave if a page takes more than 3 seconds to load. Slow sites lose customers <em>and</em> rank lower on Google. It&apos;s a double penalty.
                                 </p>
                             </div>
                         </div>
 
                         <div className="mt-10 text-center">
                             <a href="#lead-form" className="text-primary font-semibold hover:underline">
-                                Get a free audit to see where your site is losing you customers →
+                                Get a free audit to see where your site is losing you jobs →
                             </a>
                         </div>
                     </div>
@@ -128,37 +152,49 @@ export default function WebDesignChristchurch() {
                 <section className="py-20 bg-gray-50">
                     <div className="max-w-5xl mx-auto px-4">
                         <h2 className="text-2xl md:text-3xl font-bold text-center mb-4">
-                            What Makes a High-Performing Website in Christchurch
+                            What Makes a Website That Actually Gets You Jobs
                         </h2>
                         <p className="text-muted text-center text-lg max-w-2xl mx-auto mb-12">
-                            A website that generates customers isn&apos;t about fancy design. It&apos;s about three things working together.
+                            A website that generates work isn&apos;t about fancy design. It&apos;s about three things working together.
                         </p>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             <div className="bg-white rounded-xl p-8 border border-gray-100 shadow-sm">
                                 <div className="text-3xl mb-4">⚡</div>
                                 <h3 className="text-lg font-bold mb-3">Speed That Keeps Visitors</h3>
                                 <p className="text-muted text-sm leading-relaxed">
-                                    We build with Next.js and deploy to Netlify&apos;s global CDN — the same technology stack used by Nike, TikTok, and Spotify. Your site loads in under 1 second, anywhere in New Zealand. No WordPress bloat, no heavy page builders. Just clean, fast code that Google rewards with higher rankings and visitors reward with longer sessions.
+                                    We build with modern technology and deploy to a global CDN — the same tech used by Nike, TikTok, and Spotify. Your site loads in under 1 second, from Kaitaia to Invercargill. No WordPress bloat, no heavy page builders. Just clean, fast code that Google rewards with higher rankings and visitors reward with longer sessions.
                                 </p>
                             </div>
                             <div className="bg-white rounded-xl p-8 border border-gray-100 shadow-sm">
                                 <div className="text-3xl mb-4">🔍</div>
-                                <h3 className="text-lg font-bold mb-3">SEO Structure That Ranks</h3>
+                                <h3 className="text-lg font-bold mb-3">Local SEO That Ranks</h3>
                                 <p className="text-muted text-sm leading-relaxed">
-                                    Every page gets a unique meta title and description, proper H1/H2/H3 heading hierarchy, schema markup (so Google understands your business), image optimisation, and a clean URL structure. We don&apos;t just &ldquo;do SEO&rdquo; — we build the technical foundation that makes ranking possible. Combined with{' '}
-                                    <Link href="/blog/seo-for-small-business-nz" className="text-primary hover:underline">local SEO best practices</Link>, your Christchurch business gets found for the searches that matter.
+                                    Every page gets a unique meta title and description, proper heading hierarchy, schema markup (so Google understands your business and location), image optimisation, and clean URLs. We don&apos;t just &ldquo;do SEO&rdquo; — we build the technical foundation that makes ranking possible for your specific town or city. Read our full guide on{' '}
+                                    <Link href="/blog/seo-for-small-business-nz" className="text-primary hover:underline">SEO for small business in NZ</Link>.
                                 </p>
                             </div>
                             <div className="bg-white rounded-xl p-8 border border-gray-100 shadow-sm">
                                 <div className="text-3xl mb-4">🎯</div>
                                 <h3 className="text-lg font-bold mb-3">Conversion Design That Sells</h3>
                                 <p className="text-muted text-sm leading-relaxed">
-                                    We design every page to guide visitors toward one action: contacting you. Clear headlines, strategic CTA placement, trust badges, testimonials near decision points, and lead capture forms that actually get filled in. Our sites target 5–10% conversion rates, compared to the 1–2% industry average. That&apos;s 3–5x more leads from the same traffic.
+                                    We design every page to guide visitors toward one action: contacting you. Clear headlines, click-to-call buttons, trust signals, testimonials near decision points, and lead capture forms that actually get filled in. Our sites target 5–10% conversion rates, compared to the 1–2% industry average. That&apos;s 3–5x more leads from the same traffic.
                                 </p>
                             </div>
                         </div>
                     </div>
                 </section>
+
+                {/* ══════════════════════════════════════════════
+                    VIDEO SHOWCASE
+                ══════════════════════════════════════════════ */}
+                {videos[0] && (
+                    <section className="py-16 bg-white">
+                        <div className="max-w-4xl mx-auto px-4">
+                            <h2 className="text-xl md:text-2xl font-bold text-center mb-6">See What a Modern Website Looks Like</h2>
+                            <PixabayVideo video={videos[0]} className="max-w-3xl mx-auto" />
+                        </div>
+                    </section>
+                )}
 
                 {/* ══════════════════════════════════════════════
                     YOUR PROCESS (3 STEPS)
@@ -169,28 +205,28 @@ export default function WebDesignChristchurch() {
                             How It Works — 3 Simple Steps
                         </h2>
                         <p className="text-gray-400 text-center text-lg max-w-2xl mx-auto mb-14">
-                            No 12-week timelines. No endless revisions. Here&apos;s how we get your Christchurch website live and generating leads — fast.
+                            No 12-week timelines. No endless revisions. Here&apos;s how we get your website live and generating jobs — fast.
                         </p>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             <div className="text-center">
                                 <div className="w-14 h-14 rounded-full bg-primary text-white text-xl font-bold flex items-center justify-center mx-auto mb-5">1</div>
-                                <h3 className="text-lg font-bold mb-3">Choose a Proven Design</h3>
+                                <h3 className="text-lg font-bold mb-3">We Audit Your Site</h3>
                                 <p className="text-gray-400 text-sm leading-relaxed">
-                                    Browse our <Link href="/#solutions" className="text-primary hover:underline">live demo portfolio</Link> and pick a design that fits your industry. Each demo is a working website built for a specific business type — cleaning, trades, e-commerce, professional services, and more.
+                                    Run our <a href="#lead-form" className="text-primary hover:underline">free audit</a> and we&apos;ll show you exactly what&apos;s broken — speed, SEO, mobile experience, and lead capture. No guesswork, just data.
                                 </p>
                             </div>
                             <div className="text-center">
                                 <div className="w-14 h-14 rounded-full bg-primary text-white text-xl font-bold flex items-center justify-center mx-auto mb-5">2</div>
-                                <h3 className="text-lg font-bold mb-3">We Customise for Your Business</h3>
+                                <h3 className="text-lg font-bold mb-3">We Build or Fix Your Site</h3>
                                 <p className="text-gray-400 text-sm leading-relaxed">
-                                    We swap in your branding, content, images, and contact details. We optimise copy for your target keywords, set up lead capture, and configure local SEO for Christchurch. You review and approve before anything goes live.
+                                    We customise a proven design for your brand, optimise for your local area, set up lead capture, and configure local SEO for your town or city. You review and approve before anything goes live.
                                 </p>
                             </div>
                             <div className="text-center">
                                 <div className="w-14 h-14 rounded-full bg-primary text-white text-xl font-bold flex items-center justify-center mx-auto mb-5">3</div>
-                                <h3 className="text-lg font-bold mb-3">Launch and Start Getting Leads</h3>
+                                <h3 className="text-lg font-bold mb-3">You Start Getting Jobs</h3>
                                 <p className="text-gray-400 text-sm leading-relaxed">
-                                    We deploy your site to ultra-fast hosting (free), connect your domain, and submit to Google. Most sites are live within 7 days. Then we help you connect Google Business Profile so you start appearing in local search and Maps results.
+                                    We deploy to ultra-fast hosting (free), connect your domain, and submit to Google. Most sites are live within 7 days. Then we help you set up Google Business Profile so you start showing up in local search and Maps.
                                 </p>
                             </div>
                         </div>
@@ -201,22 +237,51 @@ export default function WebDesignChristchurch() {
                 </section>
 
                 {/* ══════════════════════════════════════════════
-                    REAL EXAMPLES
+                    WE WORK ACROSS NZ
                 ══════════════════════════════════════════════ */}
                 <section className="py-20">
+                    <div className="max-w-4xl mx-auto px-4">
+                        <h2 className="text-2xl md:text-3xl font-bold text-center mb-4">
+                            We Work With Tradies Right Across New Zealand
+                        </h2>
+                        <p className="text-muted text-center text-lg max-w-2xl mx-auto mb-12">
+                            Based in Christchurch, but everything is done remotely. We build websites for tradies and local businesses in every corner of NZ.
+                        </p>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                            {[
+                                'Auckland', 'Wellington', 'Christchurch', 'Hamilton',
+                                'Tauranga', 'Dunedin', 'Napier / Hastings', 'Palmerston North',
+                                'Nelson', 'Rotorua', 'New Plymouth', 'Invercargill',
+                                'Whangarei', 'Queenstown', 'Kapiti Coast', 'Whanganui',
+                            ].map((city) => (
+                                <div key={city} className="bg-gray-50 rounded-lg px-4 py-3 text-center border border-gray-100">
+                                    <span className="text-sm font-medium text-gray-700">{city}</span>
+                                </div>
+                            ))}
+                        </div>
+                        <p className="text-muted text-sm text-center mt-8">
+                            Don&apos;t see your town? No worries — we work with businesses anywhere in New Zealand. We optimise your site for your specific location.
+                        </p>
+                    </div>
+                </section>
+
+                {/* ══════════════════════════════════════════════
+                    REAL EXAMPLES
+                ══════════════════════════════════════════════ */}
+                <section className="py-20 bg-gray-50">
                     <div className="max-w-5xl mx-auto px-4">
                         <h2 className="text-2xl md:text-3xl font-bold text-center mb-4">
-                            Real Christchurch Web Design Examples
+                            Real Web Design Examples for NZ Businesses
                         </h2>
                         <p className="text-muted text-center text-lg max-w-2xl mx-auto mb-12">
                             These aren&apos;t mockups. They&apos;re live sites built for real businesses. Click through and see exactly what you&apos;d get.
                         </p>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            <div className="bg-gray-50 rounded-xl p-6 border border-gray-100">
-                                <p className="text-primary text-sm font-semibold mb-2">Cleaning Business · Christchurch</p>
-                                <h3 className="text-lg font-bold mb-3">Everclean Services</h3>
+                            <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+                                <p className="text-primary text-sm font-semibold mb-2">Cleaning Business</p>
+                                <h3 className="text-lg font-bold mb-3">Cleaning Services Site</h3>
                                 <p className="text-muted text-sm mb-4 leading-relaxed">
-                                    A residential and commercial cleaning business that went from zero online presence to 20+ monthly enquiries. The site features service area pages, a quote request form, and before/after galleries that build trust instantly. Local SEO drives traffic from &ldquo;house cleaning Christchurch&rdquo; and similar searches.
+                                    A residential and commercial cleaning business that went from zero online presence to 20+ monthly enquiries. The site features service area pages, a quote request form, and before/after galleries. Local SEO drives traffic from &ldquo;house cleaning [city]&rdquo; searches.
                                 </p>
                                 <div className="flex gap-4 mb-4">
                                     <div className="text-center">
@@ -233,11 +298,11 @@ export default function WebDesignChristchurch() {
                                 </a>
                             </div>
 
-                            <div className="bg-gray-50 rounded-xl p-6 border border-gray-100">
-                                <p className="text-primary text-sm font-semibold mb-2">Plumbing · Canterbury</p>
+                            <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+                                <p className="text-primary text-sm font-semibold mb-2">Plumbing &amp; Trades</p>
                                 <h3 className="text-lg font-bold mb-3">PlumbFix Services</h3>
                                 <p className="text-muted text-sm mb-4 leading-relaxed">
-                                    A Canterbury plumber who was relying entirely on word-of-mouth. Their new site captures local search traffic with service pages for each speciality — hot water, drainage, bathroom renovations. Click-to-call on mobile means customers can reach them in one tap.
+                                    A plumber who was relying entirely on word-of-mouth. Their new site captures local search traffic with service pages for each speciality — hot water, drainage, bathroom renovations. Click-to-call on mobile means customers can reach them in one tap.
                                 </p>
                                 <div className="flex gap-4 mb-4">
                                     <div className="text-center">
@@ -254,11 +319,11 @@ export default function WebDesignChristchurch() {
                                 </a>
                             </div>
 
-                            <div className="bg-gray-50 rounded-xl p-6 border border-gray-100">
-                                <p className="text-primary text-sm font-semibold mb-2">E-Commerce · NZ</p>
-                                <h3 className="text-lg font-bold mb-3">Comfy Store</h3>
+                            <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+                                <p className="text-primary text-sm font-semibold mb-2">Builders &amp; Contractors</p>
+                                <h3 className="text-lg font-bold mb-3">Builder Business Site</h3>
                                 <p className="text-muted text-sm mb-4 leading-relaxed">
-                                    An online furniture store that needed more than a Shopify template. We built a custom <Link href="/ecommerce-websites-nz" className="text-primary hover:underline">e-commerce experience</Link> with fast product pages, smooth checkout, and SEO-optimised category pages. The result: faster load times and higher conversion rates than their previous platform.
+                                    A construction business that needed more than a basic template. We built a site with project galleries, quote request forms, and SEO-optimised service pages. The result: a consistent flow of quote requests from people who found them on Google.
                                 </p>
                                 <div className="flex gap-4 mb-4">
                                     <div className="text-center">
@@ -267,10 +332,10 @@ export default function WebDesignChristchurch() {
                                     </div>
                                     <div className="text-center">
                                         <p className="text-2xl font-extrabold text-primary">40%</p>
-                                        <p className="text-xs text-muted">faster than old site</p>
+                                        <p className="text-xs text-muted">more quote requests</p>
                                     </div>
                                 </div>
-                                <a href="https://comfy-store-js.netlify.app/" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-outline inline-block">
+                                <a href="https://builders-app.netlify.app/" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-outline inline-block">
                                     View Live Site →
                                 </a>
                             </div>
@@ -279,31 +344,43 @@ export default function WebDesignChristchurch() {
                 </section>
 
                 {/* ══════════════════════════════════════════════
+                    STOCK IMAGE GALLERY
+                ══════════════════════════════════════════════ */}
+                {images.length > 1 && (
+                    <section className="py-16">
+                        <div className="max-w-5xl mx-auto px-4">
+                            <h2 className="text-xl md:text-2xl font-bold text-center mb-8">Built With Modern Technology</h2>
+                            <PixabayImageGrid images={images.slice(1, 4)} columns={3} />
+                        </div>
+                    </section>
+                )}
+
+                {/* ══════════════════════════════════════════════
                     LOCAL SEO SECTION
                 ══════════════════════════════════════════════ */}
-                <section className="py-20 bg-gray-50">
+                <section className="py-20">
                     <div className="max-w-3xl mx-auto px-4">
                         <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">
-                            Ranking in Christchurch — Why Local SEO Matters
+                            Why Local SEO Is the #1 Way to Get More Jobs
                         </h2>
                         <div className="space-y-6 text-muted leading-relaxed">
                             <p>
-                                When a Christchurch homeowner searches <strong>&ldquo;electrician near me&rdquo;</strong> or a property manager looks for <strong>&ldquo;commercial cleaning Christchurch,&rdquo;</strong> Google serves results based on three factors: <strong>relevance</strong> (does your site match the search?), <strong>distance</strong> (are you actually in Christchurch?), and <strong>prominence</strong> (does Google trust your site?).
+                                When a homeowner searches <strong>&ldquo;electrician near me&rdquo;</strong> or a property manager looks for <strong>&ldquo;commercial cleaning Auckland,&rdquo;</strong> Google serves results based on three factors: <strong>relevance</strong> (does your site match the search?), <strong>distance</strong> (are you actually in that area?), and <strong>prominence</strong> (does Google trust your site?).
                             </p>
                             <p>
-                                Most Christchurch businesses fail on all three. Their site doesn&apos;t mention Christchurch in the right places (meta titles, headings, content), they haven&apos;t claimed or optimised their Google Business Profile, and they have no reviews, backlinks, or structured data to signal authority.
+                                Most NZ tradies fail on all three. Their site doesn&apos;t mention their city or region in the right places (meta titles, headings, content), they haven&apos;t claimed or optimised their Google Business Profile, and they have no reviews, backlinks, or structured data to signal authority.
                             </p>
                             <p>
-                                We address every factor. Each site we build includes <strong>LocalBusiness schema markup</strong> that tells Google exactly where your business is located, what you offer, and when you&apos;re open. We optimise page titles and content for your target Christchurch searches. And we help you set up Google Business Profile so you appear in the local map pack — the 3-pack of results that gets <strong>42% of all local search clicks</strong>.
+                                We address every factor. Each site we build includes <strong>LocalBusiness schema markup</strong> that tells Google exactly where your business operates, what you offer, and when you&apos;re available. We optimise page titles and content for your target local searches — whether that&apos;s Auckland, Wellington, Christchurch, or a smaller town. And we help you set up Google Business Profile so you appear in the local map pack — the 3-pack of results that gets <strong>42% of all local search clicks</strong>.
                             </p>
                             <p>
-                                Local SEO is the highest-ROI marketing channel for Christchurch businesses. The people searching are <em>already looking</em> for what you sell. You just need a website that helps Google connect them with you. Read our full guide on{' '}
+                                Local SEO is the highest-ROI marketing channel for NZ tradies and local businesses. The people searching are <em>already looking</em> for what you do. You just need a website that helps Google connect them with you. Read our full guide on{' '}
                                 <Link href="/blog/seo-for-small-business-nz" className="text-primary hover:underline">SEO for small business in NZ</Link> for more detail.
                             </p>
                         </div>
                         <div className="mt-8 text-center">
                             <a href="#lead-form" className="text-primary font-semibold hover:underline">
-                                Find out how your site performs in Christchurch local search →
+                                Find out how your site performs in local search →
                             </a>
                         </div>
                     </div>
@@ -312,13 +389,13 @@ export default function WebDesignChristchurch() {
                 {/* ══════════════════════════════════════════════
                     PRICING OVERVIEW
                 ══════════════════════════════════════════════ */}
-                <section className="py-20">
+                <section className="py-20 bg-gray-50">
                     <div className="max-w-3xl mx-auto px-4">
                         <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">
-                            Web Design Pricing in Christchurch
+                            Web Design Pricing for NZ Tradies
                         </h2>
                         <p className="text-muted text-center text-lg max-w-2xl mx-auto mb-10">
-                            Transparent pricing with no hidden fees. Here&apos;s how we compare to typical Christchurch web design costs.
+                            Transparent pricing with no hidden fees. Here&apos;s how we compare to typical NZ web design costs.
                         </p>
                         <div className="overflow-x-auto">
                             <table className="w-full border-collapse text-sm">
@@ -332,7 +409,7 @@ export default function WebDesignChristchurch() {
                                 </thead>
                                 <tbody className="text-muted">
                                     <tr className="border-b border-gray-100">
-                                        <td className="py-3 pr-4">Large Christchurch Agency</td>
+                                        <td className="py-3 pr-4">Large NZ Agency</td>
                                         <td className="py-3 pr-4">$8,000–$25,000</td>
                                         <td className="py-3 pr-4">8–16 weeks</td>
                                         <td className="py-3">$50–$200/month</td>
@@ -351,7 +428,7 @@ export default function WebDesignChristchurch() {
                                     </tr>
                                     <tr className="bg-blue-50/50 font-medium text-gray-900">
                                         <td className="py-3 pr-4 font-bold">Fullstack Forge</td>
-                                        <td className="py-3 pr-4 font-bold text-primary">$699–$2,499</td>
+                                        <td className="py-3 pr-4 font-bold text-primary">$699–$1,499</td>
                                         <td className="py-3 pr-4 font-bold text-primary">5–7 days</td>
                                         <td className="py-3 font-bold text-primary">$0/month</td>
                                     </tr>
@@ -368,10 +445,10 @@ export default function WebDesignChristchurch() {
                 {/* ══════════════════════════════════════════════
                     FAQ
                 ══════════════════════════════════════════════ */}
-                <section className="py-20 bg-gray-50">
+                <section className="py-20">
                     <div className="max-w-2xl mx-auto px-4">
                         <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
-                            Web Design Christchurch — Frequently Asked Questions
+                            Web Design NZ — Frequently Asked Questions
                         </h2>
                         <div className="border-t border-gray-200">
                             {faqs.map((faq) => (
@@ -393,14 +470,14 @@ export default function WebDesignChristchurch() {
                 <section className="py-20 bg-dark text-white" id="lead-form">
                     <div className="max-w-xl mx-auto px-4 text-center">
                         <h2 className="text-2xl md:text-3xl font-bold mb-4">
-                            Get More Customers From Your Website
+                            Get More Jobs From Your Website
                         </h2>
                         <p className="text-gray-400 mb-8">
-                            Tell us about your Christchurch business and we&apos;ll send you a free, personalised audit showing exactly what&apos;s holding your website back — and how to fix it.
+                            Tell us about your business and we&apos;ll send you a free, personalised audit showing exactly what&apos;s holding your website back — and how to fix it.
                         </p>
 
                         <LeadCaptureForm
-                            formName="web-design-chch-lead"
+                            formName="web-design-nz-lead"
                             ctaText="Get My Free Audit"
                             showWebsite={true}
                             darkMode={true}

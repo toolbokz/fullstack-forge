@@ -19,15 +19,33 @@ export default function HomePage() {
                 <div id="hero">
                     <Hero />
                 </div>
-                <WhoThisIsFor />
-                <Solutions />
-                <HowItWorks />
-                <Pricing />
-                <WhyChooseUs />
-                <Testimonials />
-                <WebsiteAudit />
-                <CTA />
-                <Contact />
+                <div className="section-float">
+                    <WhoThisIsFor />
+                </div>
+                <div className="section-float">
+                    <Solutions />
+                </div>
+                <div className="section-float section-float-dark">
+                    <HowItWorks />
+                </div>
+                <div className="section-float">
+                    <Testimonials />
+                </div>
+                <div className="section-float section-float-dark">
+                    <WebsiteAudit />
+                </div>
+                <div className="section-float">
+                    <Pricing />
+                </div>
+                <div className="section-float">
+                    <WhyChooseUs />
+                </div>
+                <div className="section-float section-float-dark">
+                    <CTA />
+                </div>
+                <div className="section-float">
+                    <Contact />
+                </div>
             </main>
             <Footer />
         </>
