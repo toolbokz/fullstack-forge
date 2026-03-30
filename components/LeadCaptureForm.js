@@ -6,6 +6,7 @@ export default function LeadCaptureForm({
     formName = "lead-capture",
     ctaText = "Get Started",
     showWebsite = true,
+    showMessage = false,
     darkMode = false,
 }) {
     const [submitted, setSubmitted] = React.useState(false);
@@ -30,6 +31,7 @@ export default function LeadCaptureForm({
                     email: formData.get("email"),
                     businessType: formData.get("business-type"),
                     website: formData.get("website") || "",
+                    message: formData.get("message") || "",
                 }),
             });
 
@@ -110,6 +112,14 @@ export default function LeadCaptureForm({
                     type="url"
                     placeholder="Current website URL (optional)"
                     className={inputClass}
+                />
+            )}
+            {showMessage && (
+                <textarea
+                    name="message"
+                    placeholder="Tell us a bit about your project or what you need help with (optional)"
+                    rows={4}
+                    className={`${inputClass} resize-y`}
                 />
             )}
 

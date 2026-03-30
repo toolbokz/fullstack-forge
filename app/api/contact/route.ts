@@ -14,7 +14,7 @@ const FROM_EMAIL = "Fullstack Forge <onboarding@resend.dev>";
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        const { formName, name, email, businessType, website, url, score } = body;
+        const { formName, name, email, businessType, website, url, score, message } = body;
 
         if (!email || typeof email !== "string") {
             return NextResponse.json(
@@ -45,7 +45,7 @@ export async function POST(request: Request) {
                 from: FROM_EMAIL,
                 to: TO_EMAIL,
                 subject: `📩 New Lead — ${name || "Unknown"} (${formName || "contact"})`,
-                html: ownerNotificationEmail({ formName, name, email, businessType, website }),
+                html: ownerNotificationEmail({ formName, name, email, businessType, website, message }),
             });
 
             // User confirmation

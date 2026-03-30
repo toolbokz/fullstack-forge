@@ -1,24 +1,45 @@
 import Link from 'next/link'
 import { Metadata } from 'next'
 import { serviceColumns, ServiceIcon } from '../../lib/services-data'
+import { breadcrumbSchema, localBusinessSchema } from '../../lib/schema'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
+import ToolSlider from '../../components/ToolSlider'
 import LeadLossCalculator from '../../components/LeadLossCalculator'
 import CTASection from '../../components/CTASection'
 
 export const metadata: Metadata = {
     title: 'Digital Services for NZ Tradies & Small Businesses — Fullstack Forge',
     description: 'Web design, SEO, AI automation, ad campaigns, and more. We help NZ tradies and local businesses get found online and generate more leads.',
+    alternates: { canonical: 'https://fullstack-forge.netlify.app/services' },
+    keywords: ['web design nz', 'seo nz', 'ai automation nz', 'digital marketing nz', 'tradie website services'],
     openGraph: {
         title: 'Services — Fullstack Forge',
         description: 'Web design, SEO, AI automation, ad campaigns, and more for NZ tradies and local businesses.',
         url: 'https://fullstack-forge.netlify.app/services',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Digital Services for NZ Tradies — Fullstack Forge',
+        description: 'Web design, SEO, AI automation, and more for NZ tradies and local businesses.',
     },
 }
 
 export default function ServicesPage() {
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify([
+                        localBusinessSchema(),
+                        breadcrumbSchema([
+                            { name: 'Home', url: 'https://fullstack-forge.netlify.app/' },
+                            { name: 'Services', url: 'https://fullstack-forge.netlify.app/services' },
+                        ]),
+                    ]),
+                }}
+            />
             <Nav />
             <div>
                 {/* Hero */}
@@ -70,6 +91,9 @@ export default function ServicesPage() {
                         </div>
                     </div>
                 </section>
+
+                {/* Tool Slider */}
+                <ToolSlider />
 
                 {/* How It Works */}
                 <section className="py-20 text-white" style={{ background: 'linear-gradient(135deg, #0b1220 0%, #0d1f3c 50%, #0b2e6e 100%)' }}>

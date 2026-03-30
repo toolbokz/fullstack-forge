@@ -1,23 +1,23 @@
 function escapeHtml(str: string): string {
-    return str
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }
 
 const BRAND = {
-    dark: "#0b1220",
-    accent: "#0b5fff",
-    accentDark: "#0948cc",
-    white: "#ffffff",
-    gray: "#94a3b8",
-    lightBg: "#f1f5f9",
-    url: "https://fullstack-forge.netlify.app",
+  dark: "#0b1220",
+  accent: "#0b5fff",
+  accentDark: "#0948cc",
+  white: "#ffffff",
+  gray: "#94a3b8",
+  lightBg: "#f1f5f9",
+  url: "https://fullstack-forge.netlify.app",
 };
 
 function wrapper(content: string) {
-    return `
+  return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,9 +63,9 @@ function wrapper(content: string) {
 }
 
 export function userConfirmationEmail(name: string) {
-    const firstName = escapeHtml((name || "").split(" ")[0] || "there");
+  const firstName = escapeHtml((name || "").split(" ")[0] || "there");
 
-    return wrapper(`
+  return wrapper(`
     <h2 style="margin:0 0 16px;font-size:22px;color:${BRAND.dark};">Thanks for reaching out, ${firstName}!</h2>
     <p style="margin:0 0 20px;font-size:16px;line-height:1.6;color:#475569;">
       We&rsquo;ve received your enquiry and a member of the Fullstack Forge team will be in touch within <strong>24 hours</strong>.
@@ -106,31 +106,39 @@ export function userConfirmationEmail(name: string) {
 }
 
 export function ownerNotificationEmail(data: {
-    formName: string;
-    name?: string;
-    email: string;
-    businessType?: string;
-    website?: string;
+  formName: string;
+  name?: string;
+  email: string;
+  businessType?: string;
+  website?: string;
+  message?: string;
 }) {
-    const rows = [
-        ["Form", data.formName || "contact"],
-        ["Name", data.name || "N/A"],
-        ["Email", data.email],
-        ["Business Type", data.businessType || "N/A"],
-        ["Website", data.website || "N/A"],
-    ];
+  const rows = [
+    ["Form", data.formName || "contact"],
+    ["Name", data.name || "N/A"],
+    ["Email", data.email],
+    ["Business Type", data.businessType || "N/A"],
+    ["Website", data.website || "N/A"],
+  ];
 
-    const tableRows = rows
-        .map(
-            ([label, value], i) => `
+  const messageBlock = data.message
+    ? `<div style="margin-top:20px;padding:16px 20px;background-color:${BRAND.lightBg};border-radius:8px;border-left:4px solid ${BRAND.accent};">
+        <p style="margin:0 0 6px;font-size:13px;font-weight:600;color:${BRAND.dark};text-transform:uppercase;letter-spacing:0.5px;">Project Details</p>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#475569;white-space:pre-wrap;">${escapeHtml(data.message)}</p>
+      </div>`
+    : "";
+
+  const tableRows = rows
+    .map(
+      ([label, value], i) => `
       <tr style="background-color:${i % 2 === 0 ? BRAND.lightBg : BRAND.white};">
         <td style="padding:12px 16px;font-weight:600;font-size:14px;color:${BRAND.dark};border-bottom:1px solid #e2e8f0;width:140px;">${label}</td>
         <td style="padding:12px 16px;font-size:14px;color:#475569;border-bottom:1px solid #e2e8f0;">${escapeHtml(value)}</td>
       </tr>`
-        )
-        .join("");
+    )
+    .join("");
 
-    return wrapper(`
+  return wrapper(`
     <h2 style="margin:0 0 8px;font-size:22px;color:${BRAND.dark};">New Lead Received</h2>
     <p style="margin:0 0 24px;font-size:14px;color:${BRAND.gray};">
       Someone just submitted the <strong>${escapeHtml(data.formName || "contact")}</strong> form.
@@ -139,6 +147,8 @@ export function ownerNotificationEmail(data: {
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-radius:8px;overflow:hidden;border:1px solid #e2e8f0;margin-bottom:28px;">
       ${tableRows}
     </table>
+
+    ${messageBlock}
 
     <table role="presentation" cellpadding="0" cellspacing="0">
       <tr>
@@ -151,27 +161,27 @@ export function ownerNotificationEmail(data: {
 }
 
 export function ownerAuditEmail(data: {
-    email: string;
-    url?: string;
-    score?: number;
+  email: string;
+  url?: string;
+  score?: number;
 }) {
-    const rows = [
-        ["Email", data.email],
-        ["Website URL", data.url || "N/A"],
-        ["Audit Score", String(data.score ?? "N/A")],
-    ];
+  const rows = [
+    ["Email", data.email],
+    ["Website URL", data.url || "N/A"],
+    ["Audit Score", String(data.score ?? "N/A")],
+  ];
 
-    const tableRows = rows
-        .map(
-            ([label, value], i) => `
+  const tableRows = rows
+    .map(
+      ([label, value], i) => `
       <tr style="background-color:${i % 2 === 0 ? BRAND.lightBg : BRAND.white};">
         <td style="padding:12px 16px;font-weight:600;font-size:14px;color:${BRAND.dark};border-bottom:1px solid #e2e8f0;width:140px;">${label}</td>
         <td style="padding:12px 16px;font-size:14px;color:#475569;border-bottom:1px solid #e2e8f0;">${escapeHtml(value)}</td>
       </tr>`
-        )
-        .join("");
+    )
+    .join("");
 
-    return wrapper(`
+  return wrapper(`
     <h2 style="margin:0 0 8px;font-size:22px;color:${BRAND.dark};">Website Audit Submission</h2>
     <p style="margin:0 0 24px;font-size:14px;color:${BRAND.gray};">
       Someone just ran a website audit.
@@ -192,12 +202,12 @@ export function ownerAuditEmail(data: {
 }
 
 export function userAuditEmail(score: number) {
-    const label =
-        score >= 70 ? "Good" : score >= 40 ? "Needs Improvement" : "Critical";
-    const color =
-        score >= 70 ? "#22c55e" : score >= 40 ? "#eab308" : "#ef4444";
+  const label =
+    score >= 70 ? "Good" : score >= 40 ? "Needs Improvement" : "Critical";
+  const color =
+    score >= 70 ? "#22c55e" : score >= 40 ? "#eab308" : "#ef4444";
 
-    return wrapper(`
+  return wrapper(`
     <h2 style="margin:0 0 16px;font-size:22px;color:${BRAND.dark};">Your Website Audit Results</h2>
     <p style="margin:0 0 28px;font-size:16px;line-height:1.6;color:#475569;">
       Thanks for using the Fullstack Forge website audit tool. Here&rsquo;s a quick summary of your results:

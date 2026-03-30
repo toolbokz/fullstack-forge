@@ -10,6 +10,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
     title: 'Site Maintenance & Hosting NZ — Uptime, Security & Performance | Fullstack Forge',
     description: 'Managed website hosting and maintenance for NZ businesses. 99.9% uptime, daily backups, security monitoring, and performance optimisation — all handled for you.',
+    alternates: { canonical: 'https://fullstack-forge.netlify.app/services/site-maintenance-hosting' },
     keywords: ['website hosting nz', 'website maintenance nz', 'managed hosting nz', 'website security', 'website support nz'],
     openGraph: {
         title: 'Site Maintenance & Hosting NZ | Fullstack Forge',

@@ -10,6 +10,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
     title: 'AI Automation for NZ Businesses — Automate Leads & Follow-Ups | Fullstack Forge',
     description: 'AI-powered automation for NZ tradies and small businesses. Automate lead capture, follow-ups, booking, and customer communication. Never miss a lead again.',
+    alternates: { canonical: 'https://fullstack-forge.netlify.app/services/ai-automation' },
     keywords: ['ai automation nz', 'business automation', 'ai chatbot nz', 'lead automation', 'automated follow-ups'],
     openGraph: {
         title: 'AI Automation NZ — Automate Leads & Follow-Ups | Fullstack Forge',

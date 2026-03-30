@@ -10,6 +10,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
     title: 'CRO NZ — Turn More Visitors Into Customers | Fullstack Forge',
     description: 'Conversion Rate Optimisation for NZ businesses. We turn your existing website traffic into more leads, more calls, and more revenue — without spending more on ads.',
+    alternates: { canonical: 'https://fullstack-forge.netlify.app/services/conversion-rate-optimisation' },
     keywords: ['conversion rate optimisation nz', 'cro nz', 'website conversions', 'landing page optimisation', 'increase website leads'],
     openGraph: {
         title: 'CRO NZ — Conversion Rate Optimisation | Fullstack Forge',

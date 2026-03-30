@@ -9,6 +9,7 @@ import DashboardClient from './DashboardClient'
 export const metadata: Metadata = {
     title: 'Dashboard — Fullstack Forge',
     description: 'Your Fullstack Forge dashboard.',
+    robots: { index: false, follow: false },
 }
 
 export default async function DashboardPage() {

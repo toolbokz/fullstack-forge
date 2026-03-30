@@ -26,6 +26,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
         title: tool.metaTitle,
         description: tool.metaDescription,
         keywords: tool.keywords,
+        alternates: { canonical: `https://fullstack-forge.netlify.app/tools/${tool.slug}` },
         openGraph: {
             title: tool.metaTitle,
             description: tool.metaDescription,

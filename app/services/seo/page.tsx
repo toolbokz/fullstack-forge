@@ -10,6 +10,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
     title: 'SEO NZ — Get Found on Google by Local Customers | Fullstack Forge',
     description: 'SEO services for NZ tradies and small businesses. We help you rank on the first page of Google, get more local search traffic, and generate leads on autopilot.',
+    alternates: { canonical: 'https://fullstack-forge.netlify.app/services/seo' },
     keywords: ['seo nz', 'local seo nz', 'search engine optimisation nz', 'google ranking nz', 'seo for tradies'],
     openGraph: {
         title: 'SEO NZ — Get Found on Google | Fullstack Forge',

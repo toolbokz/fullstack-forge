@@ -10,6 +10,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
     title: 'Mobile Development NZ — Mobile-First Apps & Websites | Fullstack Forge',
     description: 'Mobile development for NZ businesses. We build blazing-fast, mobile-first websites and apps that work perfectly on every device. Over 60% of your traffic is on mobile.',
+    alternates: { canonical: 'https://fullstack-forge.netlify.app/services/mobile-development' },
     keywords: ['mobile development nz', 'mobile app development nz', 'responsive web design nz', 'mobile-first website', 'progressive web app nz'],
     openGraph: {
         title: 'Mobile Development NZ — Mobile-First Apps & Websites | Fullstack Forge',

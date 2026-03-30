@@ -7,6 +7,7 @@ import Footer from '../../components/Footer'
 export const metadata: Metadata = {
     title: 'Login — Fullstack Forge',
     description: 'Sign in to your Fullstack Forge account.',
+    robots: { index: false, follow: false },
 }
 
 export default function LoginPage() {

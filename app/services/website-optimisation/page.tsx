@@ -10,6 +10,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
     title: 'Website Optimisation NZ — Speed, Performance & Core Web Vitals | Fullstack Forge',
     description: 'Website speed and performance optimisation for NZ businesses. Fix slow load times, improve Core Web Vitals, and boost your Google rankings. Free speed audit.',
+    alternates: { canonical: 'https://fullstack-forge.netlify.app/services/website-optimisation' },
     keywords: ['website optimisation nz', 'page speed optimisation', 'core web vitals', 'website performance', 'speed optimisation nz'],
     openGraph: {
         title: 'Website Optimisation NZ — Speed & Performance | Fullstack Forge',

@@ -7,10 +7,17 @@ import Footer from '../../components/Footer'
 export const metadata: Metadata = {
     title: 'Free Website Tools for NZ Businesses — Fullstack Forge',
     description: 'Free SEO audits, speed tests, ROI calculators, and more. Check your website health and find out how to get more leads — built for NZ businesses.',
+    alternates: { canonical: 'https://fullstack-forge.netlify.app/tools' },
+    keywords: ['free seo audit nz', 'website speed test', 'free website tools', 'seo checker nz', 'website audit tool'],
     openGraph: {
         title: 'Free Website Tools — Fullstack Forge',
         description: 'Free SEO audits, speed tests, ROI calculators, and more. Built for NZ businesses.',
         url: 'https://fullstack-forge.netlify.app/tools',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Free Website Tools — Fullstack Forge',
+        description: 'Free SEO audits, speed tests, ROI calculators, and more for NZ businesses.',
     },
 }
 

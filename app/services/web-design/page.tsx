@@ -10,6 +10,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
     title: 'Web Design NZ — Websites That Generate Leads in 7 Days | Fullstack Forge',
     description: 'Professional web design for NZ tradies and small businesses. Get a high-converting website built in 7 days that generates leads on autopilot. No lock-in contracts.',
+    alternates: { canonical: 'https://fullstack-forge.netlify.app/services/web-design' },
     keywords: ['web design nz', 'website for tradies', 'web development nz', 'small business website nz', 'website design christchurch'],
     openGraph: {
         title: 'Web Design NZ — Websites That Generate Leads | Fullstack Forge',

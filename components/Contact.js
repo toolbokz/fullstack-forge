@@ -24,6 +24,7 @@ export default function Contact() {
                         formName="lead-capture"
                         ctaText="Get My Free Consultation"
                         showWebsite={true}
+                        showMessage={true}
                     />
 
                     <p className="text-muted text-sm mt-6">

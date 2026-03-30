@@ -7,6 +7,7 @@ import Footer from '../../components/Footer'
 export const metadata: Metadata = {
     title: 'Create Account — Fullstack Forge',
     description: 'Create your Fullstack Forge account.',
+    robots: { index: false, follow: false },
 }
 
 export default function RegisterPage() {

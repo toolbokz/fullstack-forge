@@ -10,6 +10,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
     title: 'Google Ads & Facebook Ads NZ — Lead Generation Campaigns | Fullstack Forge',
     description: 'Paid advertising for NZ tradies and small businesses. Google Ads and Facebook Ads campaigns that generate real leads — not just clicks. No long-term contracts.',
+    alternates: { canonical: 'https://fullstack-forge.netlify.app/services/ad-campaigns' },
     keywords: ['google ads nz', 'facebook ads nz', 'ppc management nz', 'lead generation ads', 'paid advertising nz'],
     openGraph: {
         title: 'Ad Campaigns NZ — Google & Facebook Ads | Fullstack Forge',

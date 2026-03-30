@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { fadeUp, staggerContainer, FadeInSection } from './motion'
 import LeadCaptureForm from './LeadCaptureForm'
+import AuthorBio from './AuthorBio'
 import UnsplashImage from './UnsplashImage'
 import ProofSection from './ProofSection'
 import CTASection from './CTASection'
@@ -98,6 +99,13 @@ export default function BlogArticleLayout({
                     {children}
                 </div>
             </article>
+
+            {/* ═══════ AUTHOR BIO ═══════ */}
+            <section className="py-10 bg-white">
+                <div className="max-w-3xl mx-auto px-4">
+                    <AuthorBio />
+                </div>
+            </section>
 
             {/* ═══════ 5. MID-ARTICLE CTA (optional) ═══════ */}
             {midCta && (

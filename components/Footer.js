@@ -129,7 +129,7 @@ export default function Footer() {
                 <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500">
                     <span>&copy; {new Date().getFullYear()} Fullstack Forge. All rights reserved.</span>
                     <div className="flex gap-4">
-                        <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
+                        <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
                         <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
                     </div>
                 </div>

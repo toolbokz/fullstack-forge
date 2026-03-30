@@ -58,6 +58,8 @@ const plans = [
     },
 ];
 
+const tabs = ["Plans", "Custom"];
+
 const faqs = [
     {
         q: "I already have a website. Can you just fix it?",
@@ -115,6 +117,53 @@ function FAQItem({ q, a }) {
 }
 
 export default function Pricing() {
+    const [activeTab, setActiveTab] = React.useState("Plans");
+    const [customMessage, setCustomMessage] = React.useState("");
+    const [customEmail, setCustomEmail] = React.useState("");
+    const [customName, setCustomName] = React.useState("");
+    const [customBusiness, setCustomBusiness] = React.useState("");
+    const [customWebsite, setCustomWebsite] = React.useState("");
+    const [customSubmitting, setCustomSubmitting] = React.useState(false);
+    const [customSubmitted, setCustomSubmitted] = React.useState(false);
+    const [customError, setCustomError] = React.useState(null);
+
+    const wordCount = customMessage.trim() === "" ? 0 : customMessage.trim().split(/\s+/).length;
+
+    function handleMessageChange(e) {
+        const text = e.target.value;
+        const words = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
+        if (words <= 250) setCustomMessage(text);
+    }
+
+    async function handleCustomSubmit(e) {
+        e.preventDefault();
+        setCustomSubmitting(true);
+        setCustomError(null);
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    formName: "custom-project",
+                    name: customName,
+                    email: customEmail,
+                    businessType: customBusiness,
+                    website: customWebsite,
+                    message: customMessage,
+                }),
+            });
+            if (res.ok) {
+                setCustomSubmitted(true);
+            } else {
+                throw new Error("Submission failed");
+            }
+        } catch {
+            setCustomError("Something went wrong. Please try again.");
+        } finally {
+            setCustomSubmitting(false);
+        }
+    }
+
     return (
         <section className="py-20 bg-gray-50" id="pricing">
             <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -131,23 +180,165 @@ export default function Pricing() {
                     </p>
                 </div>
 
-                {/* Price Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-center mb-16">
-                    {plans.map((plan) => (
-                        <PriceCard key={plan.name} {...plan} />
-                    ))}
+                {/* Tabs */}
+                <div className="flex justify-center mb-10">
+                    <div className="inline-flex bg-white border border-gray-200 rounded-xl p-1 shadow-sm">
+                        {tabs.map((tab) => (
+                            <button
+                                key={tab}
+                                type="button"
+                                onClick={() => setActiveTab(tab)}
+                                className={`px-6 py-2.5 text-sm font-semibold rounded-lg transition-all duration-200 ${activeTab === tab
+                                    ? "bg-primary text-white shadow-md"
+                                    : "text-gray-600 hover:text-gray-900"
+                                    }`}
+                            >
+                                {tab}
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
-                {/* Custom callout */}
-                <p className="text-center text-muted text-sm mb-20">
-                    All prices in NZD. Need something different?{" "}
-                    <a
-                        href="#contact"
-                        className="text-primary font-semibold hover:underline"
-                    >
-                        Let&apos;s have a yarn
-                    </a>
-                </p>
+                {/* Plans Tab */}
+                {activeTab === "Plans" && (
+                    <>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-center mb-16">
+                            {plans.map((plan) => (
+                                <PriceCard key={plan.name} {...plan} />
+                            ))}
+                        </div>
+
+                        <p className="text-center text-muted text-sm mb-20">
+                            All prices in NZD. Need something different?{" "}
+                            <button
+                                type="button"
+                                onClick={() => setActiveTab("Custom")}
+                                className="text-primary font-semibold hover:underline"
+                            >
+                                Let&apos;s build a custom plan
+                            </button>
+                        </p>
+                    </>
+                )}
+
+                {/* Custom Tab */}
+                {activeTab === "Custom" && (
+                    <div className="max-w-2xl mx-auto mb-20">
+                        <div className="bg-white rounded-2xl border-2 border-primary/20 p-8 md:p-12 shadow-lg">
+                            {customSubmitted ? (
+                                <div className="text-center py-8">
+                                    <div className="text-5xl mb-4">✓</div>
+                                    <h3 className="text-2xl font-bold text-green-600 mb-2">Thank You!</h3>
+                                    <p className="text-muted">
+                                        We&apos;ll review your project details and get back to you within 24 hours.
+                                    </p>
+                                </div>
+                            ) : (
+                                <>
+                                    <div className="text-center mb-8">
+                                        <div className="text-4xl mb-4">🛠️</div>
+                                        <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                                            Need Something Tailored?
+                                        </h3>
+                                        <p className="text-muted max-w-lg mx-auto">
+                                            Every business is different. Tell us what you need and we&apos;ll put together a custom plan with transparent pricing — no obligation.
+                                        </p>
+                                    </div>
+
+                                    <ul className="flex flex-col gap-3 text-left max-w-md mx-auto mb-8">
+                                        {[
+                                            "E-commerce or booking systems",
+                                            "Multi-location businesses",
+                                            "App or portal development",
+                                            "API integrations & automations",
+                                            "Ongoing retainer arrangements",
+                                            "Complete brand & digital overhaul",
+                                        ].map((item) => (
+                                            <li key={item} className="flex items-start gap-2.5 text-sm text-gray-700">
+                                                <span className="text-primary mt-0.5 shrink-0 font-bold">✓</span>
+                                                <span>{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    <form onSubmit={handleCustomSubmit} className="flex flex-col gap-4 max-w-lg mx-auto">
+                                        <input
+                                            name="name"
+                                            placeholder="Your name"
+                                            required
+                                            value={customName}
+                                            onChange={(e) => setCustomName(e.target.value)}
+                                            className="w-full px-4 py-3 rounded-lg border bg-white border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary text-base"
+                                        />
+                                        <input
+                                            name="email"
+                                            type="email"
+                                            placeholder="Email address"
+                                            required
+                                            value={customEmail}
+                                            onChange={(e) => setCustomEmail(e.target.value)}
+                                            className="w-full px-4 py-3 rounded-lg border bg-white border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary text-base"
+                                        />
+                                        <select
+                                            name="business-type"
+                                            required
+                                            value={customBusiness}
+                                            onChange={(e) => setCustomBusiness(e.target.value)}
+                                            className="w-full px-4 py-3 rounded-lg border bg-white border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary text-base"
+                                        >
+                                            <option value="">What type of trade / business?</option>
+                                            <option value="plumber">Plumber</option>
+                                            <option value="electrician">Electrician</option>
+                                            <option value="builder">Builder / Construction</option>
+                                            <option value="painter">Painter</option>
+                                            <option value="roofer">Roofer</option>
+                                            <option value="cleaner">Cleaner</option>
+                                            <option value="landscaper">Landscaper</option>
+                                            <option value="hvac">HVAC / Gasfitter</option>
+                                            <option value="other-trade">Other Trade</option>
+                                            <option value="local-service">Other Local Service</option>
+                                        </select>
+                                        <input
+                                            name="website"
+                                            type="url"
+                                            placeholder="Current website URL (optional)"
+                                            value={customWebsite}
+                                            onChange={(e) => setCustomWebsite(e.target.value)}
+                                            className="w-full px-4 py-3 rounded-lg border bg-white border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary text-base"
+                                        />
+                                        <div>
+                                            <textarea
+                                                name="message"
+                                                placeholder="Tell us about your project — what do you need, any specific features, timeline, budget, etc."
+                                                required
+                                                rows={5}
+                                                value={customMessage}
+                                                onChange={handleMessageChange}
+                                                className="w-full px-4 py-3 rounded-lg border bg-white border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary text-base resize-y"
+                                            />
+                                            <p className={`text-xs mt-1.5 text-right ${wordCount >= 240 ? 'text-red-500' : 'text-gray-400'}`}>
+                                                {wordCount}/250 words
+                                            </p>
+                                        </div>
+
+                                        {customError && <p className="text-red-500 text-sm">{customError}</p>}
+
+                                        <button
+                                            type="submit"
+                                            disabled={customSubmitting}
+                                            className="btn w-full text-center text-base font-bold py-3.5 rounded-xl disabled:opacity-60 disabled:cursor-not-allowed"
+                                        >
+                                            {customSubmitting ? "Sending…" : "Discuss My Project"}
+                                        </button>
+                                        <p className="text-muted text-xs text-center">
+                                            Free consultation · No obligation · Reply within 24 hours
+                                        </p>
+                                    </form>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                )}
 
                 {/* Guarantee / Risk Reversal */}
                 <div className="bg-white rounded-2xl border-2 border-green-200 p-8 md:p-12 text-center mb-20 max-w-3xl mx-auto">

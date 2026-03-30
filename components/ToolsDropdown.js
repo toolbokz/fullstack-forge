@@ -9,12 +9,18 @@ export default function ToolsDropdown({ onNavigate }) {
     const wrapperRef = useRef(null)
     const timeoutRef = useRef(null)
 
+    function isMobile() {
+        return typeof window !== 'undefined' && window.innerWidth <= 768
+    }
+
     function handleMouseEnter() {
+        if (isMobile()) return
         clearTimeout(timeoutRef.current)
         setOpen(true)
     }
 
     function handleMouseLeave() {
+        if (isMobile()) return
         timeoutRef.current = setTimeout(() => setOpen(false), 200)
     }
 
