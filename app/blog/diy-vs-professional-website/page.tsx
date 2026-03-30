@@ -4,6 +4,7 @@ import Footer from '../../../components/Footer'
 import BlogArticleLayout from '../../../components/BlogArticleLayout'
 import { articleSchema, breadcrumbSchema, SITE_URL } from '../../../lib/schema'
 import { contentPlan } from '../../../lib/seo-data'
+import { getArticleLinkPackageWithThumbnails } from '../../../lib/internal-links'
 import Link from 'next/link'
 import { fetchUnsplashImage } from '../../../lib/unsplash'
 import UnsplashImage from '../../../components/UnsplashImage'
@@ -42,6 +43,8 @@ export default async function Article() {
         fetchUnsplashImage('professional web development team'),
     ])
 
+    const linkPackage = await getArticleLinkPackageWithThumbnails(SLUG)
+
     const schemas = [
         articleSchema({ title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/blog/${SLUG}`, datePublished: DATE }),
         breadcrumbSchema([
@@ -64,11 +67,13 @@ export default async function Article() {
                     datePublished={DATE}
                     readTime={8}
                     heroImage={heroImage}
-                    relatedLinks={[
-                        { url: '/affordable-websites-nz', label: 'Affordable Websites NZ — From $699' },
-                        { url: '/website-design-for-small-business', label: 'Website Design for Small Business' },
-                        { url: '/blog/best-website-builder-for-small-business-nz', label: 'Best Website Builder for Small Business NZ' },
-                    ]}
+                    slug={SLUG}
+                    midCta={{
+                        headline: 'Skip the Guesswork — Get a Website That Works',
+                        body: 'Whether you\'re upgrading from DIY or starting fresh, we build websites that actually generate leads for NZ businesses.',
+                    } as any}
+                    linkPackage={linkPackage as any}
+                    relatedLinks={[] as any}
                 >
                     <h2>The Real Comparison</h2>
                     <p>

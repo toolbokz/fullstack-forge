@@ -9,15 +9,18 @@ import UnsplashImage from './UnsplashImage'
 import ProofSection from './ProofSection'
 import CTASection from './CTASection'
 import LeadLossCalculator from './LeadLossCalculator'
+import RelatedPosts from './blog/RelatedPosts'
+import { trackCta } from '../lib/analytics'
 
 /**
  * BlogArticleLayout — 10-section conversion funnel wrapper.
  *
- * New optional props for funnel features (backward compatible):
+ * Props for funnel features (all backward compatible):
  * - proofStats: array of {value, label} — proof bar after hero
  * - midCta: {headline, body} — mid-article CTA section
  * - showLeadCalculator: boolean — show Lead Loss Calculator before lead form
  * - slug: string — for form tracking
+ * - linkPackage: { relatedPosts, serviceLinks, toolLinks, pillarLinks } — from internal-links.ts
  */
 export default function BlogArticleLayout({
     title,
@@ -31,6 +34,7 @@ export default function BlogArticleLayout({
     midCta = null,
     showLeadCalculator = false,
     slug = '',
+    linkPackage = null,
 }) {
     return (
         <div>
@@ -144,8 +148,15 @@ export default function BlogArticleLayout({
                 </section>
             </FadeInSection>
 
-            {/* ═══════ 8. RELATED LINKS ═══════ */}
-            {relatedLinks && relatedLinks.length > 0 && (
+            {/* ═══════ 8. SMART RELATED CONTENT (from internal linking engine) ═══════ */}
+            {linkPackage ? (
+                <RelatedPosts
+                    relatedPosts={linkPackage.relatedPosts || []}
+                    serviceLinks={linkPackage.serviceLinks || []}
+                    toolLinks={linkPackage.toolLinks || []}
+                    pillarLinks={linkPackage.pillarLinks || []}
+                />
+            ) : relatedLinks && relatedLinks.length > 0 ? (
                 <FadeInSection>
                     <section className="py-12 bg-gray-50">
                         <div className="max-w-3xl mx-auto px-4">
@@ -162,7 +173,16 @@ export default function BlogArticleLayout({
                         </div>
                     </section>
                 </FadeInSection>
-            )}
+            ) : null}
+
+            {/* ═══════ 9. END CTA ═══════ */}
+            <CTASection
+                headline="Ready to Get More Customers From Your Website?"
+                body="Most business owners read this and think 'I should do this' — then never do. Let us handle it. You focus on running your business."
+                primaryCta={{ text: 'Get My Free Audit', href: '/contact' }}
+                secondaryCta={{ text: 'See Pricing', href: '/#pricing' }}
+                variant="dark"
+            />
         </div>
     )
 }

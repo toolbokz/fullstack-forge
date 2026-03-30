@@ -53,7 +53,7 @@ export default function Testimonials() {
                     {testimonials.map((t) => (
                         <motion.blockquote
                             key={t.name}
-                            className="bg-white p-8 rounded-xl border border-gray-100 shadow-sm text-left flex flex-col"
+                            className="bg-white p-8 rounded-xl border border-primary shadow-sm text-left flex flex-col"
                             variants={fadeUp}
                             whileHover={{ y: -4, transition: { duration: 0.2 } }}
                         >

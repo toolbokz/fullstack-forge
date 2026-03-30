@@ -4,9 +4,11 @@ import Footer from '../../../components/Footer'
 import BlogArticleLayout from '../../../components/BlogArticleLayout'
 import { articleSchema, breadcrumbSchema, SITE_URL } from '../../../lib/schema'
 import { contentPlan } from '../../../lib/seo-data'
+import { getArticleLinkPackageWithThumbnails } from '../../../lib/internal-links'
 import Link from 'next/link'
 import { fetchUnsplashImage } from '../../../lib/unsplash'
 import UnsplashImage from '../../../components/UnsplashImage'
+import ToolEmbed from '../../../components/tools/ToolEmbed'
 
 const SLUG = 'how-to-get-customers-from-your-website'
 const TITLE = 'How to Get Customers From Your Website (Proven Strategy)'
@@ -42,6 +44,8 @@ export default async function Article() {
         fetchUnsplashImage('website analytics dashboard'),
     ])
 
+    const linkPackage = await getArticleLinkPackageWithThumbnails(SLUG)
+
     const schemas = [
         articleSchema({ title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/blog/${SLUG}`, datePublished: DATE }),
         breadcrumbSchema([
@@ -64,11 +68,14 @@ export default async function Article() {
                     datePublished={DATE}
                     readTime={9}
                     heroImage={heroImage}
-                    relatedLinks={[
-                        { url: '/', label: 'See How We Build Lead-Generating Websites' },
-                        { url: '/website-design-for-small-business', label: 'Website Design for Small Business' },
-                        { url: '/blog/how-to-get-more-leads-from-your-website', label: 'How to Get More Leads Without More Traffic' },
-                    ]}
+                    slug={SLUG}
+                    showLeadCalculator={true}
+                    midCta={{
+                        headline: 'Want Us to Build Your Customer Machine?',
+                        body: 'We build websites that don\'t just look good — they actively generate leads while you focus on your business.',
+                    } as any}
+                    linkPackage={linkPackage as any}
+                    relatedLinks={[] as any}
                 >
                     <h2>Why Most Websites Don&apos;t Generate Customers</h2>
                     <p>
@@ -116,6 +123,8 @@ export default async function Article() {
                         A contact form isn&apos;t enough. Offer something valuable in exchange for an email — a free audit,
                         a guide, a consultation. Build your list and follow up.
                     </p>
+
+                    <ToolEmbed slug="conversion-rate-estimator" context="See how small conversion improvements could transform your revenue" />
 
                     <h2>The Websites We Build Follow This Exact Framework</h2>
                     <p>

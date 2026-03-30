@@ -4,9 +4,11 @@ import Footer from '../../../components/Footer'
 import BlogArticleLayout from '../../../components/BlogArticleLayout'
 import { articleSchema, breadcrumbSchema, SITE_URL } from '../../../lib/schema'
 import { contentPlan } from '../../../lib/seo-data'
+import { getArticleLinkPackageWithThumbnails } from '../../../lib/internal-links'
 import Link from 'next/link'
 import { fetchUnsplashImage } from '../../../lib/unsplash'
 import UnsplashImage from '../../../components/UnsplashImage'
+import ToolEmbed from '../../../components/tools/ToolEmbed'
 
 const SLUG = 'how-to-get-more-leads-from-your-website'
 const TITLE = 'How to Get More Leads From Your Website in 2026 (Without Paying for Ads)'
@@ -44,6 +46,8 @@ export default async function Article() {
         fetchUnsplashImage('business owner laptop analytics'),
     ])
 
+    const linkPackage = await getArticleLinkPackageWithThumbnails(SLUG)
+
     const schemas = [
         articleSchema({ title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/blog/${SLUG}`, datePublished: DATE }),
         breadcrumbSchema([
@@ -66,13 +70,14 @@ export default async function Article() {
                     datePublished={DATE}
                     readTime={12}
                     heroImage={heroImage}
-                    relatedLinks={[
-                        { url: '/website-design-for-small-business', label: 'Website Design for Small Business NZ' },
-                        { url: '/blog/how-to-get-customers-from-your-website', label: 'How to Get Customers From Your Website' },
-                        { url: '/blog/seo-for-small-business-nz', label: 'SEO for Small Business NZ — Beginner\'s Guide' },
-                        { url: '/blog/how-much-does-a-website-cost-in-nz', label: 'How Much Does a Website Cost in NZ?' },
-                        { url: '/affordable-websites-nz', label: 'Affordable Websites NZ — From $699' },
-                    ]}
+                    slug={SLUG}
+                    showLeadCalculator={true}
+                    midCta={{
+                        headline: 'See How Many Leads Your Website Is Losing',
+                        body: 'Use our free calculator to find out exactly how many potential customers slip through the cracks each month.',
+                    } as any}
+                    linkPackage={linkPackage as any}
+                    relatedLinks={[] as any}
                 >
 
                     {/* ── INTRODUCTION ── */}
@@ -119,6 +124,8 @@ export default async function Article() {
                         to <Link href="/blog/best-website-design-for-small-businesses" className="text-primary hover:underline">the best website design for small businesses</Link> covers
                         the design principles in depth, but here we&apos;ll focus specifically on lead generation.
                     </p>
+
+                    <ToolEmbed slug="lead-loss-calculator" context="Find out how many leads your website is losing each month" />
 
                     {/* ── SECTION 2: THE 10 TACTICS ── */}
                     <h2>10 Proven Ways to Get More Leads From Your Website</h2>

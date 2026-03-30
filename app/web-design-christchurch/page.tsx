@@ -3,8 +3,10 @@ import Link from 'next/link'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import LeadCaptureForm from '../../components/LeadCaptureForm'
-import { PixabayImage, PixabayVideo, PixabayImageGrid } from '../../components/PixabayMedia'
-import { searchPixabayImages, searchPixabayVideos } from '../../lib/pixabay'
+import ToolSlider from '../../components/ToolSlider'
+import { PixabayVideoGrid, PixabayHeroVideo } from '../../components/PixabayMedia'
+import { searchPixabayVideos } from '../../lib/pixabay'
+import { fetchUnsplashImage } from '../../lib/unsplash'
 import { serviceSchema, faqSchema, breadcrumbSchema, localBusinessSchema, SITE_URL } from '../../lib/schema'
 
 export const metadata: Metadata = {
@@ -33,10 +35,22 @@ const faqs = [
 ]
 
 export default async function WebDesignChristchurch() {
-    const [images, videos] = await Promise.all([
-        searchPixabayImages('web design coding laptop', 4),
-        searchPixabayVideos('website development coding', 1),
+    const helpfulArticles = [
+        { url: '/blog/how-much-does-a-website-cost-in-nz', label: 'How Much Does a Website Cost in NZ? (2026 Price Guide)', imageQuery: 'website design pricing' },
+        { url: '/blog/seo-for-small-business-nz', label: 'SEO for Small Business NZ — A Beginner\u2019s Guide', imageQuery: 'search engine optimization' },
+        { url: '/blog/how-to-get-customers-from-your-website', label: 'How to Get Customers From Your Website', imageQuery: 'digital marketing strategy' },
+        { url: '/blog/website-for-tradies-nz', label: 'Why Every Tradie in NZ Needs a Website', imageQuery: 'construction worker tools' },
+        { url: '/blog/website-for-cleaning-business-nz', label: 'Website for Cleaning Business NZ', imageQuery: 'professional cleaning service' },
+    ]
+    const [videos, ...thumbnails] = await Promise.all([
+        searchPixabayVideos('modern creative workspace computer screen', 4),
+        ...helpfulArticles.map(a => fetchUnsplashImage(a.imageQuery)),
     ])
+    const relatedArticles = helpfulArticles.map((a, i) => ({
+        url: a.url,
+        label: a.label,
+        thumbnail: thumbnails[i] ? { url: thumbnails[i].smallUrl, alt: thumbnails[i].alt } : null,
+    }))
 
     const schemas = [
         localBusinessSchema(),
@@ -60,17 +74,17 @@ export default async function WebDesignChristchurch() {
             <Nav />
             <main>
                 {/* ══════════════════════════════════════════════
-                    HERO
+                    HERO — VIDEO BACKGROUND
                 ══════════════════════════════════════════════ */}
-                <section className="bg-dark text-white py-20 md:py-28">
-                    <div className="max-w-4xl mx-auto px-4 text-center">
+                <PixabayHeroVideo video={videos[0] || null}>
+                    <div className="max-w-4xl mx-auto px-4 text-center text-white py-20 md:py-28">
                         <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-4">
                             Web Design for NZ Tradies &amp; Local Businesses
                         </p>
                         <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
                             Web Design NZ — Websites That Get You More Jobs
                         </h1>
-                        <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-8">
+                        <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-8">
                             Most NZ tradies have a website that looks &ldquo;okay&rdquo; but brings in zero leads. We build websites that rank on Google in your area, convert visitors into enquiries, and fill your calendar with real jobs.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -87,23 +101,7 @@ export default async function WebDesignChristchurch() {
                             <span>✓ From $699 NZD</span>
                         </div>
                     </div>
-                </section>
-
-                {/* ══════════════════════════════════════════════
-                    HERO IMAGE
-                ══════════════════════════════════════════════ */}
-                {images[0] && (
-                    <section className="py-0">
-                        <PixabayImage
-                            src={images[0].largeSrc || images[0].src}
-                            alt={images[0].alt}
-                            user={images[0].user}
-                            pageURL={images[0].pageURL}
-                            priority={true}
-                            className="w-full max-h-[400px] overflow-hidden [&_img]:rounded-none [&_img]:max-h-[400px] [&_figcaption]:py-2 [&_figcaption]:bg-gray-50"
-                        />
-                    </section>
-                )}
+                </PixabayHeroVideo>
 
                 {/* ══════════════════════════════════════════════
                     PROBLEM SECTION
@@ -185,16 +183,9 @@ export default async function WebDesignChristchurch() {
                 </section>
 
                 {/* ══════════════════════════════════════════════
-                    VIDEO SHOWCASE
+                    TOOL SLIDER
                 ══════════════════════════════════════════════ */}
-                {videos[0] && (
-                    <section className="py-16 bg-white">
-                        <div className="max-w-4xl mx-auto px-4">
-                            <h2 className="text-xl md:text-2xl font-bold text-center mb-6">See What a Modern Website Looks Like</h2>
-                            <PixabayVideo video={videos[0]} className="max-w-3xl mx-auto" />
-                        </div>
-                    </section>
-                )}
+                <ToolSlider />
 
                 {/* ══════════════════════════════════════════════
                     YOUR PROCESS (3 STEPS)
@@ -344,13 +335,13 @@ export default async function WebDesignChristchurch() {
                 </section>
 
                 {/* ══════════════════════════════════════════════
-                    STOCK IMAGE GALLERY
+                    VIDEO SHOWCASE GRID
                 ══════════════════════════════════════════════ */}
-                {images.length > 1 && (
+                {videos.length > 1 && (
                     <section className="py-16">
                         <div className="max-w-5xl mx-auto px-4">
                             <h2 className="text-xl md:text-2xl font-bold text-center mb-8">Built With Modern Technology</h2>
-                            <PixabayImageGrid images={images.slice(1, 4)} columns={3} />
+                            <PixabayVideoGrid videos={videos.slice(1, 4)} columns={3} />
                         </div>
                     </section>
                 )}
@@ -506,13 +497,40 @@ export default async function WebDesignChristchurch() {
                         </div>
                         <div>
                             <h3 className="text-lg font-bold mb-4">Helpful Resources</h3>
-                            <ul className="flex flex-col gap-2">
-                                <li><Link href="/blog/how-much-does-a-website-cost-in-nz" className="text-primary hover:underline text-sm font-medium">How Much Does a Website Cost in NZ? (2026 Price Guide) →</Link></li>
-                                <li><Link href="/blog/seo-for-small-business-nz" className="text-primary hover:underline text-sm font-medium">SEO for Small Business NZ — A Beginner&apos;s Guide →</Link></li>
-                                <li><Link href="/blog/how-to-get-customers-from-your-website" className="text-primary hover:underline text-sm font-medium">How to Get Customers From Your Website →</Link></li>
-                                <li><Link href="/blog/website-for-tradies-nz" className="text-primary hover:underline text-sm font-medium">Why Every Tradie in NZ Needs a Website →</Link></li>
-                                <li><Link href="/blog/website-for-cleaning-business-nz" className="text-primary hover:underline text-sm font-medium">Website for Cleaning Business NZ →</Link></li>
-                            </ul>
+                            <div className="grid gap-5 grid-cols-1 sm:grid-cols-2">
+                                {relatedArticles.map((a) => (
+                                    <Link
+                                        key={a.url}
+                                        href={a.url}
+                                        className="group block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 h-full"
+                                    >
+                                        <div className="aspect-[16/9] overflow-hidden bg-gradient-to-br from-[#0d1f3c] to-[#0b5fff] relative">
+                                            {a.thumbnail?.url ? (
+                                                <img
+                                                    src={a.thumbnail.url}
+                                                    alt={a.thumbnail.alt || a.label}
+                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                                    loading="lazy"
+                                                />
+                                            ) : (
+                                                <div className="w-full h-full flex items-center justify-center">
+                                                    <svg className="w-10 h-10 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                                                    </svg>
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className="p-4">
+                                            <p className="text-sm font-semibold text-gray-900 leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                                                {a.label}
+                                            </p>
+                                            <span className="text-xs text-primary font-medium mt-2 inline-block">
+                                                Read article →
+                                            </span>
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </section>

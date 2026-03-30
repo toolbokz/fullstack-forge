@@ -263,10 +263,12 @@ section.visible {
     width: 36px;
     height: 36px;
     object-fit: contain;
+    vertical-align: middle;
 }
 
 .logo-text {
     line-height: 1;
+    vertical-align: middle;
 }
 
 .nav-toggle {

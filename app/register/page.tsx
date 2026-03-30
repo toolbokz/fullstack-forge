@@ -18,7 +18,7 @@ export default function RegisterPage() {
                 <div className="w-full max-w-md">
                     <div className="text-center mb-8">
                         <Link href="/" className="inline-block mb-6">
-                            <img src="/assets/logo-1.png" alt="Fullstack Forge" className="h-10 mx-auto" />
+                            <img src="/assets/logo.svg" alt="Fullstack Forge" className="h-10 mx-auto" />
                         </Link>
                         <h1 className="text-2xl font-bold text-gray-900">Create your account</h1>
                         <p className="text-muted mt-2">Get started with Fullstack Forge</p>

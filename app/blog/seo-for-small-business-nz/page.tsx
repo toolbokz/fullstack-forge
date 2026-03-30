@@ -4,6 +4,7 @@ import Footer from '../../../components/Footer'
 import BlogArticleLayout from '../../../components/BlogArticleLayout'
 import { articleSchema, breadcrumbSchema, SITE_URL } from '../../../lib/schema'
 import { contentPlan } from '../../../lib/seo-data'
+import { getArticleLinkPackageWithThumbnails } from '../../../lib/internal-links'
 import Link from 'next/link'
 import { fetchUnsplashImage } from '../../../lib/unsplash'
 import UnsplashImage from '../../../components/UnsplashImage'
@@ -42,6 +43,8 @@ export default async function Article() {
         fetchUnsplashImage('keyword research SEO strategy'),
     ])
 
+    const linkPackage = await getArticleLinkPackageWithThumbnails(SLUG)
+
     const schemas = [
         articleSchema({ title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/blog/${SLUG}`, datePublished: DATE }),
         breadcrumbSchema([
@@ -64,11 +67,13 @@ export default async function Article() {
                     datePublished={DATE}
                     readTime={10}
                     heroImage={heroImage}
-                    relatedLinks={[
-                        { url: '/', label: 'See Our SEO-Optimised Websites' },
-                        { url: '/web-design-christchurch', label: 'Web Design Christchurch' },
-                        { url: '/blog/how-to-get-more-leads-from-your-website', label: 'How to Get More Leads From Your Website' },
-                    ]}
+                    slug={SLUG}
+                    midCta={{
+                        headline: 'Want SEO Built Into Your Website From Day One?',
+                        body: 'Every site we build is optimised for Google from the ground up — fast, mobile-first, and structured for local search.',
+                    } as any}
+                    linkPackage={linkPackage as any}
+                    relatedLinks={[] as any}
                 >
                     <h2>What Is SEO?</h2>
                     <p>

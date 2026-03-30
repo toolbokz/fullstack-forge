@@ -59,3 +59,15 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+model Lead {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  email        String
+  name         String?
+  businessType String?
+  website      String?
+  message      String?
+  source       String   // e.g. "blog-tradies-nz-lead", "tool-lead-loss-calculator-lead", "contact"
+  toolUsed     String?  // slug of tool if came from a tool page
+  createdAt    DateTime @default(now())
+}

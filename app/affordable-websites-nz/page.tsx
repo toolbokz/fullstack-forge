@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ServicePageLayout from '../../components/ServicePageLayout'
-import { searchPixabayImages, searchPixabayVideos } from '../../lib/pixabay'
+import { searchPixabayVideos } from '../../lib/pixabay'
+import { fetchUnsplashImage } from '../../lib/unsplash'
 import { serviceSchema, faqSchema, breadcrumbSchema, SITE_URL } from '../../lib/schema'
 
 export const metadata: Metadata = {
@@ -42,17 +43,22 @@ const relatedPages = [
     { url: '/ecommerce-websites-nz', label: 'E-Commerce Websites NZ' },
 ]
 
-const relatedArticles = [
-    { url: '/blog/how-much-does-a-website-cost-in-nz', label: 'How Much Does a Website Cost in NZ?' },
-    { url: '/blog/diy-vs-professional-website', label: 'DIY vs Professional Website — Which Is Right?' },
-    { url: '/blog/best-website-builder-for-small-business-nz', label: 'Best Website Builder for Small Business NZ' },
+const relatedArticlesData = [
+    { url: '/blog/how-much-does-a-website-cost-in-nz', label: 'How Much Does a Website Cost in NZ?', imageQuery: 'website design pricing' },
+    { url: '/blog/diy-vs-professional-website', label: 'DIY vs Professional Website — Which Is Right?', imageQuery: 'web developer coding laptop' },
+    { url: '/blog/best-website-builder-for-small-business-nz', label: 'Best Website Builder for Small Business NZ', imageQuery: 'website builder platform' },
 ]
 
 export default async function AffordableWebsitesNZ() {
-    const [images, videos] = await Promise.all([
-        searchPixabayImages('affordable website design laptop', 3),
-        searchPixabayVideos('website development design', 1),
+    const [videos, ...thumbnails] = await Promise.all([
+        searchPixabayVideos('laptop website startup office bright', 4),
+        ...relatedArticlesData.map(a => fetchUnsplashImage(a.imageQuery)),
     ])
+    const relatedArticles = relatedArticlesData.map((a, i) => ({
+        url: a.url,
+        label: a.label,
+        thumbnail: thumbnails[i] ? { url: thumbnails[i].smallUrl, alt: thumbnails[i].alt } : null,
+    }))
 
     const schemas = [
         serviceSchema({
@@ -84,9 +90,8 @@ export default async function AffordableWebsitesNZ() {
                     caseStudies={[]}
                     relatedPages={relatedPages}
                     relatedArticles={relatedArticles}
-                    heroImage={images[0] || null}
-                    images={images.slice(1)}
-                    video={videos[0] || null}
+                    heroVideo={videos[0] || null}
+                    sectionVideos={videos.slice(1)}
                 />
             </main>
             <Footer />

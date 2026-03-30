@@ -4,6 +4,8 @@ import { useState, useRef, useCallback } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
 import { ToolIcon } from '../lib/tools-data'
+import { getCtaPreset } from '../lib/cta-presets'
+import { trackCta } from '../lib/analytics'
 import LeadCaptureForm from './LeadCaptureForm'
 
 // ─── ANIMATION VARIANTS ────────────────────────────
@@ -26,6 +28,7 @@ const scaleIn = {
 export default function ToolPageTemplate({ tool, children }) {
     const [showGate, setShowGate] = useState(false)
     const toolRef = useRef(null)
+    const cta = getCtaPreset('toolFollowUp')
 
     const scrollToTool = useCallback(() => {
         toolRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -168,26 +171,28 @@ export default function ToolPageTemplate({ tool, children }) {
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.3 }}
                     >
-                        <h2 className="tpt-final-cta-title">Want Us to Fix These Issues For You?</h2>
+                        <h2 className="tpt-final-cta-title">{cta.headline}</h2>
                         <p className="tpt-final-cta-sub">
-                            Most business owners see the problems but never get around to fixing them. Let us handle it — you focus on running your business.
+                            {cta.body}
                         </p>
                         <div className="tpt-final-cta-buttons">
                             <motion.a
-                                href="/#audit"
+                                href={cta.primaryCta.href}
                                 className="tpt-btn-primary"
                                 whileHover={{ scale: 1.04 }}
                                 whileTap={{ scale: 0.97 }}
+                                onClick={() => trackCta(cta.primaryCta.text, `tool-${tool.slug}`)}
                             >
-                                Get My Free Website Audit
+                                {cta.primaryCta.text}
                             </motion.a>
                             <motion.a
-                                href="/#contact"
+                                href={cta.secondaryCta.href}
                                 className="tpt-btn-outline"
                                 whileHover={{ scale: 1.04 }}
                                 whileTap={{ scale: 0.97 }}
+                                onClick={() => trackCta(cta.secondaryCta.text, `tool-${tool.slug}`)}
                             >
-                                Talk to Us Today
+                                {cta.secondaryCta.text}
                             </motion.a>
                         </div>
                     </motion.div>

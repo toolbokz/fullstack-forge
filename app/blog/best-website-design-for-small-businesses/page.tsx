@@ -4,6 +4,7 @@ import Footer from '../../../components/Footer'
 import BlogArticleLayout from '../../../components/BlogArticleLayout'
 import { articleSchema, breadcrumbSchema, SITE_URL } from '../../../lib/schema'
 import { contentPlan } from '../../../lib/seo-data'
+import { getArticleLinkPackageWithThumbnails } from '../../../lib/internal-links'
 import Link from 'next/link'
 import { fetchUnsplashImage } from '../../../lib/unsplash'
 import UnsplashImage from '../../../components/UnsplashImage'
@@ -42,6 +43,8 @@ export default async function Article() {
         fetchUnsplashImage('user experience web design'),
     ])
 
+    const linkPackage = await getArticleLinkPackageWithThumbnails(SLUG)
+
     const schemas = [
         articleSchema({ title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/blog/${SLUG}`, datePublished: DATE }),
         breadcrumbSchema([
@@ -64,11 +67,13 @@ export default async function Article() {
                     datePublished={DATE}
                     readTime={7}
                     heroImage={heroImage}
-                    relatedLinks={[
-                        { url: '/website-design-for-small-business', label: 'Website Design for Small Business NZ' },
-                        { url: '/', label: 'See Our Work' },
-                        { url: '/blog/how-much-does-a-website-cost-in-nz', label: 'How Much Does a Website Cost in NZ?' },
-                    ]}
+                    slug={SLUG}
+                    midCta={{
+                        headline: 'Want a Website That Actually Converts?',
+                        body: 'Great design isn\'t just about looks — it\'s about turning visitors into customers. Let us build yours.',
+                    } as any}
+                    linkPackage={linkPackage as any}
+                    relatedLinks={[] as any}
                 >
                     <h2>What Makes a &quot;Good&quot; Small Business Website?</h2>
                     <p>

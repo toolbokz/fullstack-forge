@@ -4,9 +4,11 @@ import Footer from '../../../components/Footer'
 import BlogArticleLayout from '../../../components/BlogArticleLayout'
 import { articleSchema, breadcrumbSchema, SITE_URL } from '../../../lib/schema'
 import { contentPlan } from '../../../lib/seo-data'
+import { getArticleLinkPackageWithThumbnails } from '../../../lib/internal-links'
 import Link from 'next/link'
 import { fetchUnsplashImage } from '../../../lib/unsplash'
 import UnsplashImage from '../../../components/UnsplashImage'
+import ToolEmbed from '../../../components/tools/ToolEmbed'
 
 const SLUG = 'how-much-does-a-website-cost-in-nz'
 const TITLE = 'How Much Does a Website Cost in NZ? 2026 Pricing Guide'
@@ -43,6 +45,8 @@ export default async function Article() {
         fetchUnsplashImage('small business owner laptop'),
     ])
 
+    const linkPackage = await getArticleLinkPackageWithThumbnails(SLUG)
+
     const schemas = [
         articleSchema({ title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/blog/${SLUG}`, datePublished: DATE }),
         breadcrumbSchema([
@@ -65,13 +69,14 @@ export default async function Article() {
                     datePublished={DATE}
                     readTime={10}
                     heroImage={heroImage}
-                    relatedLinks={[
-                        { url: '/affordable-websites-nz', label: 'Affordable Websites NZ — From $699' },
-                        { url: '/website-design-for-small-business', label: 'Website Design for Small Business' },
-                        { url: '/ecommerce-websites-nz', label: 'E-Commerce Websites NZ' },
-                        { url: '/blog/diy-vs-professional-website', label: 'DIY vs Professional Website' },
-                        { url: '/blog/website-for-tradies-nz', label: 'Tradie Websites NZ' },
-                    ]}
+                    slug={SLUG}
+                    showLeadCalculator={true}
+                    midCta={{
+                        headline: 'Want a Transparent Quote for Your Website?',
+                        body: 'No hidden fees. No surprises. Get a clear, honest price for a website that actually generates customers.',
+                    } as any}
+                    linkPackage={linkPackage as any}
+                    relatedLinks={[] as any}
                 >
                     <h2>Quick Answer: Website Cost in NZ (2026)</h2>
                     <p>
@@ -172,6 +177,8 @@ export default async function Article() {
                             </Link>
                         </p>
                     </div>
+
+                    <ToolEmbed slug="pricing-estimator" context="Get an instant estimate for your NZ website project" />
 
                     <h2>How to Calculate Your Website Cost</h2>
                     <p>

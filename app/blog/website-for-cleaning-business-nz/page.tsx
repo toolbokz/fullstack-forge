@@ -4,9 +4,11 @@ import Footer from '../../../components/Footer'
 import BlogArticleLayout from '../../../components/BlogArticleLayout'
 import { articleSchema, breadcrumbSchema, SITE_URL } from '../../../lib/schema'
 import { contentPlan } from '../../../lib/seo-data'
+import { getArticleLinkPackageWithThumbnails } from '../../../lib/internal-links'
 import Link from 'next/link'
 import { fetchUnsplashImage } from '../../../lib/unsplash'
 import UnsplashImage from '../../../components/UnsplashImage'
+import ToolEmbed from '../../../components/tools/ToolEmbed'
 
 const SLUG = 'website-for-cleaning-business-nz'
 const TITLE = 'Website for Cleaning Business NZ — Get More Bookings Online'
@@ -42,6 +44,8 @@ export default async function Article() {
         fetchUnsplashImage('cleaning service online booking'),
     ])
 
+    const linkPackage = await getArticleLinkPackageWithThumbnails(SLUG)
+
     const schemas = [
         articleSchema({ title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/blog/${SLUG}`, datePublished: DATE }),
         breadcrumbSchema([
@@ -64,11 +68,14 @@ export default async function Article() {
                     datePublished={DATE}
                     readTime={6}
                     heroImage={heroImage}
-                    relatedLinks={[
-                        { url: '/affordable-websites-nz', label: 'Affordable Websites NZ — From $699' },
-                        { url: '/web-design-christchurch', label: 'Web Design Christchurch' },
-                        { url: '/blog/website-for-tradies-nz', label: 'Why Every Tradie Needs a Website' },
-                    ]}
+                    slug={SLUG}
+                    showLeadCalculator={true}
+                    midCta={{
+                        headline: 'Get a Website That Books Cleaning Jobs 24/7',
+                        body: 'Professional cleaning business websites from $699. Online booking, SEO, and everything you need to grow.',
+                    } as any}
+                    linkPackage={linkPackage as any}
+                    relatedLinks={[] as any}
                 >
                     <h2>Why Cleaning Businesses Need a Website</h2>
                     <p>
@@ -114,6 +121,8 @@ export default async function Article() {
                         to 40+ monthly enquiries within 3 months. The site featured local SEO, a quote form, and
                         before/after galleries.
                     </p>
+
+                    <ToolEmbed slug="lead-loss-calculator" context="See how many cleaning job enquiries you're missing without a website" />
 
                     <h2>Get Started for $699</h2>
                     <p>

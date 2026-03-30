@@ -65,7 +65,7 @@ export default function Solutions() {
                     {solutions.map((s) => (
                         <motion.div
                             key={s.title}
-                            className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 text-left hover:shadow-md transition-shadow"
+                            className="bg-white rounded-xl border border-primary shadow-sm p-8 text-left hover:shadow-md transition-shadow"
                             variants={fadeUp}
                             whileHover={{ y: -4, transition: { duration: 0.2 } }}
                         >

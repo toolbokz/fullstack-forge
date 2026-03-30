@@ -259,3 +259,60 @@ export function userAuditEmail(score: number) {
     </p>
   `);
 }
+
+export function toolFollowUpEmail(name: string, toolName: string) {
+  const firstName = escapeHtml((name || "").split(" ")[0] || "there");
+
+  return wrapper(`
+    <h2 style="margin:0 0 16px;font-size:22px;color:${BRAND.dark};">Thanks for using our ${escapeHtml(toolName)}, ${firstName}!</h2>
+    <p style="margin:0 0 20px;font-size:16px;line-height:1.6;color:#475569;">
+      You&rsquo;ve taken the first step toward understanding your website&rsquo;s performance. Most business owners stop here &mdash; but the ones who grow are the ones who <strong>take action</strong>.
+    </p>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
+      <tr>
+        <td style="padding:20px;background-color:${BRAND.lightBg};border-radius:8px;border-left:4px solid ${BRAND.accent};">
+          <p style="margin:0 0 6px;font-weight:700;font-size:15px;color:${BRAND.dark};">Want us to fix what we found?</p>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#475569;">
+            Our team can review your results and build a clear, actionable plan &mdash; no jargon, no pressure.
+          </p>
+        </td>
+      </tr>
+    </table>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
+      <tr>
+        <td align="center">
+          <table role="presentation" cellpadding="0" cellspacing="0">
+            <tr>
+              <td style="background-color:${BRAND.accent};border-radius:8px;padding:16px 36px;text-align:center;">
+                <a href="${BRAND.url}/contact" style="font-size:16px;font-weight:700;color:${BRAND.white};text-decoration:none;">Book a Free Consultation</a>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
+      <tr>
+        <td style="padding:16px 20px;background-color:${BRAND.lightBg};border-radius:8px;border-left:4px solid ${BRAND.accent};">
+          <p style="margin:0 0 6px;font-weight:600;font-size:14px;color:${BRAND.dark};">&#128218; More free tools</p>
+          <a href="${BRAND.url}/tools" style="font-size:14px;color:${BRAND.accent};text-decoration:none;">Try our other free tools &rarr;</a>
+        </td>
+      </tr>
+      <tr><td style="height:12px;"></td></tr>
+      <tr>
+        <td style="padding:16px 20px;background-color:${BRAND.lightBg};border-radius:8px;border-left:4px solid ${BRAND.accent};">
+          <p style="margin:0 0 6px;font-weight:600;font-size:14px;color:${BRAND.dark};">&#128640; Read our blog</p>
+          <a href="${BRAND.url}/blog" style="font-size:14px;color:${BRAND.accent};text-decoration:none;">Tips to grow your business online &rarr;</a>
+        </td>
+      </tr>
+    </table>
+
+    <p style="margin:0;font-size:16px;line-height:1.6;color:#475569;">
+      Cheers,<br/>
+      <strong style="color:${BRAND.dark};">The Fullstack Forge Team</strong>
+    </p>
+  `);
+}

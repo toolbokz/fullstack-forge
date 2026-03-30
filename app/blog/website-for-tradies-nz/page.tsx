@@ -4,9 +4,11 @@ import Footer from '../../../components/Footer'
 import BlogArticleLayout from '../../../components/BlogArticleLayout'
 import { articleSchema, breadcrumbSchema, SITE_URL } from '../../../lib/schema'
 import { contentPlan } from '../../../lib/seo-data'
+import { getArticleLinkPackageWithThumbnails } from '../../../lib/internal-links'
 import Link from 'next/link'
 import { fetchUnsplashImage } from '../../../lib/unsplash'
 import UnsplashImage from '../../../components/UnsplashImage'
+import ToolEmbed from '../../../components/tools/ToolEmbed'
 
 const SLUG = 'website-for-tradies-nz'
 const TITLE = 'Tradie Website NZ: How Auckland Tradies Get More Jobs Online in 2026'
@@ -43,6 +45,8 @@ export default async function Article() {
         fetchUnsplashImage('tradesman working Auckland'),
     ])
 
+    const linkPackage = await getArticleLinkPackageWithThumbnails(SLUG)
+
     const schemas = [
         articleSchema({ title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/blog/${SLUG}`, datePublished: DATE }),
         breadcrumbSchema([
@@ -65,13 +69,14 @@ export default async function Article() {
                     datePublished={DATE}
                     readTime={9}
                     heroImage={heroImage}
-                    relatedLinks={[
-                        { url: '/affordable-websites-nz', label: 'Affordable Websites NZ — From $699' },
-                        { url: '/website-design-for-small-business', label: 'Website Design for Small Business' },
-                        { url: '/blog/website-for-cleaning-business-nz', label: 'Website for Cleaning Businesses NZ' },
-                        { url: '/blog/seo-for-small-business-nz', label: 'SEO for Small Business NZ' },
-                        { url: '/blog/how-to-get-more-leads-from-your-website', label: 'How to Get More Leads From Your Website' },
-                    ]}
+                    slug={SLUG}
+                    showLeadCalculator={true}
+                    relatedLinks={[] as any}
+                    midCta={{
+                        headline: 'Want a Website That Actually Gets You Jobs?',
+                        body: 'Most tradies read this and think "I should do this" — then never do. Let us handle it while you focus on the tools.',
+                    } as any}
+                    linkPackage={linkPackage as any}
                 >
                     <p>
                         If you&apos;re a plumber, electrician, builder, or any other tradie in New Zealand, your next customer
@@ -276,6 +281,8 @@ export default async function Article() {
                         one that <strong>pays for itself</strong>. One new job from your website and the entire cost is
                         covered.
                     </p>
+
+                    <ToolEmbed slug="lead-loss-calculator" context="See how much revenue your current website is losing every month:" />
 
                     <h2>Real Results: Auckland Tradies Getting More Jobs Online</h2>
                     <p>

@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { FadeInSection, scaleUp } from './motion'
+import { trackCta } from '../lib/analytics'
 
 /**
  * CTASection — reusable conversion block with pain/urgency messaging.
@@ -40,11 +41,11 @@ export default function CTASection({
                     viewport={{ once: true }}
                 >
                     {primaryCta.href.startsWith('/') ? (
-                        <Link href={primaryCta.href} className={`btn btn-lg btn-cta-pulse ${variant === 'primary' ? 'bg-white text-primary hover:bg-gray-100' : ''}`}>
+                        <Link href={primaryCta.href} className={`btn btn-lg btn-cta-pulse ${variant === 'primary' ? 'bg-white text-primary hover:bg-gray-100' : ''}`} onClick={() => trackCta(primaryCta.text, variant)}>
                             {primaryCta.text}
                         </Link>
                     ) : (
-                        <a href={primaryCta.href} className={`btn btn-lg btn-cta-pulse ${variant === 'primary' ? 'bg-white text-primary hover:bg-gray-100' : ''}`}>
+                        <a href={primaryCta.href} className={`btn btn-lg btn-cta-pulse ${variant === 'primary' ? 'bg-white text-primary hover:bg-gray-100' : ''}`} onClick={() => trackCta(primaryCta.text, variant)}>
                             {primaryCta.text}
                         </a>
                     )}

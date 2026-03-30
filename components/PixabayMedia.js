@@ -87,3 +87,58 @@ export function PixabayImageGrid({ images, columns = 2 }) {
         </div>
     )
 }
+
+/**
+ * Renders a grid of Pixabay videos.
+ */
+export function PixabayVideoGrid({ videos, columns = 3 }) {
+    if (!videos || videos.length === 0) return null
+
+    const gridCols = columns === 3 ? 'md:grid-cols-3' : columns === 2 ? 'md:grid-cols-2' : 'md:grid-cols-1'
+
+    return (
+        <div className={`grid grid-cols-1 ${gridCols} gap-6`}>
+            {videos.map((video) => (
+                <PixabayVideo
+                    key={video.id}
+                    video={video}
+                    className=""
+                />
+            ))}
+        </div>
+    )
+}
+
+/**
+ * Full-bleed hero section with a looping video background + overlay.
+ */
+export function PixabayHeroVideo({ video, children }) {
+    const url = video?.medium || video?.large || video?.small
+    if (!url) return null
+
+    return (
+        <section className="relative min-h-[500px] md:min-h-[600px] flex items-center justify-center overflow-hidden">
+            <video
+                src={url}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/65" />
+            <div className="relative z-10 w-full">
+                {children}
+            </div>
+            {video.user && (
+                <p className="absolute bottom-2 right-3 text-[10px] text-white/40 z-10">
+                    Video by{' '}
+                    <a href={video.pageURL} target="_blank" rel="noopener noreferrer" className="underline hover:text-white/60">
+                        {video.user}
+                    </a>{' '}
+                    on Pixabay
+                </p>
+            )}
+        </section>
+    )
+}

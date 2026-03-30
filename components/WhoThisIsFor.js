@@ -50,7 +50,7 @@ export default function WhoThisIsFor() {
                     {problems.map((p) => (
                         <motion.div
                             key={p.title}
-                            className="bg-white rounded-xl p-8 shadow-sm border border-red-100 text-center hover:shadow-md transition-shadow"
+                            className="bg-white rounded-xl p-8 shadow-sm border border-primary text-center hover:shadow-md transition-shadow"
                             variants={fadeUp}
                             whileHover={{ y: -4, transition: { duration: 0.2 } }}
                         >

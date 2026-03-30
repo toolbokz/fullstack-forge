@@ -53,7 +53,7 @@ export default function WhyChooseUs() {
                     {beforeAfter.map((r) => (
                         <motion.div
                             key={r.stat}
-                            className="text-center p-8 rounded-xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+                            className="text-center p-8 rounded-xl bg-white border border-primary shadow-sm hover:shadow-md transition-shadow"
                             variants={fadeUp}
                             whileHover={{ y: -4, transition: { duration: 0.2 } }}
                         >

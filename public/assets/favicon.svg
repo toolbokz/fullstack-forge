@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="fg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a6e"/>
+      <stop offset="30%" stop-color="#2e3ea5"/>
+      <stop offset="55%" stop-color="#c06cc0"/>
+      <stop offset="100%" stop-color="#9b59b6"/>
+    </linearGradient>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&amp;display=swap');
+    </style>
+  </defs>
+  <rect x="0" y="0" width="64" height="64" rx="12" ry="12" fill="#ffffff"/>
+  <text x="4" y="50" font-family="'Cinzel Decorative', serif" font-weight="700" font-size="48" fill="url(#fg)">F</text>
+  <text x="26" y="55" font-family="'Cinzel Decorative', serif" font-weight="700" font-size="48" fill="url(#fg)">S</text>
+</svg>

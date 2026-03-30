@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ServicePageLayout from '../../components/ServicePageLayout'
-import { searchPixabayImages, searchPixabayVideos } from '../../lib/pixabay'
+import { searchPixabayVideos } from '../../lib/pixabay'
+import { fetchUnsplashImage } from '../../lib/unsplash'
 import { serviceSchema, faqSchema, breadcrumbSchema, SITE_URL } from '../../lib/schema'
 
 export const metadata: Metadata = {
@@ -51,17 +52,22 @@ const relatedPages = [
     { url: '/web-design-christchurch', label: 'Web Design Christchurch' },
 ]
 
-const relatedArticles = [
-    { url: '/blog/best-website-builder-for-small-business-nz', label: 'Best Website Builder for Small Business NZ' },
-    { url: '/blog/how-much-does-a-website-cost-in-nz', label: 'How Much Does a Website Cost in NZ?' },
-    { url: '/blog/diy-vs-professional-website', label: 'DIY vs Professional Website' },
+const relatedArticlesData = [
+    { url: '/blog/best-website-builder-for-small-business-nz', label: 'Best Website Builder for Small Business NZ', imageQuery: 'website builder platform' },
+    { url: '/blog/how-much-does-a-website-cost-in-nz', label: 'How Much Does a Website Cost in NZ?', imageQuery: 'website design pricing' },
+    { url: '/blog/diy-vs-professional-website', label: 'DIY vs Professional Website', imageQuery: 'web developer coding laptop' },
 ]
 
 export default async function EcommerceWebsitesNZ() {
-    const [images, videos] = await Promise.all([
-        searchPixabayImages('online shopping ecommerce store', 3),
-        searchPixabayVideos('online shopping cart', 1),
+    const [videos, ...thumbnails] = await Promise.all([
+        searchPixabayVideos('ecommerce online store website', 4),
+        ...relatedArticlesData.map(a => fetchUnsplashImage(a.imageQuery)),
     ])
+    const relatedArticles = relatedArticlesData.map((a, i) => ({
+        url: a.url,
+        label: a.label,
+        thumbnail: thumbnails[i] ? { url: thumbnails[i].smallUrl, alt: thumbnails[i].alt } : null,
+    }))
 
     const schemas = [
         serviceSchema({
@@ -93,9 +99,8 @@ export default async function EcommerceWebsitesNZ() {
                     caseStudies={caseStudies}
                     relatedPages={relatedPages}
                     relatedArticles={relatedArticles}
-                    heroImage={images[0] || null}
-                    images={images.slice(1)}
-                    video={videos[0] || null}
+                    heroVideo={videos[0] || null}
+                    sectionVideos={videos.slice(1)}
                 />
             </main>
             <Footer />

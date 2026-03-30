@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { trackLeadCapture } from "../lib/analytics";
 
 export default function LeadCaptureForm({
     formName = "lead-capture",
@@ -37,6 +38,7 @@ export default function LeadCaptureForm({
 
             if (res.ok) {
                 setSubmitted(true);
+                trackLeadCapture(formData.get("form-name") || "unknown", formName);
             } else {
                 throw new Error("Submission failed");
             }

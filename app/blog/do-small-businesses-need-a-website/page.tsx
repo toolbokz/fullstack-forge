@@ -4,9 +4,11 @@ import Footer from '../../../components/Footer'
 import BlogArticleLayout from '../../../components/BlogArticleLayout'
 import { articleSchema, breadcrumbSchema, SITE_URL } from '../../../lib/schema'
 import { contentPlan } from '../../../lib/seo-data'
+import { getArticleLinkPackageWithThumbnails } from '../../../lib/internal-links'
 import Link from 'next/link'
 import { fetchUnsplashImage } from '../../../lib/unsplash'
 import UnsplashImage from '../../../components/UnsplashImage'
+import ToolEmbed from '../../../components/tools/ToolEmbed'
 
 const SLUG = 'do-small-businesses-need-a-website'
 const TITLE = 'Do Small Businesses Need a Website in 2026? (The Real Answer)'
@@ -42,6 +44,8 @@ export default async function Article() {
         fetchUnsplashImage('online business digital growth'),
     ])
 
+    const linkPackage = await getArticleLinkPackageWithThumbnails(SLUG)
+
     const schemas = [
         articleSchema({ title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/blog/${SLUG}`, datePublished: DATE }),
         breadcrumbSchema([
@@ -64,11 +68,14 @@ export default async function Article() {
                     datePublished={DATE}
                     readTime={6}
                     heroImage={heroImage}
-                    relatedLinks={[
-                        { url: '/affordable-websites-nz', label: 'Affordable Websites NZ — From $699' },
-                        { url: '/', label: 'Fullstack Forge Homepage' },
-                        { url: '/blog/how-to-get-customers-from-your-website', label: 'How to Get Customers From Your Website' },
-                    ]}
+                    slug={SLUG}
+                    showLeadCalculator={true}
+                    midCta={{
+                        headline: 'Still On the Fence About Getting a Website?',
+                        body: 'We build affordable websites for NZ small businesses — from $699, delivered in days, not weeks.',
+                    } as any}
+                    linkPackage={linkPackage as any}
+                    relatedLinks={[] as any}
                 >
                     <h2>The Short Answer: Yes</h2>
                     <p>
@@ -107,6 +114,8 @@ export default async function Article() {
                             profileUrl={midImage.profileUrl}
                         />
                     )}
+
+                    <ToolEmbed slug="website-roi-calculator" context="Calculate the return on investment a website could generate for your business" />
 
                     <h2>It Doesn&apos;t Have to Be Expensive</h2>
                     <p>

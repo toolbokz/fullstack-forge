@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import LeadCaptureForm from './LeadCaptureForm';
-import { PixabayImage, PixabayVideo, PixabayImageGrid } from './PixabayMedia';
+import ToolSlider from './ToolSlider';
+import { PixabayImage, PixabayVideo, PixabayImageGrid, PixabayVideoGrid, PixabayHeroVideo } from './PixabayMedia';
 
 export default function ServicePageLayout({
     badge,
@@ -12,46 +13,58 @@ export default function ServicePageLayout({
     caseStudies,
     relatedPages,
     relatedArticles,
-    heroImage,
-    images,
-    video,
+    heroImage = null,
+    images = [],
+    video = null,
+    heroVideo = null,
+    sectionVideos = [],
 }) {
     return (
         <div>
-            {/* Hero */}
-            <section className="bg-dark text-white py-20 md:py-28">
-                <div className="max-w-4xl mx-auto px-4 text-center">
-                    <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-4">
-                        {badge}
-                    </p>
-                    <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-                        {headline}
-                    </h1>
-                    <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-8">
-                        {subheadline}
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="#lead-form" className="btn btn-lg">
-                            Get a Free Website Audit
-                        </a>
-                        <Link href="/#solutions" className="btn btn-outline-light btn-lg">
-                            View Live Demos
-                        </Link>
+            {/* Hero — Video Background */}
+            {heroVideo ? (
+                <PixabayHeroVideo video={heroVideo}>
+                    <div className="max-w-4xl mx-auto px-4 text-center text-white py-20 md:py-28">
+                        <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-4">
+                            {badge}
+                        </p>
+                        <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+                            {headline}
+                        </h1>
+                        <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-8">
+                            {subheadline}
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a href="#lead-form" className="btn btn-lg">
+                                Get a Free Website Audit
+                            </a>
+                            <Link href="/#solutions" className="btn btn-outline-light btn-lg">
+                                View Live Demos
+                            </Link>
+                        </div>
                     </div>
-                </div>
-            </section>
-
-            {/* Hero Image */}
-            {heroImage && (
-                <section className="py-0">
-                    <PixabayImage
-                        src={heroImage.largeSrc || heroImage.src}
-                        alt={heroImage.alt}
-                        user={heroImage.user}
-                        pageURL={heroImage.pageURL}
-                        priority={true}
-                        className="w-full max-h-[400px] overflow-hidden [&_img]:rounded-none [&_img]:max-h-[400px] [&_figcaption]:py-2 [&_figcaption]:bg-gray-50"
-                    />
+                </PixabayHeroVideo>
+            ) : (
+                <section className="bg-dark text-white py-20 md:py-28">
+                    <div className="max-w-4xl mx-auto px-4 text-center">
+                        <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-4">
+                            {badge}
+                        </p>
+                        <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+                            {headline}
+                        </h1>
+                        <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-8">
+                            {subheadline}
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a href="#lead-form" className="btn btn-lg">
+                                Get a Free Website Audit
+                            </a>
+                            <Link href="/#solutions" className="btn btn-outline-light btn-lg">
+                                View Live Demos
+                            </Link>
+                        </div>
+                    </div>
                 </section>
             )}
 
@@ -109,24 +122,18 @@ export default function ServicePageLayout({
                 </section>
             )}
 
-            {/* Video Showcase */}
-            {video && (
+            {/* Video Showcase Grid */}
+            {sectionVideos && sectionVideos.length > 0 && (
                 <section className="py-16 bg-white">
-                    <div className="max-w-4xl mx-auto px-4">
-                        <h2 className="text-xl md:text-2xl font-bold text-center mb-6">See What We Build</h2>
-                        <PixabayVideo video={video} className="max-w-3xl mx-auto" />
+                    <div className="max-w-5xl mx-auto px-4">
+                        <h2 className="text-xl md:text-2xl font-bold text-center mb-8">See What We Build</h2>
+                        <PixabayVideoGrid videos={sectionVideos} columns={sectionVideos.length >= 3 ? 3 : 2} />
                     </div>
                 </section>
             )}
 
-            {/* Image Gallery */}
-            {images && images.length > 0 && (
-                <section className="py-16 bg-gray-50">
-                    <div className="max-w-5xl mx-auto px-4">
-                        <PixabayImageGrid images={images} columns={images.length >= 3 ? 3 : 2} />
-                    </div>
-                </section>
-            )}
+            {/* Tool Slider */}
+            <ToolSlider />
 
             {/* FAQ */}
             {faqs && faqs.length > 0 && (
@@ -187,15 +194,40 @@ export default function ServicePageLayout({
                     {relatedArticles && relatedArticles.length > 0 && (
                         <div>
                             <h3 className="text-lg font-bold mb-4">Helpful Resources</h3>
-                            <ul className="flex flex-col gap-2">
+                            <div className="grid gap-5 grid-cols-1 sm:grid-cols-2">
                                 {relatedArticles.map((a) => (
-                                    <li key={a.url}>
-                                        <Link href={a.url} className="text-primary hover:underline text-sm font-medium">
-                                            {a.label} →
-                                        </Link>
-                                    </li>
+                                    <Link
+                                        key={a.url}
+                                        href={a.url}
+                                        className="group block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 h-full"
+                                    >
+                                        <div className="aspect-[16/9] overflow-hidden bg-gradient-to-br from-[#0d1f3c] to-[#0b5fff] relative">
+                                            {a.thumbnail?.url ? (
+                                                <img
+                                                    src={a.thumbnail.url}
+                                                    alt={a.thumbnail.alt || a.label}
+                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                                    loading="lazy"
+                                                />
+                                            ) : (
+                                                <div className="w-full h-full flex items-center justify-center">
+                                                    <svg className="w-10 h-10 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                                                    </svg>
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className="p-4">
+                                            <p className="text-sm font-semibold text-gray-900 leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                                                {a.label}
+                                            </p>
+                                            <span className="text-xs text-primary font-medium mt-2 inline-block">
+                                                Read article →
+                                            </span>
+                                        </div>
+                                    </Link>
                                 ))}
-                            </ul>
+                            </div>
                         </div>
                     )}
                 </div>
