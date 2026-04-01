@@ -5,55 +5,83 @@ import PriceCard from "./PriceCard";
 
 const plans = [
     {
-        name: "Starter",
-        price: "$699",
+        name: "Website optimisation",
+        price: "$400 - $900",
         period: "one-time",
-        description:
-            "Get online fast with a professional site that makes the phone ring",
+        description: "Improve speed, UX, and conversions for your existing site",
         features: [
-            "1–3 page website",
-            "Mobile-friendly design",
-            "Click-to-call buttons",
-            "Google Maps integration",
-            "Basic local SEO setup",
-            "Live in 5–7 days",
+            "Page speed audit and fixes",
+            "Conversion rate tweaks",
+            "Technical SEO tuning",
+            "Mobile and accessibility improvements",
+            "Content & metadata refinement",
+            "Performance report",
         ],
-        cta: "Get Started",
+        cta: "Optimise Now",
         popular: false,
     },
     {
-        name: "Growth",
-        price: "$1,499",
+        name: "SEO setup",
+        price: "$300 - $800",
         period: "one-time",
-        description:
-            "For tradies serious about getting consistent leads from Google",
+        description: "Initial SEO configuration to get you indexed and ranking fast",
         features: [
-            "Everything in Starter",
-            "4–6 pages",
-            "Full local SEO optimisation",
-            "Lead capture forms + quote requests",
-            "Google Business Profile setup",
-            "Speed & performance tuning",
-            "Live in 7–10 days",
+            "Keyword research",
+            "On-page SEO implementation",
+            "Google Search Console setup",
+            "Google Analytics setup",
+            "Sitemap + robots.txt",
+            "Local business citations",
         ],
-        cta: "Get More Jobs",
+        cta: "Setup SEO",
+        popular: false,
+    },
+    {
+        name: "Website builds",
+        price: "$1,000 - $2,000",
+        period: "one-time",
+        description: "Full website build package for high-converting local business sites",
+        features: [
+            "Custom responsive design",
+            "SEO-friendly page structure",
+            "Speed and performance optimisation",
+            "Mobile-first layout",
+            "Lead-capture forms and CTAs",
+            "Launch within 7–14 days",
+        ],
+        cta: "Build My Website",
         popular: true,
     },
     {
-        name: "Monthly Growth",
-        price: "$299",
+        name: "Monthly SEO services",
+        price: "$150 - $400",
         period: "/month",
-        description:
-            "Ongoing optimisation so you keep ranking and keep getting jobs",
+        description: "Ongoing SEO and content work to grow your organic leads",
         features: [
-            "Monthly SEO updates",
-            "Content & blog posts for rankings",
-            "Google ranking monitoring",
-            "Lead tracking & reporting",
-            "Website updates & maintenance",
-            "Priority support",
+            "Content updates and optimisation",
+            "Rank tracking and reporting",
+            "Link building support",
+            "Technical health checks",
+            "Local SEO monitoring",
+            "Monthly strategy call",
         ],
-        cta: "Start Growing Monthly",
+        cta: "Start Monthly SEO",
+        popular: false,
+    },
+    {
+        name: "AI automation systems",
+        price: "Setup + monthly",
+        period: "custom",
+        description: "Automate workflows, lead handling, and operations with AI tools",
+        features: [
+            "Custom automation planning",
+            "Integration with existing tools",
+            "Ongoing optimisation support",
+            "Performance dashboards",
+            "Chatbot & outreach automation",
+            "Revenue-focused automation strategy",
+        ],
+        cta: "Get AI Automation",
         popular: false,
     },
 ];
@@ -165,8 +193,8 @@ export default function Pricing() {
     }
 
     return (
-        <section className="py-20 bg-gray-50" id="pricing">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <section className="w-full py-20 bg-gray-50" id="pricing">
+            <div className="w-full mx-auto px-4 sm:px-6">
                 {/* Header */}
                 <div className="text-center mb-14">
                     <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">
@@ -202,7 +230,7 @@ export default function Pricing() {
                 {/* Plans Tab */}
                 {activeTab === "Plans" && (
                     <>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-center mb-16">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8 items-start mb-16">
                             {plans.map((plan) => (
                                 <PriceCard key={plan.name} {...plan} />
                             ))}

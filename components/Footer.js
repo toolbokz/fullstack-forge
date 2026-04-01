@@ -14,7 +14,7 @@ export default function Footer() {
                     <p className="text-gray-400 mb-6 max-w-lg mx-auto">Free audit. Real data. No BS. We&apos;ll show you exactly what&apos;s holding your site back.</p>
                     <div className="flex flex-col sm:flex-row gap-3 justify-center">
                         <Link href="/#audit" className="btn btn-cta-pulse">Get My Free Audit</Link>
-                        <Link href="/#pricing" className="btn btn-outline-light">See Pricing</Link>
+                        <Link href="/pricing" className="btn btn-outline-light">See Pricing</Link>
                     </div>
                 </div>
 
@@ -71,7 +71,7 @@ export default function Footer() {
                         <ul className="flex flex-col gap-2 text-sm">
                             <li><Link href="/#audit" className="text-gray-400 hover:text-white transition-colors">Free Website Audit</Link></li>
                             <li><Link href="/blog" className="text-gray-400 hover:text-white transition-colors">Blog</Link></li>
-                            <li><Link href="/#pricing" className="text-gray-400 hover:text-white transition-colors">Pricing</Link></li>
+                            <li><Link href="/pricing" className="text-gray-400 hover:text-white transition-colors">Pricing</Link></li>
                             <li><Link href="/#contact" className="text-gray-400 hover:text-white transition-colors">Get in Touch</Link></li>
                         </ul>
                     </div>

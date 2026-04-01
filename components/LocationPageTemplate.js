@@ -50,7 +50,7 @@ export default function LocationPageTemplate({ service, location, faqs, schemas 
                             <a href="#lead-form" className="btn btn-lg btn-cta-pulse">
                                 Get a Free Website Audit
                             </a>
-                            <Link href="/#pricing" className="btn btn-outline-light btn-lg">
+                            <Link href="/pricing" className="btn btn-outline-light btn-lg">
                                 See Pricing
                             </Link>
                         </div>
@@ -135,7 +135,7 @@ export default function LocationPageTemplate({ service, location, faqs, schemas 
                     headline={`Stop Losing ${location.name} Customers to Your Competitors`}
                     body={seo.cta}
                     primaryCta={{ text: 'Get My Free Audit', href: '#lead-form' }}
-                    secondaryCta={{ text: 'See Our Pricing', href: '/#pricing' }}
+                    secondaryCta={{ text: 'See Our Pricing', href: '/pricing' }}
                     variant="primary"
                 />
 

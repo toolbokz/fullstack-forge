@@ -427,7 +427,7 @@ export default async function WebDesignChristchurch() {
                             </table>
                         </div>
                         <p className="text-muted text-sm mt-6 text-center">
-                            All prices in NZD. See our full <Link href="/#pricing" className="text-primary hover:underline">pricing page</Link> for detailed feature breakdowns,
+                            All prices in NZD. See our full <Link href="/pricing" className="text-primary hover:underline">pricing page</Link> for detailed feature breakdowns,
                             or check our guide on <Link href="/blog/how-much-does-a-website-cost-in-nz" className="text-primary hover:underline">how much a website costs in NZ</Link>.
                         </p>
                     </div>

@@ -23,7 +23,6 @@ import ToolSlider from '../components/ToolSlider'
 import WhoThisIsFor from '../components/WhoThisIsFor'
 import Solutions from '../components/Solutions'
 import HowItWorks from '../components/HowItWorks'
-import Pricing from '../components/Pricing'
 import WhyChooseUs from '../components/WhyChooseUs'
 import Testimonials from '../components/Testimonials'
 import WebsiteAudit from '../components/WebsiteAudit'
@@ -54,9 +53,6 @@ export default function HomePage() {
                 </div>
                 <div className="section-float section-float-dark">
                     <WebsiteAudit />
-                </div>
-                <div className="section-float">
-                    <Pricing />
                 </div>
                 <div className="section-float">
                     <WhyChooseUs />

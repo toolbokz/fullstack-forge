@@ -117,7 +117,7 @@ export default function BlogArticleLayout({
                     headline={midCta.headline || 'Want Us to Do This for You?'}
                     body={midCta.body || 'Most business owners read this and think "I should do this" — then never do. Let us handle it. You focus on running your business.'}
                     primaryCta={{ text: 'Get My Free Audit', href: '#lead-form' }}
-                    secondaryCta={{ text: 'See Pricing', href: '/#pricing' }}
+                    secondaryCta={{ text: 'See Pricing', href: '/pricing' }}
                     variant="primary"
                 />
             )}
@@ -180,7 +180,7 @@ export default function BlogArticleLayout({
                 headline="Ready to Get More Customers From Your Website?"
                 body="Most business owners read this and think 'I should do this' — then never do. Let us handle it. You focus on running your business."
                 primaryCta={{ text: 'Get My Free Audit', href: '/contact' }}
-                secondaryCta={{ text: 'See Pricing', href: '/#pricing' }}
+                secondaryCta={{ text: 'See Pricing', href: '/pricing' }}
                 variant="dark"
             />
         </div>

@@ -342,7 +342,7 @@ export default async function WebsiteDesignSmallBusiness() {
                         <div className="text-center mt-12">
                             <p className="text-gray-400 text-sm mb-4">
                                 Packages start at just $699 NZD — see full details on our{' '}
-                                <Link href="/#pricing" className="text-primary hover:underline">pricing page</Link>.
+                                <Link href="/pricing" className="text-primary hover:underline">pricing page</Link>.
                                 Not sure if DIY or professional is right for you? Read our{' '}
                                 <Link href="/blog/diy-vs-professional-website" className="text-primary hover:underline">honest comparison</Link>.
                             </p>
@@ -412,7 +412,7 @@ export default async function WebsiteDesignSmallBusiness() {
                             </div>
                         </div>
                         <p className="text-center text-muted text-sm mt-8">
-                            All prices in NZD. Full feature comparison on our <Link href="/#pricing" className="text-primary hover:underline">pricing page</Link>.
+                            All prices in NZD. Full feature comparison on our <Link href="/pricing" className="text-primary hover:underline">pricing page</Link>.
                             Wondering how this compares to other options? See our{' '}
                             <Link href="/blog/how-much-does-a-website-cost-in-nz" className="text-primary hover:underline">complete NZ website cost breakdown</Link> or our{' '}
                             <Link href="/blog/best-website-builder-for-small-business-nz" className="text-primary hover:underline">website builder comparison</Link>.

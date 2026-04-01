@@ -166,7 +166,7 @@ export default function WebDesignPage() {
                     headline="Your Competitors Already Have a Website That Works"
                     body="Every week you wait is another week of lost leads and lost revenue. Let's get your website working for you."
                     primaryCta={{ text: 'Get My Free Audit', href: '#lead-form' }}
-                    secondaryCta={{ text: 'See Our Pricing', href: '/#pricing' }}
+                    secondaryCta={{ text: 'See Our Pricing', href: '/pricing' }}
                 />
 
                 {/* FAQ */}

@@ -1,7 +1,7 @@
 export default function PriceCard({ name, price, period = "one-time", description, features, cta, popular }) {
     return (
         <div
-            className={`rounded-2xl p-8 flex flex-col border-2 transition-all duration-300 ${popular
+            className={`rounded-2xl p-8 flex flex-col border-2 transition-all duration-300 w-full ${popular
                 ? "border-primary bg-white shadow-xl shadow-primary/10 relative scale-[1.03] z-10"
                 : "border-gray-200 bg-white shadow-sm hover:shadow-md hover:border-gray-300"
                 }`}
@@ -15,7 +15,7 @@ export default function PriceCard({ name, price, period = "one-time", descriptio
             <h3 className="text-lg font-bold text-gray-900 mb-1">{name}</h3>
 
             <div className="mb-3">
-                <span className="text-5xl font-extrabold text-gray-900 tracking-tight">
+                <span className="text-4xl font-extrabold text-gray-900 tracking-tight">
                     {price}
                 </span>
                 <span className="text-muted text-sm ml-1.5">{period}</span>
