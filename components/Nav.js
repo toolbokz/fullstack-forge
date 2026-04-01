@@ -15,6 +15,7 @@ const navLinks = [
     { href: "/blog", label: "Blog" },
     { href: "/#pricing", label: "Pricing" },
     { href: "/contact", label: "Contact" },
+    { href: "/about", label: "About" },
 ];
 
 export default function Nav() {
