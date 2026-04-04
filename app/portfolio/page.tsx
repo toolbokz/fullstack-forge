@@ -2,8 +2,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
-import UnsplashImage from '../../components/UnsplashImage'
-import { fetchUnsplashImage } from '../../lib/unsplash'
+import { fetchPexelsImage } from '../../lib/pexels'
 
 export const metadata: Metadata = {
     title: 'Portfolio — Fullstack Forge',
@@ -81,7 +80,7 @@ const projects = [
 
 export default async function PortfolioPage() {
     const images = await Promise.all(
-        projects.map((p) => fetchUnsplashImage(p.query))
+        projects.map((p) => fetchPexelsImage(p.query))
     )
 
     return (
