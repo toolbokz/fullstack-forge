@@ -9,9 +9,7 @@ import ServicesDropdown from "./ServicesDropdown";
 
 const navLinks = [
     { href: "/#hero", label: "Home" },
-    { href: "/services", label: "Services" },
     { href: "/portfolio", label: "Portfolio" },
-    { href: "/tools", label: "Tools" },
     { href: "/blog", label: "Blog" },
     { href: "/pricing", label: "Pricing" },
     { href: "/contact", label: "Contact" },

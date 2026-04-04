@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Nav from '../../../components/Nav'
 import Footer from '../../../components/Footer'
 import BlogArticleLayout from '../../../components/BlogArticleLayout'
-import { articleSchema, breadcrumbSchema, SITE_URL } from '../../../lib/schema'
+import { articleSchema, breadcrumbSchema, faqSchema, SITE_URL } from '../../../lib/schema'
 import { contentPlan } from '../../../lib/seo-data'
 import { getArticleLinkPackageWithThumbnails } from '../../../lib/internal-links'
 import Link from 'next/link'
@@ -14,7 +14,17 @@ const SLUG = 'how-much-does-a-website-cost-in-nz'
 const TITLE = 'How Much Does a Website Cost in NZ? 2026 Pricing Guide'
 const DESCRIPTION = 'Complete NZ website pricing for 2026. Compare costs for small business, tradie, and ecommerce websites — from DIY to agency. Transparent pricing in NZD.'
 const DATE = '2025-01-15'
+const UPDATED = '2026-04-04'
 const THUMBNAIL_QUERY = contentPlan.find((a: any) => a.slug === SLUG)?.imageQuery ?? SLUG
+
+const FAQ_ITEMS = [
+    { q: 'What\'s the cheapest way to get a website in NZ?', a: 'DIY builders like Wix and Squarespace cost $0–$40/month but your time is a hidden cost. For a professional site that generates leads from day one, from $1,000 with a specialist is the most cost-effective option.' },
+    { q: 'Can I start with a basic site and upgrade later?', a: 'Absolutely. Start with a website build (from $1,000) and add SEO services, optimisation, or additional features as your business grows. The best website investment is one that scales with you.' },
+    { q: 'Are there hidden fees I should watch for?', a: 'Watch for: monthly "maintenance" fees on sites that don\'t need them, platform lock-in (you can\'t take your site elsewhere), revision charges, and inflated hosting costs. Always ask: "What do I own, and what are the ongoing costs?"' },
+    { q: 'Do I need to pay GST on my website?', a: 'Yes — website design is a service subject to 15% GST in New Zealand. Most providers quote excluding GST. Always confirm whether quoted prices are GST inclusive or exclusive.' },
+    { q: 'How much should a small business spend on a website in NZ?', a: 'For most NZ small businesses, $1,000–$2,000 NZD is the right range. This gets you a professional, mobile-optimised site with SEO — without overpaying for features you don\'t need.' },
+    { q: 'Is a $1,000 website any good?', a: 'When built by a specialist, yes. Our website builds are professionally designed, mobile-first, SEO-optimised, and built to generate leads. They outperform many $5,000+ agency sites because they\'re focused on what actually matters: conversions.' },
+]
 
 export async function generateMetadata(): Promise<Metadata> {
     const thumbnail = await fetchUnsplashImage(THUMBNAIL_QUERY)
@@ -48,12 +58,13 @@ export default async function Article() {
     const linkPackage = await getArticleLinkPackageWithThumbnails(SLUG)
 
     const schemas = [
-        articleSchema({ title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/blog/${SLUG}`, datePublished: DATE }),
+        articleSchema({ title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/blog/${SLUG}`, datePublished: DATE, dateModified: UPDATED }),
         breadcrumbSchema([
             { name: 'Home', url: SITE_URL },
             { name: 'Blog', url: `${SITE_URL}/blog` },
             { name: TITLE, url: `${SITE_URL}/blog/${SLUG}` },
         ]),
+        faqSchema(FAQ_ITEMS),
     ]
 
     return (
@@ -81,7 +92,7 @@ export default async function Article() {
                     <h2>Quick Answer: Website Cost in NZ (2026)</h2>
                     <p>
                         In New Zealand, a website costs anywhere from <strong>$0 (DIY)</strong> to <strong>$30,000+
-                            (full agency build)</strong>. For most small businesses, the sweet spot is <strong>$699–$2,499
+                            (full agency build)</strong>. For most small businesses, the sweet spot is <strong>$1,000–$2,000
                                 NZD</strong> for a professionally built, conversion-focused website that actually generates
                         leads.
                     </p>
@@ -102,14 +113,14 @@ export default async function Article() {
                         <tbody>
                             <tr><td>DIY (Wix, Squarespace)</td><td>$0–$600/year</td><td>Days–Weeks</td><td>Hobby sites, testing ideas</td></tr>
                             <tr><td>Freelancer</td><td>$500–$3,000</td><td>2–6 weeks</td><td>Budget-conscious businesses</td></tr>
-                            <tr><td>Specialist Studio (e.g. Fullstack Forge)</td><td>$699–$2,499</td><td>3–7 days</td><td>Small businesses &amp; tradies wanting leads</td></tr>
+                            <tr><td>Specialist Studio (e.g. Fullstack Forge)</td><td>$1,000–$2,000</td><td>7–14 days</td><td>Small businesses &amp; tradies wanting leads</td></tr>
                             <tr><td>Boutique Agency</td><td>$3,000–$10,000</td><td>4–8 weeks</td><td>Custom design + strategy</td></tr>
                             <tr><td>Full-Service Agency</td><td>$10,000–$30,000+</td><td>8–16 weeks</td><td>Large brands, complex features</td></tr>
                         </tbody>
                     </table>
                     <p>
                         The biggest factor isn&apos;t the upfront cost — it&apos;s whether the website <strong>pays for
-                            itself</strong>. A $699 website that generates 10 enquiries a month is a better investment than
+                            itself</strong>. A $1,000 website that generates 10 enquiries a month is a better investment than
                         a $15,000 site that sits there looking pretty.
                     </p>
 
@@ -122,14 +133,14 @@ export default async function Article() {
                     <h3>Small Business Website Cost NZ</h3>
                     <p>
                         A standard 3–5 page small business website — homepage, about, services, contact — typically
-                        costs <strong>$699–$2,000 NZD</strong>. This covers professional design, mobile responsiveness,
+                        costs <strong>$1,000–$2,000 NZD</strong>. This covers professional design, mobile responsiveness,
                         basic SEO, and a contact or quote form.
                     </p>
                     <p>
                         For Auckland cafés, consultants, accountants, and service businesses, this is the most common
                         and cost-effective option. Our{' '}
                         <Link href="/affordable-websites-nz" className="text-primary hover:underline font-semibold">
-                            Starter package at $699
+                            website builds from $1,000
                         </Link>{' '}
                         covers everything most small businesses need — live within a week.
                     </p>
@@ -141,8 +152,12 @@ export default async function Article() {
                         <Link href="/blog/website-for-tradies-nz" className="text-primary hover:underline">
                             tradie website in NZ
                         </Link>{' '}
-                        typically costs <strong>$699–$1,499 NZD</strong> and should include a quote form, service area
-                        pages, photo gallery, and local SEO setup.
+                        typically costs <strong>$1,000–$2,000 NZD</strong> and should include a quote form, service area
+                        pages, photo gallery, and local SEO setup. For a complete cost breakdown by trade type, see
+                        our dedicated guide to{' '}
+                        <Link href="/blog/how-much-does-a-tradie-website-cost-in-nz" className="text-primary hover:underline">
+                            how much a tradie website costs in NZ
+                        </Link>.
                     </p>
                     <p>
                         The ROI is immediate. One job from a website enquiry typically covers the entire cost of the
@@ -151,10 +166,10 @@ export default async function Article() {
 
                     <h3>Ecommerce Website Cost NZ</h3>
                     <p>
-                        Selling products online? An ecommerce website in NZ costs <strong>$1,199–$5,000+ NZD</strong> depending
+                        Selling products online? An ecommerce website in NZ costs <strong>$1,500–$5,000+ NZD</strong> depending
                         on the number of products, payment integrations, and shipping requirements. Our{' '}
                         <Link href="/ecommerce-websites-nz" className="text-primary hover:underline font-semibold">
-                            ecommerce packages start at $1,199
+                            ecommerce packages start at $1,500
                         </Link>{' '}
                         and include everything you need to launch an online store.
                     </p>
@@ -209,7 +224,7 @@ export default async function Article() {
                     </ol>
                     <p>
                         <strong>Example:</strong> An Auckland tradie wanting a 5-page site with a quote form, photo
-                        gallery, and local SEO = approximately <strong>$699–$999 NZD</strong> with a specialist like
+                        gallery, and local SEO = approximately <strong>$1,000–$1,500 NZD</strong> with a specialist like
                         Fullstack Forge.
                     </p>
 
@@ -223,7 +238,7 @@ export default async function Article() {
                             But don&apos;t add pages for the sake of it — quality over quantity.
                         </li>
                         <li>
-                            <strong>Design complexity</strong> — Template-based design ($699–$1,499) vs fully custom
+                            <strong>Design complexity</strong> — Template-based design ($1,000–$2,000) vs fully custom
                             UI/UX design ($3,000–$10,000+). Templates aren&apos;t inferior — they&apos;re proven
                             layouts that convert.
                         </li>
@@ -322,10 +337,10 @@ export default async function Article() {
                         <li><strong>Maintenance:</strong> Near-zero (no server, no plugins to update)</li>
                         <li><strong>Speed:</strong> Fastest option — loads instantly</li>
                         <li><strong>Security:</strong> No database to hack, no plugins to exploit</li>
-                        <li><strong>Developer build:</strong> $699–$2,499 (one-off)</li>
+                        <li><strong>Developer build:</strong> $1,000–$2,000 (one-off)</li>
                     </ul>
                     <p>
-                        <strong>Total Year 1:</strong> $699–$2,499 NZD<br />
+                        <strong>Total Year 1:</strong> $1,000–$2,000 NZD<br />
                         <strong>Ongoing:</strong> $25–$50/year (domain only)
                     </p>
                     <p>
@@ -355,24 +370,24 @@ export default async function Article() {
 
                     <h2>Real NZ Examples: What Businesses Actually Paid</h2>
 
-                    <h3>Auckland Tradie — $699</h3>
+                    <h3>Auckland Tradie — $1,000</h3>
                     <p>
-                        A Christchurch plumber invested $699 in our Starter package. Within 8 weeks: <strong>25
+                        A Christchurch plumber invested $1,000 in a website build. Within 8 weeks: <strong>25
                             monthly enquiries</strong>, first job from the website covered the cost 3x over. No ongoing
-                        fees. Total year-one cost including domain: <strong>$749 NZD</strong>.
+                        fees. Total year-one cost including domain: <strong>$1,050 NZD</strong>.
                     </p>
 
-                    <h3>Auckland Service Business — $1,199</h3>
+                    <h3>Auckland Service Business — $1,500</h3>
                     <p>
-                        A cleaning company chose our growth package with booking integration and local SEO. Result:
+                        A cleaning company chose a website build with booking integration and local SEO. Result:
                         <strong> 40+ monthly leads</strong> within 3 months. The website paid for itself in the first
                         two weeks of operation.
                     </p>
 
-                    <h3>NZ Ecommerce Store — $1,499</h3>
+                    <h3>NZ Ecommerce Store — $2,000</h3>
                     <p>
-                        A boutique retailer launched with our ecommerce package. <strong>$8,000+ in sales within the
-                            first month</strong> — a 5x return on their website investment before any advertising spend.
+                        A boutique retailer launched with a full ecommerce build. <strong>$8,000+ in sales within the
+                            first month</strong> — a 4x return on their website investment before any advertising spend.
                     </p>
 
                     <h2>Website Cost NZ: Frequently Asked Questions</h2>
@@ -380,13 +395,13 @@ export default async function Article() {
                     <h3>What&apos;s the cheapest way to get a website in NZ?</h3>
                     <p>
                         DIY builders like Wix and Squarespace cost $0–$40/month but your time is a hidden cost. For a
-                        professional site that generates leads from day one, $699 with a specialist is the most
+                        professional site that generates leads from day one, from $1,000 with a specialist is the most
                         cost-effective option.
                     </p>
 
                     <h3>Can I start with a basic site and upgrade later?</h3>
                     <p>
-                        Absolutely. Start with a 3-page Starter site ($699) and add pages, features, or ecommerce
+                        Absolutely. Start with a website build (from $1,000) and add SEO services, optimisation, or additional features
                         as your business grows. The best website investment is one that scales with you.
                     </p>
 
@@ -405,14 +420,14 @@ export default async function Article() {
 
                     <h3>How much should a small business spend on a website in NZ?</h3>
                     <p>
-                        For most NZ small businesses, <strong>$699–$1,499 NZD</strong> is the right range. This gets
+                        For most NZ small businesses, <strong>$1,000–$2,000 NZD</strong> is the right range. This gets
                         you a professional, mobile-optimised site with SEO — without overpaying for features you
                         don&apos;t need.
                     </p>
 
-                    <h3>Is a $699 website any good?</h3>
+                    <h3>Is a $1,000 website any good?</h3>
                     <p>
-                        When built by a specialist, yes. Our $699 Starter sites are professionally designed,
+                        When built by a specialist, yes. Our website builds are professionally designed,
                         mobile-first, SEO-optimised, and built to generate leads. They outperform many $5,000+
                         agency sites because they&apos;re focused on what actually matters: conversions.
                     </p>
@@ -424,14 +439,40 @@ export default async function Article() {
                         deployment — no monthly fees, no hidden costs.
                     </p>
                     <ul>
-                        <li><strong>Starter:</strong> $699 — Perfect for tradies and service businesses</li>
-                        <li><strong>Growth:</strong> $999 — For businesses ready to scale lead generation</li>
-                        <li><strong>Ecommerce:</strong> $1,199+ — Full online store with payments and shipping</li>
+                        <li><strong>Website optimisation:</strong> $400–$900 — Improve speed, UX, and conversions for your existing site</li>
+                        <li><strong>SEO setup:</strong> $300–$800 — Get indexed and ranking fast</li>
+                        <li><strong>Website builds:</strong> $1,000–$2,000 — Full website build for small businesses and tradies</li>
+                        <li><strong>Monthly SEO:</strong> $150–$400/month — Ongoing ranking growth and content work</li>
                     </ul>
                     <p>
                         Every site we build is designed to <strong>pay for itself</strong> through leads, enquiries,
                         and sales — not just look good in a portfolio.
                     </p>
+
+                    <h2>Related Guides</h2>
+                    <ul>
+                        <li>
+                            <Link href="/blog/diy-vs-professional-website" className="text-primary hover:underline">
+                                DIY vs Professional Website — When to Build It Yourself vs Hire a Pro
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/blog/best-website-builder-for-small-business-nz" className="text-primary hover:underline">
+                                Best Website Builder for Small Business NZ — Platform Comparison
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/blog/best-website-design-for-small-businesses" className="text-primary hover:underline">
+                                Best Website Design for Small Businesses — What Actually Works
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/blog/how-to-get-customers-from-your-website" className="text-primary hover:underline">
+                                How to Get Customers From Your Website — The Complete Beginner&apos;s Framework
+                            </Link>
+                        </li>
+                    </ul>
+
                     <p>
                         <Link href="/affordable-websites-nz" className="text-primary hover:underline font-semibold">
                             View our full pricing →

@@ -2,89 +2,297 @@
 
 import React from "react";
 import PriceCard from "./PriceCard";
+import ServiceIntakeForm from "./ServiceIntakeForm";
 
-const plans = [
+/* ── Service groups with tiers ──────────────────────────── */
+
+const freeAudit = {
+    serviceKey: "freeAudit",
+    name: "Free Website Audit",
+    price: "Free",
+    period: "free",
+    description: "We review your site and show you exactly what to fix — no payment, no obligation",
+    features: [
+        "Performance & speed analysis",
+        "SEO health check",
+        "Mobile & accessibility review",
+        "Conversion opportunity scan",
+        "Prioritised action plan",
+        "Personalised recommendations",
+    ],
+    cta: "Request Your Free Audit",
+    popular: false,
+    checkoutMode: "free",
+};
+
+const optimisationTiers = [
     {
-        name: "Website optimisation",
-        price: "$400 - $900",
+        serviceKey: "optimisationLite",
+        name: "Optimisation Lite",
+        price: "$400",
         period: "one-time",
-        description: "Improve speed, UX, and conversions for your existing site",
+        description: "Essential speed and mobile fixes for your existing site",
         features: [
-            "Page speed audit and fixes",
-            "Conversion rate tweaks",
-            "Technical SEO tuning",
-            "Mobile and accessibility improvements",
-            "Content & metadata refinement",
+            "Page speed audit & fixes",
+            "Mobile responsiveness improvements",
+            "Image optimisation",
+            "Core Web Vitals tuning",
             "Performance report",
         ],
-        cta: "Optimise Now",
+        cta: "Get Optimisation Lite",
         popular: false,
+        justification: {
+            bestFor: "Businesses with an existing website that loads slowly or doesn\u2019t work well on mobile. A targeted fix, not a rebuild.",
+            whyThisPrice: "Covers a focused speed and mobile audit with hands-on fixes. Scoped to the most impactful issues so you get results without overpaying.",
+            expectedResult: "Faster load times, better mobile experience, and improved Core Web Vitals scores.",
+        },
     },
     {
-        name: "SEO setup",
-        price: "$300 - $800",
+        serviceKey: "optimisationPlus",
+        name: "Optimisation Plus",
+        price: "$650",
         period: "one-time",
-        description: "Initial SEO configuration to get you indexed and ranking fast",
+        description: "Speed, SEO, and conversion improvements for more leads",
         features: [
-            "Keyword research",
-            "On-page SEO implementation",
-            "Google Search Console setup",
-            "Google Analytics setup",
-            "Sitemap + robots.txt",
-            "Local business citations",
+            "Everything in Lite",
+            "Conversion rate tweaks",
+            "Technical SEO tuning",
+            "Accessibility fixes",
+            "Metadata & structured data",
+            "Detailed performance report",
         ],
-        cta: "Setup SEO",
-        popular: false,
-    },
-    {
-        name: "Website builds",
-        price: "$1,000 - $2,000",
-        period: "one-time",
-        description: "Full website build package for high-converting local business sites",
-        features: [
-            "Custom responsive design",
-            "SEO-friendly page structure",
-            "Speed and performance optimisation",
-            "Mobile-first layout",
-            "Lead-capture forms and CTAs",
-            "Launch within 7–14 days",
-        ],
-        cta: "Build My Website",
+        cta: "Get Optimisation Plus",
         popular: true,
+        justification: {
+            bestFor: "Businesses whose site looks okay but isn\u2019t converting visitors into enquiries. You need speed, SEO, and UX improvements working together.",
+            whyThisPrice: "Includes everything in Lite plus conversion and SEO work. This is the sweet spot for most small businesses wanting more leads from existing traffic.",
+            expectedResult: "Faster site, better Google visibility, and more visitor-to-lead conversions.",
+        },
     },
     {
-        name: "Monthly SEO services",
-        price: "$150 - $400",
-        period: "/month",
-        description: "Ongoing SEO and content work to grow your organic leads",
+        serviceKey: "optimisationPro",
+        name: "Optimisation Pro",
+        price: "$900",
+        period: "one-time",
+        description: "Full-site overhaul — speed, SEO, UX, and content",
         features: [
-            "Content updates and optimisation",
-            "Rank tracking and reporting",
-            "Link building support",
-            "Technical health checks",
-            "Local SEO monitoring",
-            "Monthly strategy call",
+            "Everything in Plus",
+            "Content & copy refinement",
+            "Schema markup implementation",
+            "Advanced CRO analysis",
+            "Priority turnaround",
+            "Post-launch check-in",
         ],
-        cta: "Start Monthly SEO",
+        cta: "Get Optimisation Pro",
         popular: false,
-    },
-    {
-        name: "AI automation systems",
-        price: "Setup + monthly",
-        period: "custom",
-        description: "Automate workflows, lead handling, and operations with AI tools",
-        features: [
-            "Custom automation planning",
-            "Integration with existing tools",
-            "Ongoing optimisation support",
-            "Performance dashboards",
-            "Chatbot & outreach automation",
-            "Revenue-focused automation strategy",
-        ],
-        cta: "Get AI Automation",
-        popular: false,
+        justification: {
+            bestFor: "Businesses that want a comprehensive overhaul of their existing site \u2014 speed, SEO, content, and conversion all addressed together.",
+            whyThisPrice: "This is a full-site optimisation including content refinement, schema markup, and CRO analysis. Priority turnaround and a post-launch check-in are included.",
+            expectedResult: "A site that performs like a purpose-built lead generation machine, without the cost of a full rebuild.",
+        },
     },
 ];
+
+const seoSetupTiers = [
+    {
+        serviceKey: "seoSetupBasic",
+        name: "SEO Setup Basic",
+        price: "$300",
+        period: "one-time",
+        description: "Get indexed and visible with foundational SEO",
+        features: [
+            "Keyword research (up to 10 terms)",
+            "On-page SEO for up to 5 pages",
+            "Google Search Console setup",
+            "Sitemap & robots.txt",
+            "SEO health report",
+        ],
+        cta: "Get SEO Basic",
+        popular: false,
+        justification: {
+            bestFor: "Businesses that have never set up SEO. No Search Console, no keyword targeting, no sitemap. This is the technical foundation Google needs.",
+            whyThisPrice: "A one-time setup covering the essentials. We do the keyword research, configure your pages, and make sure Google can find and index your site.",
+            expectedResult: "Your site gets indexed properly and starts appearing in relevant search results.",
+        },
+    },
+    {
+        serviceKey: "seoSetupLocal",
+        name: "SEO Setup Local",
+        price: "$500",
+        period: "one-time",
+        description: "Full local SEO foundation to rank in your area",
+        features: [
+            "Everything in Basic",
+            "Google Analytics setup",
+            "Google Business Profile optimisation",
+            "Local business citations",
+            "Location-targeted content",
+            "Competitor gap analysis",
+        ],
+        cta: "Get SEO Local",
+        popular: true,
+        justification: {
+            bestFor: "Local businesses and tradies that want to rank in their area. If you serve a specific region, this is the one to get.",
+            whyThisPrice: "Includes foundation SEO plus local-specific work: Google Business Profile, citations, location content, and competitor analysis. Built for NZ local markets.",
+            expectedResult: "Better visibility in local search results, Google Maps presence, and more enquiries from people searching in your area.",
+        },
+    },
+    {
+        serviceKey: "seoSetupComplete",
+        name: "SEO Setup Complete",
+        price: "$800",
+        period: "one-time",
+        description: "Comprehensive SEO build — technical, local, and content",
+        features: [
+            "Everything in Local",
+            "Schema markup implementation",
+            "Content strategy & initial blog posts",
+            "Internal linking structure",
+            "Backlink outreach plan",
+            "Priority turnaround",
+        ],
+        cta: "Get SEO Complete",
+        popular: false,
+        justification: {
+            bestFor: "Businesses in competitive markets that need a thorough SEO foundation \u2014 technical, local, and content strategy all done properly from day one.",
+            whyThisPrice: "A full SEO buildout including schema, initial content, internal linking, and a backlink plan. This sets you up for long-term organic growth.",
+            expectedResult: "A search-optimised site with content, local presence, and a plan for growing organic traffic month over month.",
+        },
+    },
+];
+
+const websiteBuild = {
+    serviceKey: "websiteBuildDeposit",
+    name: "Website Build",
+    price: "$500",
+    period: "deposit",
+    description: "High-converting website for your business — pay a fixed deposit to start",
+    features: [
+        "Custom responsive design",
+        "SEO-friendly page structure",
+        "Speed & performance optimisation",
+        "Mobile-first layout",
+        "Lead-capture forms & CTAs",
+        "Launch within 7\u201314 days",
+    ],
+    cta: "Pay $500 Deposit",
+    popular: true,
+    depositOnly: true,
+    justification: {
+        bestFor: "Tradies, local service businesses, and small companies that need a professional site built to generate leads \u2014 not just look pretty.",
+        whyThisPrice: "A $500 deposit locks in your build slot. The total project cost (typically $1,000\u2013$2,000) is confirmed after we review your brief \u2014 the remainder is invoiced on completion. No surprises.",
+        expectedResult: "A fast, mobile-friendly website that ranks locally, captures leads through forms and CTAs, and starts generating enquiries within weeks of launch.",
+    },
+};
+
+const monthlySeoTiers = [
+    {
+        serviceKey: "seoCare",
+        name: "SEO Care",
+        price: "$150",
+        period: "/month",
+        description: "Keep your site healthy and monitored month to month",
+        features: [
+            "Rank monitoring & alerts",
+            "Monthly technical health check",
+            "Quarterly content update",
+            "Google Search Console monitoring",
+            "Monthly performance snapshot",
+        ],
+        cta: "Start SEO Care \u2014 $150/mo",
+        popular: false,
+        justification: {
+            bestFor: "Businesses that already have a decent site and just need someone watching the SEO health, keeping things ticking over.",
+            whyThisPrice: "$150/month covers rank monitoring, technical checks, and quarterly content refreshes. It\u2019s maintenance-level SEO that keeps your site from sliding.",
+            expectedResult: "Consistent search performance. No nasty ranking drops. Quarterly improvements to keep your content fresh.",
+        },
+    },
+    {
+        serviceKey: "seoGrowth",
+        name: "SEO Growth",
+        price: "$275",
+        period: "/month",
+        description: "Active SEO work to grow your rankings and traffic",
+        features: [
+            "Everything in Care",
+            "Monthly blog content",
+            "Link building outreach",
+            "Competitor tracking",
+            "Monthly strategy call",
+            "Detailed monthly report",
+        ],
+        cta: "Start SEO Growth \u2014 $275/mo",
+        popular: true,
+        justification: {
+            bestFor: "Businesses that want to actively grow their organic traffic. You\u2019re ready to invest in content, links, and strategy every month.",
+            whyThisPrice: "$275/month covers monthly content creation, link building, competitor monitoring, and a strategy call. This is active SEO, not just monitoring.",
+            expectedResult: "Compounding organic visibility \u2014 more local traffic, higher rankings, and a steady increase in inbound enquiries over time.",
+        },
+    },
+    {
+        serviceKey: "seoMomentum",
+        name: "SEO Momentum",
+        price: "$400",
+        period: "/month",
+        description: "Aggressive growth — content, links, and strategy every week",
+        features: [
+            "Everything in Growth",
+            "Weekly content creation",
+            "Advanced competitive analysis",
+            "Conversion rate monitoring",
+            "Priority support & turnaround",
+            "Quarterly strategy workshop",
+        ],
+        cta: "Start SEO Momentum \u2014 $400/mo",
+        popular: false,
+        justification: {
+            bestFor: "Businesses in competitive markets that want aggressive organic growth. You need weekly content, active link building, and hands-on strategy.",
+            whyThisPrice: "$400/month covers weekly content, advanced analysis, CRO monitoring, and quarterly workshops. This is the most intensive plan for businesses serious about dominating local search.",
+            expectedResult: "Rapid organic growth, dominant local rankings, and a content library that builds long-term authority.",
+        },
+    },
+];
+
+const aiAutomation = {
+    serviceKey: "aiAutomation",
+    name: "AI Automation Systems",
+    price: "Custom",
+    period: "custom",
+    description: "Automate workflows, lead handling, and operations with AI tools",
+    features: [
+        "Custom automation planning",
+        "Integration with existing tools",
+        "Ongoing optimisation support",
+        "Performance dashboards",
+        "Chatbot & outreach automation",
+        "Revenue-focused automation strategy",
+    ],
+    cta: "Request AI Automation Quote",
+    popular: false,
+    justification: {
+        bestFor: "Businesses handling repetitive tasks manually \u2014 lead follow-ups, quoting, scheduling, client onboarding \u2014 that could be automated to save hours.",
+        whyThisPrice: "Pricing is custom because every automation project is different. A simple chatbot is a different job from a full lead-routing pipeline. We scope every project individually.",
+        expectedResult: "Less manual busywork, faster response times, and fewer leads falling through the cracks.",
+    },
+};
+
+const SERVICE_CONFIG = {
+    freeAudit: { checkoutMode: "free", depositOnly: false, intakeHint: "Share your website URL and any concerns. We\u2019ll review your site and recommend the right next step \u2014 no cost, no obligation." },
+    optimisationLite: { checkoutMode: "direct", depositOnly: false, intakeHint: "Tell us your website URL so we can scope the optimisation work." },
+    optimisationPlus: { checkoutMode: "direct", depositOnly: false, intakeHint: "Tell us your website URL and any specific issues you want fixed." },
+    optimisationPro: { checkoutMode: "direct", depositOnly: false, intakeHint: "Tell us your website URL, biggest pain points, and any deadlines." },
+    seoSetupBasic: { checkoutMode: "direct", depositOnly: false, intakeHint: "Share your website URL and the location or keywords you want to rank for." },
+    seoSetupLocal: { checkoutMode: "direct", depositOnly: false, intakeHint: "Share your website URL, business location, and target service area." },
+    seoSetupComplete: { checkoutMode: "direct", depositOnly: false, intakeHint: "Share your website URL, location, competitors, and growth goals." },
+    websiteBuildDeposit: { checkoutMode: "direct", depositOnly: true, intakeHint: "Describe your business, desired pages, and design preferences. The $500 deposit secures your build slot \u2014 the remaining balance is confirmed after scope review and invoiced on completion." },
+    seoCare: { checkoutMode: "subscription", depositOnly: false, intakeHint: "Tell us your website URL and current SEO concerns so we can start monitoring." },
+    seoGrowth: { checkoutMode: "subscription", depositOnly: false, intakeHint: "Tell us about your business, target keywords, and growth goals." },
+    seoMomentum: { checkoutMode: "subscription", depositOnly: false, intakeHint: "Tell us about your business, competitors, and how aggressively you want to grow." },
+    aiAutomation: { checkoutMode: "custom", depositOnly: false, intakeHint: "Describe the workflows you want to automate. We\u2019ll review your requirements and provide a custom scope and quote." },
+};
+
+/* All selectable plans for intake form lookup */
+const allPlans = [freeAudit, ...optimisationTiers, ...seoSetupTiers, websiteBuild, ...monthlySeoTiers, aiAutomation];
 
 const tabs = ["Plans", "Custom"];
 
@@ -146,6 +354,7 @@ function FAQItem({ q, a }) {
 
 export default function Pricing() {
     const [activeTab, setActiveTab] = React.useState("Plans");
+    const [selectedService, setSelectedService] = React.useState(null);
     const [customMessage, setCustomMessage] = React.useState("");
     const [customEmail, setCustomEmail] = React.useState("");
     const [customName, setCustomName] = React.useState("");
@@ -192,6 +401,17 @@ export default function Pricing() {
         }
     }
 
+    /** Renders a section heading */
+    function SectionHeading({ tag, title, subtitle }) {
+        return (
+            <div className="text-center mb-8">
+                <p className="text-primary font-semibold text-xs uppercase tracking-widest mb-2">{tag}</p>
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">{title}</h3>
+                {subtitle && <p className="text-muted text-base max-w-2xl mx-auto">{subtitle}</p>}
+            </div>
+        );
+    }
+
     return (
         <section className="w-full py-20 bg-gray-50" id="pricing">
             <div className="w-full mx-auto px-4 sm:px-6">
@@ -201,10 +421,10 @@ export default function Pricing() {
                         Pricing
                     </p>
                     <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-                        Simple Pricing. No Surprises. Just Results.
+                        Clear Pricing. Fixed Rates. No Surprises.
                     </h2>
                     <p className="text-muted text-lg max-w-2xl mx-auto">
-                        Pick the plan that suits your business. Every option is built to get you more jobs.
+                        Every service has a fixed price so you know exactly what you&apos;re paying before you commit. Start with a free audit or choose the service that fits your business.
                     </p>
                 </div>
 
@@ -215,7 +435,7 @@ export default function Pricing() {
                             <button
                                 key={tab}
                                 type="button"
-                                onClick={() => setActiveTab(tab)}
+                                onClick={() => { setActiveTab(tab); setSelectedService(null); }}
                                 className={`px-6 py-2.5 text-sm font-semibold rounded-lg transition-all duration-200 ${activeTab === tab
                                     ? "bg-primary text-white shadow-md"
                                     : "text-gray-600 hover:text-gray-900"
@@ -227,13 +447,85 @@ export default function Pricing() {
                     </div>
                 </div>
 
-                {/* Plans Tab */}
-                {activeTab === "Plans" && (
+                {/* Plans Tab — grouped sections */}
+                {activeTab === "Plans" && !selectedService && (
                     <>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8 items-start mb-16">
-                            {plans.map((plan) => (
-                                <PriceCard key={plan.name} {...plan} />
-                            ))}
+                        {/* ── Free Website Audit ── */}
+                        <div className="mb-16">
+                            <SectionHeading
+                                tag="Start here — it's free"
+                                title="Request Your Free Website Audit"
+                                subtitle="We'll review your site and show you exactly what's holding you back — then recommend the right service if one fits. No payment, no obligation."
+                            />
+                            <div className="max-w-sm mx-auto">
+                                <PriceCard {...freeAudit} onSelect={setSelectedService} />
+                            </div>
+                        </div>
+
+                        {/* ── Website Optimisation Tiers ── */}
+                        <div className="mb-16">
+                            <SectionHeading
+                                tag="Improve your existing site"
+                                title="Website Optimisation"
+                                subtitle="Choose the level of optimisation your site needs. Fixed pricing — no vague ranges."
+                            />
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-start">
+                                {optimisationTiers.map((plan) => (
+                                    <PriceCard key={plan.serviceKey} {...plan} onSelect={setSelectedService} />
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* ── SEO Setup Tiers ── */}
+                        <div className="mb-16">
+                            <SectionHeading
+                                tag="Get found on Google"
+                                title="SEO Setup Packages"
+                                subtitle="One-time setup to get your site indexed and ranking. Pick the depth that suits your market."
+                            />
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-start">
+                                {seoSetupTiers.map((plan) => (
+                                    <PriceCard key={plan.serviceKey} {...plan} onSelect={setSelectedService} />
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* ── Website Build — Deposit ── */}
+                        <div className="mb-16">
+                            <SectionHeading
+                                tag="Need a new website?"
+                                title="Website Build — Deposit Model"
+                                subtitle="Pay a fixed $500 deposit to secure your build slot. We review your brief, confirm the scope, and invoice the remainder on completion. Total builds typically run $1,000–$2,000."
+                            />
+                            <div className="max-w-sm mx-auto">
+                                <PriceCard {...websiteBuild} onSelect={setSelectedService} />
+                            </div>
+                        </div>
+
+                        {/* ── Monthly SEO Tiers ── */}
+                        <div className="mb-16">
+                            <SectionHeading
+                                tag="Ongoing SEO support"
+                                title="Monthly SEO Plans"
+                                subtitle="Fixed monthly plans for ongoing SEO. No ranges, no lock-in. Cancel anytime."
+                            />
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-start">
+                                {monthlySeoTiers.map((plan) => (
+                                    <PriceCard key={plan.serviceKey} {...plan} onSelect={setSelectedService} />
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* ── AI Automation — Custom Quote ── */}
+                        <div className="mb-16">
+                            <SectionHeading
+                                tag="Automate your business"
+                                title="AI Automation Systems"
+                                subtitle="Every automation project is different. Tell us what you want to automate and we'll scope it with a custom quote — no payment upfront."
+                            />
+                            <div className="max-w-sm mx-auto">
+                                <PriceCard {...aiAutomation} onSelect={setSelectedService} />
+                            </div>
                         </div>
 
                         <p className="text-center text-muted text-sm mb-20">
@@ -248,6 +540,37 @@ export default function Pricing() {
                         </p>
                     </>
                 )}
+
+                {/* Service Intake Form — shown when a plan is selected */}
+                {activeTab === "Plans" && selectedService && (() => {
+                    const plan = allPlans.find((p) => p.serviceKey === selectedService);
+                    const config = SERVICE_CONFIG[selectedService] || { checkoutMode: "custom", depositOnly: false, intakeHint: "" };
+                    if (!plan) return null;
+                    return (
+                        <div className="max-w-2xl mx-auto mb-20">
+                            <div className="bg-white rounded-2xl border-2 border-primary/20 p-8 md:p-12 shadow-lg">
+                                <div className="text-center mb-8">
+                                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
+                                    <p className="text-muted">
+                                        {plan.price}
+                                        {plan.period !== "free" && plan.period !== "custom" && (
+                                            <span className="text-sm ml-1">{plan.period === "deposit" ? "deposit" : plan.period}</span>
+                                        )}
+                                        {plan.period === "free" && <span className="text-sm ml-1 text-green-600 font-semibold">— no payment required</span>}
+                                    </p>
+                                </div>
+                                <ServiceIntakeForm
+                                    serviceKey={selectedService}
+                                    serviceName={plan.name}
+                                    checkoutMode={config.checkoutMode}
+                                    depositOnly={config.depositOnly}
+                                    intakeHint={config.intakeHint}
+                                    onBack={() => setSelectedService(null)}
+                                />
+                            </div>
+                        </div>
+                    );
+                })()}
 
                 {/* Custom Tab */}
                 {activeTab === "Custom" && (

@@ -41,11 +41,11 @@ export default function CTASection({
                     viewport={{ once: true }}
                 >
                     {primaryCta.href.startsWith('/') ? (
-                        <Link href={primaryCta.href} className={`btn btn-lg btn-cta-pulse ${variant === 'primary' ? 'bg-white text-primary hover:bg-gray-100' : ''}`} onClick={() => trackCta(primaryCta.text, variant)}>
+                        <Link href={primaryCta.href} className={`btn btn-lg btn-cta-pulse ${variant === 'primary' ? '!bg-white !text-primary hover:!bg-gray-100' : ''}`} onClick={() => trackCta(primaryCta.text, variant)}>
                             {primaryCta.text}
                         </Link>
                     ) : (
-                        <a href={primaryCta.href} className={`btn btn-lg btn-cta-pulse ${variant === 'primary' ? 'bg-white text-primary hover:bg-gray-100' : ''}`} onClick={() => trackCta(primaryCta.text, variant)}>
+                        <a href={primaryCta.href} className={`btn btn-lg btn-cta-pulse ${variant === 'primary' ? '!bg-white !text-primary hover:!bg-gray-100' : ''}`} onClick={() => trackCta(primaryCta.text, variant)}>
                             {primaryCta.text}
                         </a>
                     )}

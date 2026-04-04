@@ -11,24 +11,24 @@ import { serviceSchema, faqSchema, breadcrumbSchema, localBusinessSchema, SITE_U
 
 export const metadata: Metadata = {
     title: 'Web Design NZ — Websites That Get You More Jobs | Fullstack Forge',
-    description: 'Professional web design across New Zealand that generates leads, calls, and sales for tradies and local businesses. Fast delivery from $699. Local SEO included.',
+    description: 'Professional web design across New Zealand that generates leads, calls, and sales for tradies and local businesses. $500 deposit to start. Local SEO included.',
     alternates: {
         canonical: `${SITE_URL}/web-design-christchurch`,
     },
     openGraph: {
         title: 'Web Design NZ — Websites That Get You More Jobs',
-        description: 'Professional web design for NZ tradies and local businesses. Conversion-focused, SEO-optimised, launching in 7 days from $699.',
+        description: 'Professional web design for NZ tradies and local businesses. Conversion-focused, SEO-optimised, $500 deposit to start.',
         url: `${SITE_URL}/web-design-christchurch`,
         type: 'website',
     },
 }
 
 const faqs = [
-    { q: 'How much does web design cost in New Zealand?', a: 'Professional web design in NZ ranges from $500 for a basic freelancer site to $15,000+ from a large agency. At Fullstack Forge, our packages start at $699 for a professional 3-page site with SEO. Most NZ tradies and local businesses choose our Growth plan at $1,499 for full local SEO and lead capture — delivering agency-quality results without the agency price tag.' },
+    { q: 'How much does web design cost in New Zealand?', a: 'Professional web design in NZ ranges from $500 for a basic freelancer site to $15,000+ from a large agency. At Fullstack Forge, website builds start with a $500 deposit — we then scope your project and provide a fixed total price before you commit. Local SEO and lead capture are included with every build.' },
     { q: 'How long does it take to build a website?', a: 'Most agencies take 6–12 weeks. We deliver in 5–7 business days. We achieve this by using proven, pre-built designs that we customise for your brand — rather than starting from scratch every time. Starter sites can be ready in as little as 5 days.' },
-    { q: 'Will my website actually rank on Google in my area?', a: 'Every site we build includes on-page SEO foundations — proper heading structure, meta tags, structured data, fast loading, and mobile optimisation. Our Growth plan includes local SEO targeting for your city and region. We can\'t guarantee #1 (no one honestly can), but we build every site to give you the best possible shot at ranking for local searches.' },
+    { q: 'Will my website actually rank on Google in my area?', a: 'Every site we build includes on-page SEO foundations — proper heading structure, meta tags, structured data, fast loading, and mobile optimisation. Local SEO targeting for your city and region is included with every website build. We can\'t guarantee #1 (no one honestly can), but we build every site to give you the best possible shot at ranking for local searches.' },
     { q: 'Do I need to provide content and images?', a: 'It helps if you have photos of your work, team, or van — real images outperform stock photos every time. For written content, we\'ll guide you through a simple questionnaire to capture your key messages, and we handle the rest. You review and approve everything before launch.' },
-    { q: 'What happens if I need changes after the site launches?', a: 'Our Monthly Growth plan includes ongoing updates and support. All plans include a handoff walkthrough so you understand how to make basic updates. We also offer one-off support for businesses that want changes down the track.' },
+    { q: 'What happens if I need changes after the site launches?', a: 'Our monthly SEO plan includes ongoing updates and support. Every build includes a handoff walkthrough so you understand how to make basic updates. We also offer one-off support for businesses that want changes down the track.' },
     { q: 'I already have a website — can you fix it?', a: 'Absolutely. We\'ll audit your current site first (for free), identify what\'s working and what\'s not, and recommend whether an optimisation or a full rebuild makes more sense. Many NZ tradies come to us after outgrowing their DIY site or being let down by another provider.' },
     { q: 'Do you work with businesses outside Christchurch?', a: 'Yes — we work with tradies and local businesses right across New Zealand. Auckland, Wellington, Hamilton, Tauranga, Dunedin, and everywhere in between. Everything is done remotely, so your location doesn\'t matter. We optimise your site for your specific town or region.' },
     { q: 'Do you offer hosting?', a: 'We deploy all sites to Netlify — a fast, reliable hosting platform used by major companies worldwide. Hosting is free for most sites. Your only ongoing cost is your domain name (roughly $20/year). No hidden monthly fees.' },
@@ -98,7 +98,7 @@ export default async function WebDesignChristchurch() {
                         <div className="flex flex-wrap justify-center gap-6 text-white/70 text-sm mt-8">
                             <span>✓ 7-Day Delivery</span>
                             <span>✓ Local SEO Included</span>
-                            <span>✓ From $699 NZD</span>
+                            <span>✓ $500 Deposit to Start</span>
                         </div>
                     </div>
                 </PixabayHeroVideo>
@@ -419,7 +419,7 @@ export default async function WebDesignChristchurch() {
                                     </tr>
                                     <tr className="bg-blue-50/50 font-medium text-gray-900">
                                         <td className="py-3 pr-4 font-bold">Fullstack Forge</td>
-                                        <td className="py-3 pr-4 font-bold text-primary">$699–$1,499</td>
+                                        <td className="py-3 pr-4 font-bold text-primary">$500 deposit</td>
                                         <td className="py-3 pr-4 font-bold text-primary">5–7 days</td>
                                         <td className="py-3 font-bold text-primary">$0/month</td>
                                     </tr>

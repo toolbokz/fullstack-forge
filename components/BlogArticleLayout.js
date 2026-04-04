@@ -10,6 +10,7 @@ import ProofSection from './ProofSection'
 import CTASection from './CTASection'
 import LeadLossCalculator from './LeadLossCalculator'
 import RelatedPosts from './blog/RelatedPosts'
+import BlogEngagement from './blog/BlogEngagement'
 import { trackCta } from '../lib/analytics'
 
 /**
@@ -110,6 +111,9 @@ export default function BlogArticleLayout({
                     <AuthorBio />
                 </div>
             </section>
+
+            {/* ═══════ ENGAGEMENT (Share + Like) ═══════ */}
+            <BlogEngagement slug={slug} title={title} />
 
             {/* ═══════ 5. MID-ARTICLE CTA (optional) ═══════ */}
             {midCta && (

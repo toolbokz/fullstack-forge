@@ -57,7 +57,7 @@ export default function LocationPageTemplate({ service, location, faqs, schemas 
                         <div className="flex flex-wrap justify-center gap-6 text-white/70 text-sm mt-8">
                             <span>✓ 7-Day Delivery</span>
                             <span>✓ Local SEO Included</span>
-                            <span>✓ From $699 NZD</span>
+                            <span>✓ From $1,000 NZD</span>
                         </div>
                     </div>
                 </section>

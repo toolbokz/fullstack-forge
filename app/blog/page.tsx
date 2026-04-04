@@ -4,43 +4,77 @@ import Image from 'next/image'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import { breadcrumbSchema, SITE_URL } from '../../lib/schema'
-import { contentPlan } from '../../lib/seo-data'
+import { contentPlan, blogCategories } from '../../lib/seo-data'
 import { fetchUnsplashImage } from '../../lib/unsplash'
+import { parseBlogParams, getPagePosts, buildBlogUrl, type SortOrder } from '../../lib/blog-helpers'
 
-export const metadata: Metadata = {
-    title: 'Blog — Fullstack Forge | Website Tips for NZ Small Businesses',
-    description: 'Practical guides and insights on website design, SEO, and lead generation for small businesses in New Zealand.',
-    alternates: {
-        canonical: `${SITE_URL}/blog`,
-    },
-    openGraph: {
-        title: 'Blog — Fullstack Forge',
-        description: 'Website tips, SEO guides, and business growth strategies for NZ small businesses.',
-        url: `${SITE_URL}/blog`,
-        type: 'website',
-        images: [{ url: '/assets/hero.png', width: 2560, height: 1440, alt: 'Fullstack Forge Blog' }],
-    },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'Blog — Fullstack Forge',
-        description: 'Website tips, SEO guides, and business growth strategies for NZ small businesses.',
-        images: ['/assets/hero.png'],
-    },
+interface BlogPageProps {
+    searchParams: Promise<Record<string, string | string[] | undefined>>
 }
 
-export default async function BlogIndex() {
+export async function generateMetadata({ searchParams }: BlogPageProps): Promise<Metadata> {
+    const params = await searchParams
+    const { page } = parseBlogParams(params)
+    const canonical = page === 1 ? `${SITE_URL}/blog` : `${SITE_URL}${buildBlogUrl(page, 'newest')}`
+    const title = page === 1
+        ? 'Blog — Fullstack Forge | Website Tips for NZ Small Businesses'
+        : `Blog — Page ${page} — Fullstack Forge`
+
+    return {
+        title,
+        description: 'Practical guides and insights on website design, SEO, and lead generation for small businesses in New Zealand.',
+        alternates: { canonical },
+        openGraph: {
+            title: page === 1 ? 'Blog — Fullstack Forge' : `Blog — Page ${page} — Fullstack Forge`,
+            description: 'Website tips, SEO guides, and business growth strategies for NZ small businesses.',
+            url: canonical,
+            type: 'website',
+            images: [{ url: '/assets/hero.png', width: 2560, height: 1440, alt: 'Fullstack Forge Blog' }],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: page === 1 ? 'Blog — Fullstack Forge' : `Blog — Page ${page} — Fullstack Forge`,
+            description: 'Website tips, SEO guides, and business growth strategies for NZ small businesses.',
+            images: ['/assets/hero.png'],
+        },
+    }
+}
+
+export default async function BlogIndex({ searchParams }: BlogPageProps) {
+    const params = await searchParams
+    const { page, order, totalPages, totalPosts } = parseBlogParams(params)
+    const pagePosts = getPagePosts(order, page)
+
     const schema = breadcrumbSchema([
         { name: 'Home', url: SITE_URL },
         { name: 'Blog', url: `${SITE_URL}/blog` },
     ])
 
+    const collectionSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'Blog — Fullstack Forge',
+        description: 'Practical guides and insights on website design, SEO, and lead generation for small businesses in New Zealand.',
+        url: `${SITE_URL}/blog`,
+        mainEntity: {
+            '@type': 'ItemList',
+            itemListElement: contentPlan.map((article: any, i: number) => ({
+                '@type': 'ListItem',
+                position: i + 1,
+                url: `${SITE_URL}/blog/${article.slug}`,
+                name: article.title,
+            })),
+        },
+    }
+
     const thumbnails = await Promise.all(
-        contentPlan.map((article) => fetchUnsplashImage(article.imageQuery))
+        pagePosts.map((article: any) => fetchUnsplashImage(article.imageQuery))
     )
 
     return (
         <>
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
             <Nav />
             <main>
                 <section className="text-white py-20 relative overflow-hidden">
@@ -57,9 +91,23 @@ export default async function BlogIndex() {
 
                 <section className="py-20">
                     <div className="max-w-5xl mx-auto px-4">
+                        {/* Sort control + post count */}
+                        <div className="flex items-center justify-between mb-8">
+                            <p className="text-sm text-gray-500">
+                                {totalPosts} articles{totalPages > 1 && <> &middot; Page {page} of {totalPages}</>}
+                            </p>
+                            <div className="flex items-center gap-2">
+                                <span className="text-sm text-gray-500">Sort by</span>
+                                <SortSelect currentOrder={order} currentPage={page} />
+                            </div>
+                        </div>
+
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            {contentPlan.map((article, index) => {
+                            {pagePosts.map((article: any, index: number) => {
                                 const thumb = thumbnails[index]
+                                const categoryLabel = article.category && blogCategories[article.category]
+                                    ? blogCategories[article.category].label
+                                    : (article.intent === 'commercial' ? 'Guide' : 'Article')
                                 return (
                                     <Link
                                         key={article.slug}
@@ -84,26 +132,38 @@ export default async function BlogIndex() {
                                             </div>
                                         )}
                                         <div className="p-6">
-                                            <span className="inline-block text-xs font-semibold uppercase tracking-wider text-primary mb-3">
-                                                {article.intent === 'commercial' ? 'Guide' : 'Article'}
-                                            </span>
+                                            <div className="flex items-center gap-3 mb-3">
+                                                <span className="inline-block text-xs font-semibold uppercase tracking-wider text-primary">
+                                                    {categoryLabel}
+                                                </span>
+                                                {article.readTime && (
+                                                    <span className="text-xs text-gray-400">{article.readTime} min read</span>
+                                                )}
+                                            </div>
                                             <h2 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">
                                                 {article.title}
                                             </h2>
                                             <p className="text-muted text-sm mb-4">{article.description}</p>
-                                            {thumb && thumb.photographer && (
-                                                <span className="text-xs text-gray-400 block mb-2">
-                                                    Photo by {thumb.photographer} on Unsplash
+                                            <div className="flex items-center justify-between">
+                                                {article.datePublished && (
+                                                    <time className="text-xs text-gray-400" dateTime={article.datePublished}>
+                                                        {new Date(article.datePublished).toLocaleDateString('en-NZ', { day: 'numeric', month: 'short', year: 'numeric' })}
+                                                    </time>
+                                                )}
+                                                <span className="text-primary text-sm font-semibold">
+                                                    Read more →
                                                 </span>
-                                            )}
-                                            <span className="text-primary text-sm font-semibold">
-                                                Read more →
-                                            </span>
+                                            </div>
                                         </div>
                                     </Link>
                                 )
                             })}
                         </div>
+
+                        {/* Pagination */}
+                        {totalPages > 1 && (
+                            <Pagination page={page} totalPages={totalPages} order={order} />
+                        )}
                     </div>
                 </section>
 
@@ -119,5 +179,82 @@ export default async function BlogIndex() {
             </main>
             <Footer />
         </>
+    )
+}
+
+/* ─── Sort Select (minimal client component inline) ─────────────── */
+function SortSelect({ currentOrder, currentPage }: { currentOrder: SortOrder; currentPage: number }) {
+    return (
+        <div className="relative">
+            <div className="flex gap-1">
+                {([['newest', 'Newest First'], ['oldest', 'Oldest First']] as const).map(([value, label]) => (
+                    value === currentOrder ? (
+                        <span
+                            key={value}
+                            className="px-3 py-1.5 text-sm font-medium bg-primary text-white rounded-lg border border-primary"
+                        >
+                            {label}
+                        </span>
+                    ) : (
+                        <Link
+                            key={value}
+                            href={buildBlogUrl(1, value)}
+                            className="px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:border-primary hover:text-primary transition-colors"
+                        >
+                            {label}
+                        </Link>
+                    )
+                ))}
+            </div>
+        </div>
+    )
+}
+
+/* ─── Pagination ────────────────────────────────────────────────── */
+function Pagination({ page, totalPages, order }: { page: number; totalPages: number; order: SortOrder }) {
+    const pages = Array.from({ length: totalPages }, (_, i) => i + 1)
+
+    return (
+        <nav aria-label="Blog pagination" className="flex items-center justify-center gap-2 mt-12">
+            {page > 1 ? (
+                <Link
+                    href={buildBlogUrl(page - 1, order)}
+                    className="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:border-primary hover:text-primary transition-colors"
+                >
+                    ← Previous
+                </Link>
+            ) : (
+                <span className="px-3 py-2 text-sm font-medium text-gray-300 bg-gray-50 border border-gray-100 rounded-lg cursor-not-allowed">
+                    ← Previous
+                </span>
+            )}
+
+            {pages.map((p) => (
+                <Link
+                    key={p}
+                    href={buildBlogUrl(p, order)}
+                    aria-current={p === page ? 'page' : undefined}
+                    className={`px-3 py-2 text-sm font-medium rounded-lg border transition-colors ${p === page
+                            ? 'bg-primary text-white border-primary'
+                            : 'text-gray-700 bg-white border-gray-200 hover:border-primary hover:text-primary'
+                        }`}
+                >
+                    {p}
+                </Link>
+            ))}
+
+            {page < totalPages ? (
+                <Link
+                    href={buildBlogUrl(page + 1, order)}
+                    className="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:border-primary hover:text-primary transition-colors"
+                >
+                    Next →
+                </Link>
+            ) : (
+                <span className="px-3 py-2 text-sm font-medium text-gray-300 bg-gray-50 border border-gray-100 rounded-lg cursor-not-allowed">
+                    Next →
+                </span>
+            )}
+        </nav>
     )
 }

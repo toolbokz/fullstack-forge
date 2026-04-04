@@ -39,7 +39,7 @@ function buildFaqs(serviceName: string, cityName: string) {
     return [
         {
             q: `How much does ${serviceName.toLowerCase()} cost in ${cityName}?`,
-            a: `Our ${serviceName.toLowerCase()} packages for ${cityName} businesses start from $699 NZD for a 3-page website. Most local businesses choose our Growth plan at $1,499 which includes full local SEO, lead capture, and conversion optimisation — delivering agency-quality results at a fraction of the price.`,
+            a: `Our ${serviceName.toLowerCase()} packages for ${cityName} businesses start with a $500 NZD deposit. Total website build costs typically run $1,000–$2,000 depending on scope, with local SEO, lead capture, and conversion optimisation included. We confirm the full price after reviewing your brief — no surprises.`,
         },
         {
             q: `How long does it take to get a website built for my ${cityName} business?`,

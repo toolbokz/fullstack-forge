@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next'
 import { getAllServiceLocationPairs } from '../lib/location-data'
 import { getAllTools } from '../lib/tools-data'
 import { getAllServices } from '../lib/services-data'
+import { contentPlan } from '../lib/seo-data'
 
 const SITE_URL = 'https://fullstack-forge.netlify.app'
 
@@ -23,22 +24,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: `${SITE_URL}/services`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     ]
 
-    // Blog articles
-    const blogSlugs = [
-        'how-much-does-a-website-cost-in-nz',
-        'best-website-design-for-small-businesses',
-        'do-small-businesses-need-a-website',
-        'how-to-get-customers-from-your-website',
-        'website-for-cleaning-business-nz',
-        'website-for-tradies-nz',
-        'seo-for-small-business-nz',
-        'diy-vs-professional-website',
-        'best-website-builder-for-small-business-nz',
-        'how-to-get-more-leads-from-your-website',
-    ]
-
-    const blogPages: MetadataRoute.Sitemap = blogSlugs.map((slug) => ({
-        url: `${SITE_URL}/blog/${slug}`,
+    // Blog articles (driven by contentPlan – single source of truth)
+    const blogPages: MetadataRoute.Sitemap = contentPlan.map((article: any) => ({
+        url: `${SITE_URL}/blog/${article.slug}`,
         lastModified: now,
         changeFrequency: 'monthly' as const,
         priority: 0.7,

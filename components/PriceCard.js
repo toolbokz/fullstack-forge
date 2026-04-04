@@ -1,4 +1,4 @@
-export default function PriceCard({ name, price, period = "one-time", description, features, cta, popular }) {
+export default function PriceCard({ name, price, period = "one-time", description, features, cta, popular, serviceKey, onSelect, justification }) {
     return (
         <div
             className={`rounded-2xl p-8 flex flex-col border-2 transition-all duration-300 w-full ${popular
@@ -25,15 +25,16 @@ export default function PriceCard({ name, price, period = "one-time", descriptio
                 {description}
             </p>
 
-            <a
-                href="#contact"
+            <button
+                type="button"
+                onClick={() => onSelect?.(serviceKey)}
                 className={`btn text-center w-full py-3.5 text-base font-bold rounded-xl transition-all duration-200 mb-6 ${popular
                     ? "bg-primary hover:bg-primary-dark text-white shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/30"
                     : "bg-gray-900 hover:bg-gray-800 text-white"
                     }`}
             >
                 {cta}
-            </a>
+            </button>
 
             <div className="border-t border-gray-100 pt-6">
                 <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">
@@ -48,6 +49,29 @@ export default function PriceCard({ name, price, period = "one-time", descriptio
                     ))}
                 </ul>
             </div>
+
+            {justification && (
+                <details className="mt-6 border-t border-gray-100 pt-4 group">
+                    <summary className="flex items-center justify-between cursor-pointer text-xs font-semibold uppercase tracking-wider text-gray-400 hover:text-gray-600 transition-colors list-none">
+                        <span>Why this price?</span>
+                        <span className="text-primary text-base transition-transform duration-200 group-open:rotate-45">+</span>
+                    </summary>
+                    <div className="mt-4 space-y-3 text-sm text-muted leading-relaxed">
+                        <div>
+                            <p className="font-semibold text-gray-700 text-xs uppercase tracking-wide mb-1">Best for</p>
+                            <p>{justification.bestFor}</p>
+                        </div>
+                        <div>
+                            <p className="font-semibold text-gray-700 text-xs uppercase tracking-wide mb-1">Why it costs this</p>
+                            <p>{justification.whyThisPrice}</p>
+                        </div>
+                        <div>
+                            <p className="font-semibold text-gray-700 text-xs uppercase tracking-wide mb-1">What to expect</p>
+                            <p>{justification.expectedResult}</p>
+                        </div>
+                    </div>
+                </details>
+            )}
         </div>
     );
 }

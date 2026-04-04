@@ -33,7 +33,7 @@ const trustPoints = [
 ]
 
 const faqs = [
-    { q: 'How much does a website cost?', a: 'Our plans start from $699 for a professional one-page site. Custom projects are quoted after a free consultation so you know exactly what you\'re paying for.' },
+    { q: 'How much does a website cost?', a: 'Website builds start from $1,000 for a professional site. Custom projects are quoted after a free consultation so you know exactly what you\'re paying for.' },
     { q: 'How long does it take to build?', a: 'Most sites launch within 1–2 weeks. Larger custom projects typically take 3–4 weeks depending on scope.' },
     { q: 'Do I need to provide content?', a: 'Nope. We handle everything — copy, images, design, and development. You just tell us about your business.' },
     { q: 'What if I already have a website?', a: 'No problem. We can redesign, rebuild, or optimise your existing site to convert more visitors into customers.' },

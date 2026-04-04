@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Nav from '../../../components/Nav'
 import Footer from '../../../components/Footer'
 import BlogArticleLayout from '../../../components/BlogArticleLayout'
-import { articleSchema, breadcrumbSchema, SITE_URL } from '../../../lib/schema'
+import { articleSchema, breadcrumbSchema, faqSchema, SITE_URL } from '../../../lib/schema'
 import { contentPlan } from '../../../lib/seo-data'
 import { getArticleLinkPackageWithThumbnails } from '../../../lib/internal-links'
 import Link from 'next/link'
@@ -14,7 +14,15 @@ const SLUG = 'website-for-tradies-nz'
 const TITLE = 'Tradie Website NZ: How Auckland Tradies Get More Jobs Online in 2026'
 const DESCRIPTION = 'The complete guide to tradie websites in New Zealand. Learn how plumbers, electricians, and builders use web design and local SEO to get more leads and higher-paying jobs.'
 const DATE = '2025-02-10'
+const UPDATED = '2026-04-04'
 const THUMBNAIL_QUERY = contentPlan.find((a: any) => a.slug === SLUG)?.imageQuery ?? SLUG
+
+const FAQ_ITEMS = [
+    { q: 'How much does a tradie website cost in NZ?', a: 'A professional tradie website costs $1,000–$2,000 NZD depending on the number of pages and features. A 3–5 page site with a quote form, photo gallery, and local SEO is enough for most tradies starting out.' },
+    { q: 'Do tradies really need a website?', a: 'Yes. 87% of customers research tradespeople online before calling. Without a website, you\'re invisible to the majority of potential customers — especially those searching Google for "[trade] near me" or "[trade] [city]."' },
+    { q: 'How do tradies get more jobs from Google?', a: 'Claim your Google Business Profile, build a website with service + location pages, collect Google reviews from customers, and ensure your business name, address, and phone number are consistent everywhere online.' },
+    { q: 'What pages should a tradie website have?', a: 'At minimum: a homepage (what you do + where), service pages (one per trade type), a gallery (before/after photos), a quote request form, and a service areas page listing the suburbs you cover.' },
+]
 
 export async function generateMetadata(): Promise<Metadata> {
     const thumbnail = await fetchUnsplashImage(THUMBNAIL_QUERY)
@@ -48,12 +56,13 @@ export default async function Article() {
     const linkPackage = await getArticleLinkPackageWithThumbnails(SLUG)
 
     const schemas = [
-        articleSchema({ title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/blog/${SLUG}`, datePublished: DATE }),
+        articleSchema({ title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/blog/${SLUG}`, datePublished: DATE, dateModified: UPDATED }),
         breadcrumbSchema([
             { name: 'Home', url: SITE_URL },
             { name: 'Blog', url: `${SITE_URL}/blog` },
             { name: TITLE, url: `${SITE_URL}/blog/${SLUG}` },
         ]),
+        faqSchema(FAQ_ITEMS),
     ]
 
     return (
@@ -220,7 +229,11 @@ export default async function Article() {
 
                     <h2>Tradie SEO New Zealand: How to Rank on Google Locally</h2>
                     <p>
-                        Having a website is step one. Ranking it on Google is where the real returns come. Here&apos;s
+                        Having a website is step one. Ranking it on Google is where the real returns come. For a
+                        deeper dive into ranking strategies, see our guide to{' '}
+                        <Link href="/blog/local-seo-for-tradies-nz" className="text-primary hover:underline">
+                            local SEO for tradies in NZ
+                        </Link>. Here&apos;s
                         what local SEO for tradies in New Zealand actually involves:
                     </p>
                     <ul>
@@ -263,7 +276,10 @@ export default async function Article() {
 
                     <h2>How Much Does a Tradie Website Cost in NZ?</h2>
                     <p>
-                        This is the question every tradie asks first. Here&apos;s the honest breakdown for website design
+                        This is the question every tradie asks first. For a detailed breakdown, see our full guide to{' '}
+                        <Link href="/blog/how-much-does-a-tradie-website-cost-in-nz" className="text-primary hover:underline">
+                            tradie website costs in NZ
+                        </Link>. Here&apos;s the honest summary of website design
                         for tradies in NZ:
                     </p>
                     <ul>
@@ -273,7 +289,7 @@ export default async function Article() {
                             you often wait 4–8 weeks.</li>
                         <li><strong>Agency build</strong> — $5,000–15,000+, overkill for most tradies who need leads,
                             not a brand campaign.</li>
-                        <li><strong>Specialist tradie web design</strong> (like Fullstack Forge) — $699–1,499, purpose-built
+                        <li><strong>Specialist tradie web design</strong> (like Fullstack Forge) — $1,000–2,000, purpose-built
                             for lead generation, delivered in days, includes local SEO setup.</li>
                     </ul>
                     <p>
@@ -287,7 +303,7 @@ export default async function Article() {
                     <h2>Real Results: Auckland Tradies Getting More Jobs Online</h2>
                     <p>
                         A Christchurch plumber we built a site for went from zero online presence to <strong>25 monthly
-                            enquiries</strong> within 8 weeks of launching. Total investment: $699 for our Starter package.
+                            enquiries</strong> within 8 weeks of launching. Total investment: $1,000 for a website build.
                         The first job from the website paid for the site 3x over.
                     </p>
                     <p>
@@ -337,6 +353,48 @@ export default async function Article() {
                     </ol>
 
                     <h2>Get More Tradie Jobs Online — Starting This Week</h2>
+
+                    <h3>Frequently Asked Questions</h3>
+
+                    <h3>How much does a tradie website cost in NZ?</h3>
+                    <p>
+                        A professional tradie website costs $1,000–$2,000 NZD depending on the number of pages and
+                        features. A 3–5 page site with a quote form, photo gallery, and local SEO is enough for most
+                        tradies starting out. See our{' '}
+                        <Link href="/blog/how-much-does-a-website-cost-in-nz" className="text-primary hover:underline">
+                            full NZ pricing guide
+                        </Link>{' '}
+                        for a detailed breakdown.
+                    </p>
+
+                    <h3>Do tradies really need a website?</h3>
+                    <p>
+                        Yes. 87% of customers research tradespeople online before calling. Without a website, you&apos;re
+                        invisible to the majority of potential customers — especially those searching Google for
+                        &quot;[trade] near me&quot; or &quot;[trade] [city].&quot; Read more in our guide on{' '}
+                        <Link href="/blog/do-small-businesses-need-a-website" className="text-primary hover:underline">
+                            whether small businesses need a website
+                        </Link>.
+                    </p>
+
+                    <h3>How do tradies get more jobs from Google?</h3>
+                    <p>
+                        Claim your Google Business Profile, build a website with service + location pages, collect
+                        Google reviews from customers, and ensure your business name, address, and phone number are
+                        consistent everywhere online. Our{' '}
+                        <Link href="/blog/seo-for-small-business-nz" className="text-primary hover:underline">
+                            SEO guide for NZ businesses
+                        </Link>{' '}
+                        covers the full process.
+                    </p>
+
+                    <h3>What pages should a tradie website have?</h3>
+                    <p>
+                        At minimum: a homepage (what you do + where), service pages (one per trade type), a gallery
+                        (before/after photos), a quote request form, and a service areas page listing the suburbs you
+                        cover.
+                    </p>
+
                     <p>
                         Every day without a website is another day your competitors take the leads that should be yours.
                         Whether you&apos;re a plumber in Auckland, an electrician in Wellington, or a builder anywhere
@@ -350,10 +408,10 @@ export default async function Article() {
                     <p>
                         Our{' '}
                         <Link href="/affordable-websites-nz" className="text-primary hover:underline font-semibold">
-                            $699 Starter package
+                            website builds from $1,000
                         </Link>{' '}
                         gives you a professional tradie website with a quote form, local SEO setup, and mobile-ready
-                        design — live within a week.
+                        design — live within 7–14 days.
                     </p>
                     <p>
                         <Link href="/#contact" className="text-primary hover:underline font-semibold">

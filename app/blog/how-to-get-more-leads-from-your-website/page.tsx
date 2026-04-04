@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Nav from '../../../components/Nav'
 import Footer from '../../../components/Footer'
 import BlogArticleLayout from '../../../components/BlogArticleLayout'
-import { articleSchema, breadcrumbSchema, SITE_URL } from '../../../lib/schema'
+import { articleSchema, breadcrumbSchema, faqSchema, SITE_URL } from '../../../lib/schema'
 import { contentPlan } from '../../../lib/seo-data'
 import { getArticleLinkPackageWithThumbnails } from '../../../lib/internal-links'
 import Link from 'next/link'
@@ -16,6 +16,13 @@ const DESCRIPTION = "Your website gets traffic but no enquiries? Here are 10 pro
 const DATE = '2025-03-01'
 const UPDATED = '2026-03-28'
 const THUMBNAIL_QUERY = contentPlan.find((a: any) => a.slug === SLUG)?.imageQuery ?? SLUG
+
+const FAQ_ITEMS = [
+    { q: 'How many leads should my website be generating?', a: 'A well-optimised small business website should convert 3–5% of visitors into leads. If you get 500 visitors/month, that\'s 15–25 enquiries. Below 1% usually means a conversion problem, not a traffic problem.' },
+    { q: 'What\'s the fastest way to get more leads from my website?', a: 'Add a clear, specific call-to-action above the fold on every page. This single change — making the next step obvious — often doubles lead volume within weeks without changing anything else.' },
+    { q: 'Do I need to spend money on ads to get website leads?', a: 'No. SEO, Google Business Profile optimisation, and conversion-focused design can generate consistent leads without ad spend. Ads can accelerate results, but organic lead generation compounds over time.' },
+    { q: 'Why does my website get traffic but no enquiries?', a: 'Common reasons: no clear call-to-action, forms that are too long, missing trust signals (reviews/testimonials), slow page load, or content that doesn\'t match the visitor\'s intent. A website audit can pinpoint the specific issues.' },
+]
 
 export async function generateMetadata(): Promise<Metadata> {
     const thumbnail = await fetchUnsplashImage(THUMBNAIL_QUERY)
@@ -49,12 +56,13 @@ export default async function Article() {
     const linkPackage = await getArticleLinkPackageWithThumbnails(SLUG)
 
     const schemas = [
-        articleSchema({ title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/blog/${SLUG}`, datePublished: DATE }),
+        articleSchema({ title: TITLE, description: DESCRIPTION, url: `${SITE_URL}/blog/${SLUG}`, datePublished: DATE, dateModified: UPDATED }),
         breadcrumbSchema([
             { name: 'Home', url: SITE_URL },
             { name: 'Blog', url: `${SITE_URL}/blog` },
             { name: TITLE, url: `${SITE_URL}/blog/${SLUG}` },
         ]),
+        faqSchema(FAQ_ITEMS),
     ]
 
     return (
@@ -118,6 +126,12 @@ export default async function Article() {
                         <li><strong>Zero social proof</strong> — no reviews, testimonials, or case studies</li>
                         <li><strong>Poor mobile experience</strong> — and over 60% of NZ traffic is mobile</li>
                     </ul>
+                    <p>
+                        We&apos;ve catalogued the full set of issues in our guide to{' '}
+                        <Link href="/blog/common-website-mistakes-nz-small-businesses" className="text-primary hover:underline">
+                            common website mistakes NZ small businesses make
+                        </Link>.
+                    </p>
                     <p>
                         If your site has even two of these issues, you&apos;re leaving leads on the table. The good news?
                         Every one of these problems is fixable. Our guide
@@ -192,6 +206,10 @@ export default async function Article() {
                         Every additional form field reduces completions by roughly 10%. For lead capture, you
                         rarely need more than <strong>name</strong> and <strong>email</strong>. If you need more
                         detail (e.g. business type or budget), make those optional or collect them in a follow-up email.
+                        For a full breakdown of quote form design and placement, see our guide on{' '}
+                        <Link href="/blog/how-to-get-more-quote-requests-from-your-website" className="text-primary hover:underline">
+                            getting more quote requests from your website
+                        </Link>.
                     </p>
                     <p>
                         The rule is simple: the fewer barriers between &quot;interested&quot; and &quot;submitted,&quot; the
@@ -369,6 +387,62 @@ export default async function Article() {
                         including Shopify vs custom-built stores and which approach generates more revenue per visitor.
                     </p>
 
+                    {/* ── FAQ SECTION ── */}
+                    <h2>Frequently Asked Questions</h2>
+
+                    <h3>How many leads should my website be generating?</h3>
+                    <p>
+                        A well-optimised small business website should convert 3–5% of visitors into leads. If you
+                        get 500 visitors/month, that&apos;s 15–25 enquiries. Below 1% usually means a conversion
+                        problem, not a traffic problem.
+                    </p>
+
+                    <h3>What&apos;s the fastest way to get more leads from my website?</h3>
+                    <p>
+                        Add a clear, specific call-to-action above the fold on every page. This single change —
+                        making the next step obvious — often doubles lead volume within weeks without changing
+                        anything else.
+                    </p>
+
+                    <h3>Do I need to spend money on ads to get website leads?</h3>
+                    <p>
+                        No. SEO, Google Business Profile optimisation, and conversion-focused design can generate
+                        consistent leads without ad spend. Ads can accelerate results, but organic lead generation
+                        compounds over time. Our{' '}
+                        <Link href="/blog/seo-for-small-business-nz" className="text-primary hover:underline">
+                            SEO guide for NZ small businesses
+                        </Link>{' '}
+                        covers how to build organic traffic from scratch.
+                    </p>
+
+                    <h3>Why does my website get traffic but no enquiries?</h3>
+                    <p>
+                        Common reasons: no clear call-to-action, forms that are too long, missing trust signals
+                        (reviews/testimonials), slow page load, or content that doesn&apos;t match the visitor&apos;s
+                        intent. A website audit can pinpoint the specific issues.
+                    </p>
+
+                    {/* ── RELATED READING ── */}
+                    <h2>Related Guides</h2>
+                    <ul>
+                        <li>
+                            <Link href="/blog/how-to-get-customers-from-your-website" className="text-primary hover:underline">
+                                How to Get Customers From Your Website — The Complete Beginner&apos;s Framework
+                            </Link>{' '}
+                            (start here if you&apos;re new to website marketing)
+                        </li>
+                        <li>
+                            <Link href="/blog/best-website-design-for-small-businesses" className="text-primary hover:underline">
+                                Best Website Design for Small Businesses — What Actually Works
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/blog/how-much-does-a-website-cost-in-nz" className="text-primary hover:underline">
+                                How Much Does a Website Cost in NZ? 2026 Pricing Guide
+                            </Link>
+                        </li>
+                    </ul>
+
                     {/* ── FINAL CTA ── */}
                     <h2>Stop Losing Leads — Get a Free Website Audit</h2>
                     <p>
@@ -379,7 +453,7 @@ export default async function Article() {
                         We build <Link href="/website-design-for-small-business" className="text-primary hover:underline">websites for small businesses across NZ</Link> that
                         are designed from the ground up to generate leads. Every site includes fast hosting, mobile
                         optimisation, SEO fundamentals, and conversion-focused design — starting
-                        from <Link href="/affordable-websites-nz" className="text-primary hover:underline">just $699</Link>.
+                        from <Link href="/affordable-websites-nz" className="text-primary hover:underline">$1,000</Link>.
                     </p>
                     <p>
                         <strong>Ready to see what&apos;s holding your site back?</strong> Run

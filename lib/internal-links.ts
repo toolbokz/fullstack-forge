@@ -62,7 +62,9 @@ export function getRelatedPosts(currentSlug: string, limit = 4): InternalLink[] 
             const shared = ((a as any).linksTo || []).filter((l: string) => currentLinks.has(l)).length
             // Bonus for same intent
             const intentBonus = (a as any).intent === (current as any).intent ? 1 : 0
-            return { article: a, score: shared + intentBonus }
+            // Bonus for same category (strengthens cluster cohesion)
+            const categoryBonus = (a as any).category && (a as any).category === (current as any).category ? 1 : 0
+            return { article: a, score: shared + intentBonus + categoryBonus }
         })
         .sort((a, b) => b.score - a.score)
         .slice(0, limit)

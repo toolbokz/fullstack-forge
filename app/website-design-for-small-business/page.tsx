@@ -10,27 +10,27 @@ import { fetchUnsplashImage } from '../../lib/unsplash'
 import { serviceSchema, faqSchema, breadcrumbSchema, SITE_URL } from '../../lib/schema'
 
 export const metadata: Metadata = {
-    title: 'Website Design for Small Business NZ — Affordable Sites That Generate Leads | Fullstack Forge',
-    description: 'Affordable website design for small businesses in New Zealand from $699. Conversion-focused, SEO-optimised, live in 7 days. See real examples and get a free audit.',
+    title: 'Website Design for Small Business NZ — Sites That Generate Leads | Fullstack Forge',
+    description: 'Website design for small businesses in New Zealand — $500 deposit to start. Conversion-focused, SEO-optimised, live in 7–14 days. See real examples and get a free audit.',
     alternates: {
         canonical: `${SITE_URL}/website-design-for-small-business`,
     },
     openGraph: {
-        title: 'Website Design for Small Business NZ — From $699',
-        description: 'Professional websites for NZ small businesses. Affordable, fast, built to generate customers — not just look pretty.',
+        title: 'Website Design for Small Business NZ — $500 Deposit to Start',
+        description: 'Professional websites for NZ small businesses. $500 deposit, fixed pricing, built to generate customers — not just look pretty.',
         url: `${SITE_URL}/website-design-for-small-business`,
         type: 'website',
     },
 }
 
 const faqs = [
-    { q: 'How much does a small business website cost in NZ?', a: 'At Fullstack Forge, small business websites start at $699 NZD (Starter: 1–3 pages, mobile-optimised, basic SEO). Most small businesses choose our Growth plan at $1,199 — which adds conversion optimization, lead capture, and advanced SEO. For comparison, NZ agencies charge $5,000–$20,000 for comparable work. See our full breakdown in our guide to website costs in NZ.' },
+    { q: 'How much does a small business website cost in NZ?', a: 'At Fullstack Forge, website builds start with a $500 NZD deposit. We then scope your project and provide a fixed total price before further work begins — most sites fall in the $1,000–$2,000 range. For comparison, NZ agencies charge $5,000–$20,000 for comparable work. See our full breakdown in our guide to website costs in NZ.' },
     { q: 'Will a website actually help my small business?', a: '81% of New Zealand consumers research online before buying locally. A professional website lets you get found on Google, build credibility instantly, and capture leads 24/7 — even when you\'re asleep. Businesses we\'ve worked with typically see 15–40+ enquiries per month within 3 months of launch.' },
     { q: 'How long does it take to build a small business website?', a: 'Starter sites are ready in 2–4 business days. Growth and Pro sites take 5–7 business days. We move fast because we use proven, pre-built designs customised for your brand — rather than designing from a blank canvas every time.' },
     { q: 'I already have a website — should I redesign or start over?', a: 'It depends on the platform and condition. If your current site is on Wix/Squarespace and under-performing, a fresh build is usually faster and cheaper than trying to fix it. If you have an existing WordPress site with some good content, a redesign might make sense. We\'ll audit your current site for free and recommend the best path.' },
     { q: 'Do I need to provide content and images?', a: 'Having your own photos (team, premises, work) is ideal — real images build more trust than stock photos. For written content, we guide you through a simple questionnaire and handle the copywriting. You approve everything before launch.' },
-    { q: 'Are there ongoing fees?', a: 'No. Our pricing is a one-time investment. We deploy to Netlify where hosting is free for most sites. Your only recurring cost is domain registration (around $20/year). No monthly fees, no maintenance contracts, no hidden charges.' },
-    { q: 'What if I need e-commerce?', a: 'Our Growth plan covers service businesses. For online stores with product catalogs, shopping carts, and payment processing, see our dedicated e-commerce website packages starting at $1,199.' },
+    { q: 'Are there ongoing fees?', a: 'Website builds are a one-time investment. We deploy to Netlify where hosting is free for most sites. Your only recurring cost is domain registration (around $20/year). If you want ongoing SEO support, our monthly plans start at $150/month — but they\'re completely optional.' },
+    { q: 'What if I need e-commerce?', a: 'Our website builds cover service businesses. For online stores with product catalogs, shopping carts, and payment processing, contact us for a custom ecommerce quote.' },
 ]
 
 export default async function WebsiteDesignSmallBusiness() {
@@ -84,7 +84,7 @@ export default async function WebsiteDesignSmallBusiness() {
                             Website Design for Small Business NZ — Sites That Grow Your Revenue
                         </h1>
                         <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-8">
-                            Your website should be your hardest-working employee — generating leads, building trust, and bringing in customers while you focus on running your business. We build sites that do exactly that, starting at $699.
+                            Your website should be your hardest-working employee — generating leads, building trust, and bringing in customers while you focus on running your business. Secure your build with a $500 deposit — fixed pricing, no surprises.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <a href="#lead-form" className="btn btn-lg">
@@ -96,7 +96,7 @@ export default async function WebsiteDesignSmallBusiness() {
                         </div>
                         <div className="flex flex-wrap justify-center gap-6 text-white/70 text-sm mt-8">
                             <span>✓ Live in 7 Days</span>
-                            <span>✓ From $699 NZD</span>
+                            <span>✓ $500 Deposit to Start</span>
                             <span>✓ No Monthly Fees</span>
                         </div>
                     </div>
@@ -341,7 +341,7 @@ export default async function WebsiteDesignSmallBusiness() {
                         </div>
                         <div className="text-center mt-12">
                             <p className="text-gray-400 text-sm mb-4">
-                                Packages start at just $699 NZD — see full details on our{' '}
+                                Secure your build with a $500 NZD deposit — see full details on our{' '}
                                 <Link href="/pricing" className="text-primary hover:underline">pricing page</Link>.
                                 Not sure if DIY or professional is right for you? Read our{' '}
                                 <Link href="/blog/diy-vs-professional-website" className="text-primary hover:underline">honest comparison</Link>.
@@ -375,39 +375,38 @@ export default async function WebsiteDesignSmallBusiness() {
                         </p>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div className="bg-gray-50 rounded-xl p-6 border border-gray-100 text-center">
-                                <p className="text-sm font-semibold text-muted uppercase tracking-wider mb-2">Starter</p>
-                                <p className="text-4xl font-extrabold text-gray-900 mb-1">$699</p>
-                                <p className="text-xs text-muted mb-4">one-time</p>
+                                <p className="text-sm font-semibold text-muted uppercase tracking-wider mb-2">Website Optimisation</p>
+                                <p className="text-4xl font-extrabold text-gray-900 mb-1">From $400</p>
+                                <p className="text-xs text-muted mb-4">one-time · 3 tiers</p>
                                 <ul className="text-left text-sm text-muted space-y-2">
-                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> 1–3 pages</li>
-                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> Mobile optimised</li>
-                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> Basic SEO</li>
-                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> Contact form</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> Lite $400 · Plus $650 · Pro $900</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> Speed & Core Web Vitals fixes</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> Conversion & UX improvements</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> Technical SEO tuning</li>
                                 </ul>
                             </div>
                             <div className="bg-white rounded-xl p-6 border-2 border-primary shadow-lg text-center relative">
                                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">Most Popular</span>
-                                <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-2">Growth</p>
-                                <p className="text-4xl font-extrabold text-gray-900 mb-1">$1,199</p>
-                                <p className="text-xs text-muted mb-4">one-time</p>
+                                <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-2">Website Build</p>
+                                <p className="text-4xl font-extrabold text-gray-900 mb-1">$500 Deposit</p>
+                                <p className="text-xs text-muted mb-4">fixed quote before you commit</p>
                                 <ul className="text-left text-sm text-muted space-y-2">
-                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> 4–6 pages</li>
-                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> Conversion design</li>
-                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> Lead capture system</li>
-                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> SEO structure</li>
-                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> Performance optimised</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> Custom responsive design</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> Lead-capture forms & CTAs</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> SEO-friendly structure</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> Mobile-first layout</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> Launch in 7–14 days</li>
                                 </ul>
                             </div>
                             <div className="bg-gray-50 rounded-xl p-6 border border-gray-100 text-center">
-                                <p className="text-sm font-semibold text-muted uppercase tracking-wider mb-2">Pro</p>
-                                <p className="text-4xl font-extrabold text-gray-900 mb-1">$2,499</p>
-                                <p className="text-xs text-muted mb-4">one-time</p>
+                                <p className="text-sm font-semibold text-muted uppercase tracking-wider mb-2">Monthly SEO</p>
+                                <p className="text-4xl font-extrabold text-gray-900 mb-1">From $150</p>
+                                <p className="text-xs text-muted mb-4">/month · 3 tiers</p>
                                 <ul className="text-left text-sm text-muted space-y-2">
-                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> Full funnel setup</li>
-                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> Advanced SEO</li>
-                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> Analytics integration</li>
-                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> Custom features</li>
-                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> 30-day support</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> Care $150 · Growth $275 · Momentum $400</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> Content updates & rank tracking</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> Link building & local SEO</li>
+                                    <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span> Monthly strategy call</li>
                                 </ul>
                             </div>
                         </div>
@@ -475,7 +474,7 @@ export default async function WebsiteDesignSmallBusiness() {
                                     Web Design Christchurch
                                 </Link>
                                 <Link href="/affordable-websites-nz" className="bg-white border border-gray-200 rounded-lg px-4 py-2 text-sm font-medium text-gray-700 hover:border-primary hover:text-primary transition-colors">
-                                    Affordable Websites NZ — From $699
+                                    Affordable Websites NZ — $500 Deposit
                                 </Link>
                                 <Link href="/ecommerce-websites-nz" className="bg-white border border-gray-200 rounded-lg px-4 py-2 text-sm font-medium text-gray-700 hover:border-primary hover:text-primary transition-colors">
                                     E-Commerce Websites NZ

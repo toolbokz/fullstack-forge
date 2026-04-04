@@ -316,3 +316,138 @@ export function toolFollowUpEmail(name: string, toolName: string) {
     </p>
   `);
 }
+
+// ─── Payment notification emails ────────────────────────────────────────
+
+export function ownerPaymentEmail(data: {
+  serviceName: string;
+  serviceKey: string;
+  customerName: string;
+  customerEmail: string;
+  amount?: string;
+  billingType: string;
+  businessName?: string;
+  website?: string;
+  phone?: string;
+  goals?: string;
+  notes?: string;
+  depositOnly?: boolean;
+  stripeSessionId?: string;
+}) {
+  const rows = [
+    ["Service", data.serviceName],
+    ["Billing", data.billingType],
+    ["Amount", data.amount || "See Stripe"],
+    ["Customer", data.customerName],
+    ["Email", data.customerEmail],
+    ["Phone", data.phone || "N/A"],
+    ["Business", data.businessName || "N/A"],
+    ["Website", data.website || "N/A"],
+  ];
+  if (data.depositOnly) rows.push(["Note", "DEPOSIT ONLY — balance due on completion"]);
+
+  const tableRows = rows
+    .map(
+      ([label, value], i) => `
+      <tr style="background-color:${i % 2 === 0 ? BRAND.lightBg : BRAND.white};">
+        <td style="padding:12px 16px;font-weight:600;font-size:14px;color:${BRAND.dark};border-bottom:1px solid #e2e8f0;width:140px;">${label}</td>
+        <td style="padding:12px 16px;font-size:14px;color:#475569;border-bottom:1px solid #e2e8f0;">${escapeHtml(value)}</td>
+      </tr>`
+    )
+    .join("");
+
+  const goalsBlock = data.goals
+    ? `<div style="margin-top:20px;padding:16px 20px;background-color:${BRAND.lightBg};border-radius:8px;border-left:4px solid ${BRAND.accent};">
+        <p style="margin:0 0 6px;font-size:13px;font-weight:600;color:${BRAND.dark};text-transform:uppercase;letter-spacing:0.5px;">Goals</p>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#475569;white-space:pre-wrap;">${escapeHtml(data.goals)}</p>
+      </div>`
+    : "";
+
+  const notesBlock = data.notes
+    ? `<div style="margin-top:12px;padding:16px 20px;background-color:${BRAND.lightBg};border-radius:8px;border-left:4px solid ${BRAND.accent};">
+        <p style="margin:0 0 6px;font-size:13px;font-weight:600;color:${BRAND.dark};text-transform:uppercase;letter-spacing:0.5px;">Notes</p>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#475569;white-space:pre-wrap;">${escapeHtml(data.notes)}</p>
+      </div>`
+    : "";
+
+  return wrapper(`
+    <h2 style="margin:0 0 8px;font-size:22px;color:${BRAND.dark};">💰 Payment Received</h2>
+    <p style="margin:0 0 24px;font-size:14px;color:${BRAND.gray};">
+      A customer just paid for <strong>${escapeHtml(data.serviceName)}</strong>.
+    </p>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-radius:8px;overflow:hidden;border:1px solid #e2e8f0;margin-bottom:28px;">
+      ${tableRows}
+    </table>
+
+    ${goalsBlock}
+    ${notesBlock}
+
+    <table role="presentation" cellpadding="0" cellspacing="0" style="margin-top:24px;">
+      <tr>
+        <td style="background-color:${BRAND.accent};border-radius:8px;padding:14px 28px;text-align:center;">
+          <a href="mailto:${escapeHtml(data.customerEmail)}" style="font-size:15px;font-weight:600;color:${BRAND.white};text-decoration:none;">Reply to ${escapeHtml(data.customerName)}</a>
+        </td>
+      </tr>
+    </table>
+  `);
+}
+
+export function userPaymentConfirmationEmail(data: {
+  name: string;
+  serviceName: string;
+  depositOnly?: boolean;
+  billingType: string;
+}) {
+  const firstName = escapeHtml((data.name || "").split(" ")[0] || "there");
+
+  const nextSteps = data.depositOnly
+    ? `<p style="margin:0 0 20px;font-size:16px;line-height:1.6;color:#475569;">
+        Your <strong>deposit for ${escapeHtml(data.serviceName)}</strong> has been received. Here&rsquo;s what happens next:
+      </p>
+      <ol style="margin:0 0 24px;padding-left:20px;font-size:15px;line-height:1.8;color:#475569;">
+        <li>We&rsquo;ll review your project brief within <strong>24 hours</strong></li>
+        <li>You&rsquo;ll receive a detailed scope and timeline</li>
+        <li>Work begins once we confirm the plan together</li>
+        <li>The remaining balance is invoiced on completion</li>
+      </ol>`
+    : data.billingType === 'monthly'
+      ? `<p style="margin:0 0 20px;font-size:16px;line-height:1.6;color:#475569;">
+          Your <strong>${escapeHtml(data.serviceName)}</strong> subscription is now active. Here&rsquo;s what happens next:
+        </p>
+        <ol style="margin:0 0 24px;padding-left:20px;font-size:15px;line-height:1.8;color:#475569;">
+          <li>We&rsquo;ll review your goals within <strong>24 hours</strong></li>
+          <li>You&rsquo;ll receive your first month&rsquo;s strategy plan</li>
+          <li>We begin work immediately and report progress monthly</li>
+        </ol>`
+      : `<p style="margin:0 0 20px;font-size:16px;line-height:1.6;color:#475569;">
+          Your payment for <strong>${escapeHtml(data.serviceName)}</strong> has been received. Here&rsquo;s what happens next:
+        </p>
+        <ol style="margin:0 0 24px;padding-left:20px;font-size:15px;line-height:1.8;color:#475569;">
+          <li>We&rsquo;ll review your brief within <strong>24 hours</strong></li>
+          <li>You&rsquo;ll receive a clear plan and estimated timeline</li>
+          <li>Work begins and we keep you updated throughout</li>
+        </ol>`;
+
+  return wrapper(`
+    <h2 style="margin:0 0 16px;font-size:22px;color:${BRAND.dark};">Thanks for your payment, ${firstName}!</h2>
+
+    ${nextSteps}
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
+      <tr>
+        <td style="padding:20px;background-color:${BRAND.lightBg};border-radius:8px;border-left:4px solid #22c55e;">
+          <p style="margin:0 0 4px;font-weight:700;font-size:15px;color:${BRAND.dark};">Questions?</p>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#475569;">
+            Just reply to this email or reach out at <a href="${BRAND.url}/contact" style="color:${BRAND.accent};text-decoration:none;">fullstack-forge.netlify.app/contact</a>.
+          </p>
+        </td>
+      </tr>
+    </table>
+
+    <p style="margin:0;font-size:16px;line-height:1.6;color:#475569;">
+      Cheers,<br/>
+      <strong style="color:${BRAND.dark};">The Fullstack Forge Team</strong>
+    </p>
+  `);
+}
