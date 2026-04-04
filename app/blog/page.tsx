@@ -105,8 +105,8 @@ export default async function BlogIndex({ searchParams }: BlogPageProps) {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             {pagePosts.map((article: any, index: number) => {
                                 const thumb = thumbnails[index]
-                                const categoryLabel = article.category && blogCategories[article.category]
-                                    ? blogCategories[article.category].label
+                                const categoryLabel = article.category && (blogCategories as Record<string, { slug: string; label: string }>)[article.category]
+                                    ? (blogCategories as Record<string, { slug: string; label: string }>)[article.category].label
                                     : (article.intent === 'commercial' ? 'Guide' : 'Article')
                                 return (
                                     <Link

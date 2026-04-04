@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import Stripe from 'stripe'
 import { stripe } from '../../../../lib/stripe'
 import { prisma } from '../../../../lib/prisma'
 import { SERVICES, type ServiceKey } from '../../../../lib/pricing'
@@ -158,7 +159,7 @@ export async function POST(request: Request) {
         const baseUrl = process.env.NEXTAUTH_URL || process.env.NEXT_PUBLIC_SITE_URL || 'https://fullstack-forge.netlify.app'
 
         // --- Create checkout session ---
-        const sessionParams: Parameters<typeof stripe.checkout.sessions.create>[0] = {
+        const sessionParams: Stripe.Checkout.SessionCreateParams = {
             customer: customerId,
             mode: service.checkoutMode === 'subscription' ? 'subscription' : 'payment',
             payment_method_types: ['card'],
