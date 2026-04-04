@@ -50,8 +50,8 @@ export default function UnsplashImage({
                 priority={priority}
                 sizes="(max-width: 768px) 100vw, 800px"
             />
-            {photographer && !compact && (
-                <figcaption className="text-center text-xs text-gray-500 mt-2">
+            {photographer && (
+                <figcaption className={`text-xs text-gray-500 ${compact ? 'px-2 py-1 text-left' : 'text-center mt-2'}`}>
                     Photo by{' '}
                     <a
                         href={profileUrl}

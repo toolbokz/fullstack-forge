@@ -37,13 +37,13 @@ export async function generateMetadata(): Promise<Metadata> {
             description: DESCRIPTION,
             url: `${SITE_URL}/blog/${SLUG}`,
             type: 'article',
-            ...(thumbnail ? { images: [{ url: thumbnail.url, alt: thumbnail.alt }] } : {}),
+            images: [thumbnail ? { url: thumbnail.url, alt: thumbnail.alt, width: 1080, height: 720 } : { url: "/assets/hero.png", alt: "Fullstack Forge", width: 1200, height: 630 }],
         },
         twitter: {
             card: 'summary_large_image',
             title: TITLE,
             description: DESCRIPTION,
-            ...(thumbnail ? { images: [thumbnail.url] } : {}),
+            images: [thumbnail ? thumbnail.url : "/assets/hero.png"],
         },
     }
 }
