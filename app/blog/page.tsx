@@ -235,8 +235,8 @@ function Pagination({ page, totalPages, order }: { page: number; totalPages: num
                     href={buildBlogUrl(p, order)}
                     aria-current={p === page ? 'page' : undefined}
                     className={`px-3 py-2 text-sm font-medium rounded-lg border transition-colors ${p === page
-                            ? 'bg-primary text-white border-primary'
-                            : 'text-gray-700 bg-white border-gray-200 hover:border-primary hover:text-primary'
+                        ? 'bg-primary text-white border-primary'
+                        : 'text-gray-700 bg-white border-gray-200 hover:border-primary hover:text-primary'
                         }`}
                 >
                     {p}
