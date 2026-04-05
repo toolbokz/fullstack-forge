@@ -17,11 +17,13 @@ export const metadata = {
         url: 'https://fullstack-forge.netlify.app/contact',
         siteName: 'Fullstack Forge',
         type: 'website',
+        images: [{ url: '/assets/hero.png', width: 2560, height: 1440, alt: 'Contact Fullstack Forge' }],
     },
     twitter: {
         card: 'summary_large_image',
         title: 'Contact Fullstack Forge — Free Quote for NZ Tradies',
         description: 'Get in touch for a free consultation. We build websites that get NZ tradies more jobs.',
+        images: ['/assets/hero.png'],
     },
 }
 

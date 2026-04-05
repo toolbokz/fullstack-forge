@@ -13,11 +13,13 @@ export const metadata: Metadata = {
         title: 'Free Website Tools — Fullstack Forge',
         description: 'Free SEO audits, speed tests, ROI calculators, and more. Built for NZ businesses.',
         url: 'https://fullstack-forge.netlify.app/tools',
+        images: [{ url: '/assets/hero.png', width: 2560, height: 1440, alt: 'Free Website Tools — Fullstack Forge' }],
     },
     twitter: {
         card: 'summary_large_image',
         title: 'Free Website Tools — Fullstack Forge',
         description: 'Free SEO audits, speed tests, ROI calculators, and more for NZ businesses.',
+        images: ['/assets/hero.png'],
     },
 }
 

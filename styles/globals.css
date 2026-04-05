@@ -111,11 +111,11 @@ section.visible {
    ──────────────────────────────────────────────────── */
 .section-float {
     max-width: 1240px;
-    margin: 1.5rem auto;
-    border: 1px solid rgba(11, 95, 255, 0.18);
-    border-radius: 1.25rem;
+    margin: 2rem auto;
+    border: 1px solid rgba(11, 95, 255, 0.12);
+    border-radius: 1.5rem;
     overflow: hidden;
-    box-shadow: 0 4px 32px rgba(11, 95, 255, 0.08), 0 1px 6px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 32px rgba(11, 95, 255, 0.06), 0 1px 6px rgba(0, 0, 0, 0.03);
 }
 
 .section-float-dark {
@@ -746,6 +746,173 @@ section.visible {
 
 .hero p {
     color: white;
+}
+
+/* ── Hero Split Layout ── */
+.hero-split {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 3rem;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-split-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-split-right {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .hero-split {
+        flex-direction: row;
+        text-align: left;
+        gap: 4rem;
+    }
+
+    .hero-split-left {
+        flex: 1.1;
+        align-items: flex-start;
+    }
+
+    .hero-split-right {
+        display: block;
+        flex: 0.9;
+    }
+}
+
+/* ── Hero Mockup (dashboard card) ── */
+.hero-mockup {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1rem;
+    backdrop-filter: blur(18px);
+    overflow: hidden;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(11, 95, 255, 0.1);
+}
+
+.hero-mockup-browser {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hero-mockup-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.hero-mockup-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.hero-mockup-dots span:first-child {
+    background: #ff5f57;
+}
+
+.hero-mockup-dots span:nth-child(2) {
+    background: #febc2e;
+}
+
+.hero-mockup-dots span:nth-child(3) {
+    background: #28c840;
+}
+
+.hero-mockup-url {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.06);
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.375rem;
+    flex: 1;
+    text-align: center;
+}
+
+.hero-mockup-body {
+    padding: 1.25rem;
+}
+
+.hero-mockup-stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.hero-mockup-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75rem 0.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.hero-mockup-stat-number {
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.hero-mockup-stat-label {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 0.25rem;
+}
+
+.hero-mockup-chart {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hero-mockup-bar-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.hero-mockup-bar {
+    position: relative;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 0.375rem;
+    overflow: hidden;
+}
+
+.hero-mockup-bar-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(11, 95, 255, 0.4), rgba(11, 95, 255, 0.2));
+    border-radius: 0.375rem;
+}
+
+.hero-mockup-bar span {
+    position: relative;
+    z-index: 1;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 0 0.75rem;
+    line-height: 28px;
 }
 
 /* ────────────────────────────────────────────────────

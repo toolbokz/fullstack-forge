@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import Nav from '../components/Nav'
 import Hero from '../components/Hero'
+import { fetchUnsplashImage } from '../lib/unsplash'
 
 export const metadata: Metadata = {
     title: 'Fullstack Forge — Websites That Get NZ Tradies More Jobs',
@@ -12,11 +13,13 @@ export const metadata: Metadata = {
         description: 'We build high-converting websites for NZ tradies and small businesses. Free website audit. Results in 7 days.',
         url: 'https://fullstack-forge.netlify.app/',
         type: 'website',
+        images: [{ url: '/assets/hero.png', width: 2560, height: 1440, alt: 'Fullstack Forge — Websites That Get NZ Tradies More Jobs' }],
     },
     twitter: {
         card: 'summary_large_image',
         title: 'Fullstack Forge — Websites That Get NZ Tradies More Jobs',
         description: 'We build high-converting websites for NZ tradies and small businesses.',
+        images: ['/assets/hero.png'],
     },
 }
 import ToolSlider from '../components/ToolSlider'
@@ -30,7 +33,29 @@ import CTA from '../components/CTA'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
 
-export default function HomePage() {
+export default async function HomePage() {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [
+        whoThisImg1, whoThisImg2, whoThisImg3,
+        solutionImg1, solutionImg2, solutionImg3, solutionImg4,
+        howItWorksImg1, howItWorksImg2, howItWorksImg3,
+        whyChooseImg,
+        ctaImg,
+    ]: any[] = await Promise.all([
+        fetchUnsplashImage('google search results laptop'),
+        fetchUnsplashImage('broken mobile website slow loading'),
+        fetchUnsplashImage('tradesperson waiting for phone call'),
+        fetchUnsplashImage('search engine optimisation analytics'),
+        fetchUnsplashImage('modern website design mobile responsive'),
+        fetchUnsplashImage('business lead generation enquiry phone'),
+        fetchUnsplashImage('AI automation chatbot technology'),
+        fetchUnsplashImage('website audit analytics dashboard'),
+        fetchUnsplashImage('web developer coding laptop'),
+        fetchUnsplashImage('happy contractor phone call customer'),
+        fetchUnsplashImage('analytics dashboard performance growth'),
+        fetchUnsplashImage('modern office team collaboration'),
+    ])
+
     return (
         <>
             <Nav />
@@ -40,25 +65,28 @@ export default function HomePage() {
                 </div>
                 <ToolSlider />
                 <div className="section-float">
-                    <WhoThisIsFor />
+                    {/* @ts-expect-error -- JS component default param infers never[] */}
+                    <WhoThisIsFor images={[whoThisImg1, whoThisImg2, whoThisImg3]} />
                 </div>
                 <div className="section-float">
-                    <Solutions />
+                    {/* @ts-expect-error -- JS component default param infers never[] */}
+                    <Solutions images={[solutionImg1, solutionImg2, solutionImg3, solutionImg4]} />
                 </div>
                 <div className="section-float section-float-dark">
-                    <HowItWorks />
+                    {/* @ts-expect-error -- JS component default param infers never[] */}
+                    <HowItWorks images={[howItWorksImg1, howItWorksImg2, howItWorksImg3]} />
                 </div>
                 <div className="section-float">
                     <Testimonials />
                 </div>
+                <div className="section-float">
+                    <WhyChooseUs image={whyChooseImg} />
+                </div>
                 <div className="section-float section-float-dark">
                     <WebsiteAudit />
                 </div>
-                <div className="section-float">
-                    <WhyChooseUs />
-                </div>
                 <div className="section-float section-float-dark">
-                    <CTA />
+                    <CTA image={ctaImg} />
                 </div>
                 <div className="section-float">
                     <Contact />

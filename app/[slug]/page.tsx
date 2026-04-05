@@ -30,6 +30,13 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
             description,
             url,
             type: 'website',
+            images: [{ url: '/assets/hero.png', width: 2560, height: 1440, alt: title }],
+        },
+        twitter: {
+            card: 'summary_large_image' as const,
+            title,
+            description,
+            images: ['/assets/hero.png'],
         },
     }
 }

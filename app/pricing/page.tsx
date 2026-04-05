@@ -14,11 +14,13 @@ export const metadata: Metadata = {
         description: 'Transparent website, SEO, and AI automation pricing for NZ small businesses and tradies.',
         url: `${SITE_URL}/pricing`,
         type: 'website',
+        images: [{ url: '/assets/hero.png', width: 2560, height: 1440, alt: 'Pricing — Fullstack Forge' }],
     },
     twitter: {
         card: 'summary_large_image',
         title: 'Pricing — Fullstack Forge',
         description: 'Transparent website, SEO, and AI automation pricing for NZ small businesses and tradies.',
+        images: ['/assets/hero.png'],
     },
 }
 

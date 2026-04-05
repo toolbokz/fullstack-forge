@@ -9,6 +9,19 @@ export const metadata: Metadata = {
     description:
         'Browse real websites we have built for NZ tradies and small businesses. E-commerce, service pages, calculators, and more.',
     alternates: { canonical: 'https://fullstack-forge.netlify.app/portfolio' },
+    openGraph: {
+        title: 'Portfolio — Fullstack Forge',
+        description: 'Browse real websites we have built for NZ tradies and small businesses.',
+        url: 'https://fullstack-forge.netlify.app/portfolio',
+        type: 'website',
+        images: [{ url: '/assets/hero.png', width: 2560, height: 1440, alt: 'Portfolio — Fullstack Forge' }],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Portfolio — Fullstack Forge',
+        description: 'Browse real websites we have built for NZ tradies and small businesses.',
+        images: ['/assets/hero.png'],
+    },
 }
 
 const projects = [
