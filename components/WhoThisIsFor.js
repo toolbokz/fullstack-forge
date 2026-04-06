@@ -11,7 +11,7 @@ const problems = [
         title: "Invisible on Google",
         description:
             "Customers are searching for your services right now. But they're finding your competitors instead because your website doesn't show up.",
-        fallbackImage: "/assets/hero.png",
+        fallbackImage: "/assets/portfolio-1.jpeg",
         fallbackAlt: "Google search results on laptop screen",
     },
     {
@@ -19,7 +19,7 @@ const problems = [
         title: "Website That Doesn't Work",
         description:
             "Your site looks outdated, loads slowly on mobile, and doesn't have a way for customers to contact you easily. You're losing jobs every day.",
-        fallbackImage: "/assets/hero.png",
+        fallbackImage: "/assets/portfolio-2.jpg",
         fallbackAlt: "Person frustrated with slow mobile website",
     },
     {
@@ -27,7 +27,7 @@ const problems = [
         title: "Relying on Word-of-Mouth",
         description:
             "Referrals are great — but they dry up. Without a steady online presence, you've got no control over where your next job comes from.",
-        fallbackImage: "/assets/hero.png",
+        fallbackImage: "/assets/portfolio-3.jpeg",
         fallbackAlt: "Tradesperson waiting for phone to ring",
     },
 ];

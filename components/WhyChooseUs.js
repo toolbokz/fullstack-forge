@@ -88,7 +88,7 @@ export default function WhyChooseUs({ image }) {
                     <FadeInSection className="flex-1 w-full hidden lg:block" delay={0.2}>
                         <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
                             <Image
-                                src={image?.url || '/assets/hero.png'}
+                                src={image?.url || '/assets/portfolio-3.jpeg'}
                                 alt={image?.alt || 'Analytics dashboard showing website performance improvements'}
                                 width={600}
                                 height={500}

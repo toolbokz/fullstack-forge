@@ -11,7 +11,7 @@ export default function CTA({ image }) {
             {/* Subtle background image */}
             <div className="absolute inset-0 opacity-10">
                 <Image
-                    src={image?.url || '/assets/hero.png'}
+                    src={image?.url || '/assets/fallback-image.png'}
                     alt=""
                     fill
                     className="object-cover"

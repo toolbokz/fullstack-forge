@@ -14,13 +14,13 @@ export const metadata: Metadata = {
         description: 'Learn how Fullstack Forge collects, uses, and protects your personal information.',
         url: `${SITE_URL}/privacy-policy`,
         type: 'website',
-        images: [{ url: '/assets/hero.png', width: 2560, height: 1440, alt: 'Privacy Policy — Fullstack Forge' }],
+        images: [{ url: '/assets/fallback-image.png', width: 2560, height: 1440, alt: 'Privacy Policy — Fullstack Forge' }],
     },
     twitter: {
         card: 'summary_large_image' as const,
         title: 'Privacy Policy — Fullstack Forge',
         description: 'Learn how Fullstack Forge collects, uses, and protects your personal information.',
-        images: ['/assets/hero.png'],
+        images: ['/assets/fallback-image.png'],
     },
 }
 

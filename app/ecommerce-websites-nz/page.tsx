@@ -21,13 +21,13 @@ export const metadata: Metadata = {
         description: 'Ecommerce websites built to sell. Fast, SEO-ready online stores for NZ small businesses with secure checkout and conversion-focused design.',
         url: `${SITE_URL}/ecommerce-websites-nz`,
         type: 'website',
-        images: [{ url: '/assets/hero.png', width: 2560, height: 1440, alt: 'Ecommerce Websites NZ — Fullstack Forge' }],
+        images: [{ url: '/assets/fallback-image.png', width: 2560, height: 1440, alt: 'Ecommerce Websites NZ — Fullstack Forge' }],
     },
     twitter: {
         card: 'summary_large_image' as const,
         title: 'Ecommerce Websites NZ — Online Stores Built to Sell',
         description: 'Ecommerce websites built to sell. Fast, SEO-ready online stores for NZ small businesses.',
-        images: ['/assets/hero.png'],
+        images: ['/assets/fallback-image.png'],
     },
 }
 

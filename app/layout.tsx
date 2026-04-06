@@ -13,13 +13,13 @@ export const metadata: Metadata = {
             'We help NZ tradies get found on Google and generate leads on autopilot. Free website audit available.',
         type: 'website',
         url: 'https://fullstack-forge.netlify.app/',
-        images: [{ url: '/assets/hero.png', width: 2560, height: 1440, alt: 'Fullstack Forge — More Jobs for NZ Tradies' }],
+        images: [{ url: '/assets/fallback-image.png', width: 2560, height: 1440, alt: 'Fullstack Forge — More Jobs for NZ Tradies' }],
     },
     twitter: {
         card: 'summary_large_image',
         title: 'Fullstack Forge — Get More Jobs From Your Website',
         description: 'We help NZ tradies get found on Google and generate leads on autopilot.',
-        images: ['/assets/hero.png'],
+        images: ['/assets/fallback-image.png'],
     },
     alternates: {
         canonical: 'https://fullstack-forge.netlify.app/',

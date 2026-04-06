@@ -21,13 +21,13 @@ export const metadata: Metadata = {
         description: 'Professional, SEO-ready websites built for NZ small businesses and tradies without the inflated agency price tag.',
         url: `${SITE_URL}/affordable-websites-nz`,
         type: 'website',
-        images: [{ url: '/assets/hero.png', width: 2560, height: 1440, alt: 'Affordable Websites NZ — Fullstack Forge' }],
+        images: [{ url: '/assets/fallback-image.png', width: 2560, height: 1440, alt: 'Affordable Websites NZ — Fullstack Forge' }],
     },
     twitter: {
         card: 'summary_large_image' as const,
         title: 'Affordable Websites NZ — Professional Sites Without the Premium Price',
         description: 'Affordable, high-quality websites for NZ small businesses. SEO-ready, mobile-first, built to convert.',
-        images: ['/assets/hero.png'],
+        images: ['/assets/fallback-image.png'],
     },
 }
 

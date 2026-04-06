@@ -21,13 +21,13 @@ export const metadata: Metadata = {
         description: 'Professional web design that ranks on Google, converts visitors into enquiries, and grows your business. Built for NZ tradies and small businesses.',
         url: `${SITE_URL}/web-design-christchurch`,
         type: 'website',
-        images: [{ url: '/assets/hero.png', width: 2560, height: 1440, alt: 'Web Design NZ — Fullstack Forge' }],
+        images: [{ url: '/assets/fallback-image.png', width: 2560, height: 1440, alt: 'Web Design NZ — Fullstack Forge' }],
     },
     twitter: {
         card: 'summary_large_image' as const,
         title: 'Web Design NZ — Lead-Generating Websites for NZ Businesses',
         description: 'Professional web design that ranks on Google and converts visitors into leads. Built for NZ tradies and small businesses.',
-        images: ['/assets/hero.png'],
+        images: ['/assets/fallback-image.png'],
     },
 }
 

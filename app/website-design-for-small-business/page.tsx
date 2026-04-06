@@ -21,13 +21,13 @@ export const metadata: Metadata = {
         description: 'Professional, SEO-ready websites built to help NZ small businesses and tradies grow online. Mobile-first, conversion-focused, no inflated agency pricing.',
         url: `${SITE_URL}/website-design-for-small-business`,
         type: 'website',
-        images: [{ url: '/assets/hero.png', width: 2560, height: 1440, alt: 'Website Design for Small Business NZ — Fullstack Forge' }],
+        images: [{ url: '/assets/fallback-image.png', width: 2560, height: 1440, alt: 'Website Design for Small Business NZ — Fullstack Forge' }],
     },
     twitter: {
         card: 'summary_large_image' as const,
         title: 'Website Design for Small Business NZ — Sites That Generate Leads',
         description: 'Professional website design for NZ small businesses. SEO-ready, mobile-first, built to convert visitors into customers.',
-        images: ['/assets/hero.png'],
+        images: ['/assets/fallback-image.png'],
     },
 }
 

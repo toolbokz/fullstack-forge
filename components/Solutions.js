@@ -14,6 +14,7 @@ const solutions = [
         newWay: "Show up on page 1 when local customers search for your services",
         description:
             "We optimise your website so you rank for searches like 'plumber near me' or 'electrician [your city]'. More visibility = more calls.",
+        fallbackImage: "/assets/portfolio-4.jpg",
         fallbackAlt: "Search engine optimisation analytics",
     },
     {
@@ -23,6 +24,7 @@ const solutions = [
         newWay: "Fast, professional site that makes customers pick up the phone",
         description:
             "Your website becomes your best salesperson — clean, fast, mobile-friendly, with clear calls-to-action that turn visitors into enquiries.",
+        fallbackImage: "/assets/portfolio-5.jpg",
         fallbackAlt: "Modern responsive website on mobile device",
     },
     {
@@ -32,6 +34,7 @@ const solutions = [
         newWay: "Consistent flow of enquiries from people ready to hire",
         description:
             "Built-in lead capture, click-to-call buttons, and quote request forms mean your website generates jobs for you — even while you sleep.",
+        fallbackImage: "/assets/portfolio-6.jpg",
         fallbackAlt: "Customer enquiry notifications on phone",
     },
     {
@@ -41,6 +44,7 @@ const solutions = [
         newWay: "Automatic responses and follow-ups so no job slips away",
         description:
             "Smart automation handles initial enquiries instantly, so potential customers never wait. You focus on the work, we handle the leads.",
+        fallbackImage: "/assets/portfolio-7.jpg",
         fallbackAlt: "AI automation technology concept",
     },
 ];
@@ -80,7 +84,7 @@ export default function Solutions({ images = [] }) {
                                 {/* Card image */}
                                 <div className="relative h-44 overflow-hidden">
                                     <Image
-                                        src={img?.url || img?.smallUrl || '/assets/hero.png'}
+                                        src={img?.url || img?.smallUrl || s.fallbackImage}
                                         alt={img?.alt || s.fallbackAlt}
                                         fill
                                         className="object-cover group-hover:scale-105 transition-transform duration-500"

@@ -29,13 +29,13 @@ export async function generateMetadata({ searchParams }: BlogPageProps): Promise
             description: 'Website tips, SEO guides, and business growth strategies for NZ small businesses.',
             url: canonical,
             type: 'website',
-            images: [{ url: '/assets/hero.png', width: 2560, height: 1440, alt: 'Fullstack Forge Blog' }],
+            images: [{ url: '/assets/fallback-image.png', width: 2560, height: 1440, alt: 'Fullstack Forge Blog' }],
         },
         twitter: {
             card: 'summary_large_image',
             title: page === 1 ? 'Blog — Fullstack Forge' : `Blog — Page ${page} — Fullstack Forge`,
             description: 'Website tips, SEO guides, and business growth strategies for NZ small businesses.',
-            images: ['/assets/hero.png'],
+            images: ['/assets/fallback-image.png'],
         },
     }
 }

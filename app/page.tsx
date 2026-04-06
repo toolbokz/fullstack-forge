@@ -13,13 +13,13 @@ export const metadata: Metadata = {
         description: 'We build high-converting websites for NZ tradies and small businesses. Free website audit. Results in 7 days.',
         url: 'https://fullstack-forge.netlify.app/',
         type: 'website',
-        images: [{ url: '/assets/hero.png', width: 2560, height: 1440, alt: 'Fullstack Forge — Websites That Get NZ Tradies More Jobs' }],
+        images: [{ url: '/assets/fallback-image.png', width: 2560, height: 1440, alt: 'Fullstack Forge — Websites That Get NZ Tradies More Jobs' }],
     },
     twitter: {
         card: 'summary_large_image',
         title: 'Fullstack Forge — Websites That Get NZ Tradies More Jobs',
         description: 'We build high-converting websites for NZ tradies and small businesses.',
-        images: ['/assets/hero.png'],
+        images: ['/assets/fallback-image.png'],
     },
 }
 import ToolSlider from '../components/ToolSlider'

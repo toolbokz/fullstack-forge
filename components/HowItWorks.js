@@ -12,6 +12,7 @@ const steps = [
         description:
             "Run our free audit tool. In 30 seconds you'll see exactly what's broken — speed, SEO, mobile, and lead capture. No guesswork.",
         icon: "🔍",
+        fallbackImage: "/assets/portfolio-8.png",
         fallbackAlt: "Website analytics dashboard showing audit results",
     },
     {
@@ -20,6 +21,7 @@ const steps = [
         description:
             "We rebuild or optimise your site for speed, local search rankings, and lead generation. Done for you — you don't lift a finger.",
         icon: "🔧",
+        fallbackImage: "/assets/portfolio-1.jpeg",
         fallbackAlt: "Developer coding a professional website",
     },
     {
@@ -28,6 +30,7 @@ const steps = [
         description:
             "Your phone starts ringing. Enquiries come in through your website. You pick the jobs you want. That's it.",
         icon: "📞",
+        fallbackImage: "/assets/portfolio-2.jpg",
         fallbackAlt: "Tradesperson receiving a phone call from a new customer",
     },
 ];
@@ -62,7 +65,7 @@ export default function HowItWorks({ images = [] }) {
                                 {/* Step image */}
                                 <div className="relative rounded-2xl overflow-hidden mb-6 aspect-[3/2]">
                                     <Image
-                                        src={img?.url || img?.smallUrl || '/assets/hero.png'}
+                                        src={img?.url || img?.smallUrl || step.fallbackImage}
                                         alt={img?.alt || step.fallbackAlt}
                                         fill
                                         className="object-cover group-hover:scale-105 transition-transform duration-500"

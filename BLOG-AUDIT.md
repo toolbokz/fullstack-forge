@@ -71,7 +71,7 @@ The blog targets NZ small business owners, tradies, and service businesses with 
 | **Indexable** | Yes — no `noindex` directives |
 | **Canonical** | `https://fullstack-forge.netlify.app/blog` |
 | **Schema** | BreadcrumbList only (Home → Blog). No CollectionPage or Blog schema. |
-| **OG tags** | Yes — title, description, URL, type: "website", image: `/assets/hero.png` |
+| **OG tags** | Yes — title, description, URL, type: "website", image: `/assets/fallback-image.png` |
 | **Twitter tags** | Yes — summary_large_image card |
 | **Grid layout** | 2-column on desktop, 1-column on mobile |
 | **Pagination** | None |

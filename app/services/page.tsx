@@ -17,13 +17,13 @@ export const metadata: Metadata = {
         title: 'Services — Fullstack Forge',
         description: 'Web design, SEO, AI automation, ad campaigns, and more for NZ tradies and local businesses.',
         url: 'https://fullstack-forge.netlify.app/services',
-        images: [{ url: '/assets/hero.png', width: 2560, height: 1440, alt: 'Services — Fullstack Forge' }],
+        images: [{ url: '/assets/fallback-image.png', width: 2560, height: 1440, alt: 'Services — Fullstack Forge' }],
     },
     twitter: {
         card: 'summary_large_image',
         title: 'Digital Services for NZ Tradies — Fullstack Forge',
         description: 'Web design, SEO, AI automation, and more for NZ tradies and local businesses.',
-        images: ['/assets/hero.png'],
+        images: ['/assets/fallback-image.png'],
     },
 }
 
