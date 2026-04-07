@@ -3,9 +3,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
+import PageVideoHero from '../../components/PageVideoHero'
 import { breadcrumbSchema, SITE_URL } from '../../lib/schema'
 import { contentPlan, blogCategories } from '../../lib/seo-data'
 import { fetchUnsplashImage } from '../../lib/unsplash'
+import { fetchPexelsVideo } from '../../lib/pexels'
 import { parseBlogParams, getPagePosts, buildBlogUrl, type SortOrder } from '../../lib/blog-helpers'
 
 interface BlogPageProps {
@@ -67,9 +69,10 @@ export default async function BlogIndex({ searchParams }: BlogPageProps) {
         },
     }
 
-    const thumbnails = await Promise.all(
-        pagePosts.map((article: any) => fetchUnsplashImage(article.imageQuery))
-    )
+    const [thumbnails, heroVideo] = await Promise.all([
+        Promise.all(pagePosts.map((article: any) => fetchUnsplashImage(article.imageQuery))),
+        fetchPexelsVideo('typing blog writing laptop keyboard'),
+    ])
 
     return (
         <>
@@ -77,17 +80,15 @@ export default async function BlogIndex({ searchParams }: BlogPageProps) {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
             <Nav />
             <main>
-                <section className="text-white py-20 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#0b1220] via-[#0d1f3c] to-[#0b5fff]" />
-                    <div className="absolute inset-0 bg-black/40" />
-                    <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+                <PageVideoHero videoUrl={heroVideo?.url}>
+                    <div className="max-w-4xl mx-auto px-4 text-center">
                         <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-4">Blog</p>
-                        <h1 className="text-3xl md:text-5xl font-bold mb-6">Website Tips for NZ Small Businesses</h1>
+                        <h1 className="text-3xl md:text-5xl font-bold mb-6 text-white">Website Tips for NZ Small Businesses</h1>
                         <p className="text-gray-300 text-lg max-w-2xl mx-auto">
                             Practical guides on web design, SEO, and turning your website into a lead-generating machine.
                         </p>
                     </div>
-                </section>
+                </PageVideoHero>
 
                 <section className="py-20">
                     <div className="max-w-5xl mx-auto px-4">

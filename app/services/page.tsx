@@ -4,6 +4,7 @@ import { serviceColumns, ServiceIcon } from '../../lib/services-data'
 import { breadcrumbSchema, localBusinessSchema } from '../../lib/schema'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
+import PageVideoHero from '../../components/PageVideoHero'
 import ToolSlider from '../../components/ToolSlider'
 import LeadLossCalculator from '../../components/LeadLossCalculator'
 import CTASection from '../../components/CTASection'
@@ -45,13 +46,13 @@ export default function ServicesPage() {
             <Nav />
             <div>
                 {/* Hero */}
-                <section className="text-white py-20 md:py-28" style={{ background: 'linear-gradient(135deg, #0b1220 0%, #0d1f3c 50%, #0b2e6e 100%)' }}>
+                <PageVideoHero videoUrl="/assets/services-hero.mp4">
                     <div className="max-w-3xl mx-auto px-4 text-center">
                         <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-4">Our Services</p>
-                        <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
+                        <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight text-white">
                             Everything You Need to Get More Jobs Online
                         </h1>
-                        <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-8">
+                        <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-8">
                             From a website that actually generates leads, to SEO that puts you on the first page of Google, to AI that follows up while you sleep — we handle it all.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -59,7 +60,7 @@ export default function ServicesPage() {
                             <a href="#lead-calculator" className="btn btn-outline-light btn-lg">See What You&apos;re Losing</a>
                         </div>
                     </div>
-                </section>
+                </PageVideoHero>
 
                 {/* Services Grid */}
                 <section className="py-16 md:py-20" id="services-grid">

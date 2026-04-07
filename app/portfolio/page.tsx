@@ -2,7 +2,8 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
-import { fetchPexelsImage } from '../../lib/pexels'
+import PageVideoHero from '../../components/PageVideoHero'
+import { fetchPexelsImage, fetchPexelsVideo } from '../../lib/pexels'
 
 export const metadata: Metadata = {
     title: 'Portfolio — Fullstack Forge',
@@ -92,27 +93,28 @@ const projects = [
 ]
 
 export default async function PortfolioPage() {
-    const images = await Promise.all(
-        projects.map((p) => fetchPexelsImage(p.query))
-    )
+    const [images, heroVideo] = await Promise.all([
+        Promise.all(projects.map((p) => fetchPexelsImage(p.query))),
+        fetchPexelsVideo('web design portfolio website showcase'),
+    ])
 
     return (
         <>
             <Nav />
             <main>
                 {/* ── Hero ── */}
-                <section className="bg-dark text-white py-24 md:py-32">
+                <PageVideoHero videoUrl={heroVideo?.url}>
                     <div className="max-w-4xl mx-auto px-4 text-center">
                         <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">
                             Portfolio
                         </p>
-                        <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                        <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-white">
                             Real Websites. Real Results.
                         </h1>
-                        <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-8">
+                        <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-8">
                             Every project below is a live, working website — built for real NZ businesses. Click through and see the quality for yourself.
                         </p>
-                        <div className="flex flex-wrap justify-center gap-6 text-gray-500 text-sm">
+                        <div className="flex flex-wrap justify-center gap-6 text-gray-400 text-sm">
                             <span className="flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-green-500"></span>
                                 All sites live
@@ -127,7 +129,7 @@ export default async function PortfolioPage() {
                             </span>
                         </div>
                     </div>
-                </section>
+                </PageVideoHero>
 
                 {/* ── Portfolio Grid ── */}
                 <section className="py-20 md:py-28 bg-gray-50">

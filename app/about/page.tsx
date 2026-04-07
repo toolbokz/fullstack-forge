@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
+import PageVideoHero from '../../components/PageVideoHero'
 import { SITE_URL } from '../../lib/schema'
 
 export const metadata: Metadata = {
@@ -33,10 +34,8 @@ export default function AboutPage() {
             <Nav />
             <main>
                 {/* ═══════ HERO ═══════ */}
-                <section className="relative overflow-hidden text-white py-24 md:py-32">
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#0b1220] via-[#0d1f3c] to-[#0b5fff]" />
-                    <div className="absolute inset-0 bg-black/30" />
-                    <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 flex flex-col md:flex-row items-center gap-10 md:gap-16">
+                <PageVideoHero videoUrl="/assets/about-hero.mp4">
+                    <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center gap-10 md:gap-16">
                         <div className="shrink-0">
                             <Image
                                 src="/assets/headshot.jpg"
@@ -51,7 +50,7 @@ export default function AboutPage() {
                             <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">
                                 About Fullstack Forge
                             </p>
-                            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-5">
+                            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-5 text-white">
                                 I Build Websites That Actually Generate Jobs
                             </h1>
                             <p className="text-gray-300 text-lg md:text-xl max-w-xl leading-relaxed">
@@ -61,7 +60,7 @@ export default function AboutPage() {
                             </p>
                         </div>
                     </div>
-                </section>
+                </PageVideoHero>
 
                 {/* ═══════ MY STORY ═══════ */}
                 <section className="py-20 bg-white">

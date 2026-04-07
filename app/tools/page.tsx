@@ -3,6 +3,7 @@ import { toolCategories, ToolIcon } from '../../lib/tools-data'
 import { Metadata } from 'next'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
+import PageVideoHero from '../../components/PageVideoHero'
 
 export const metadata: Metadata = {
     title: 'Free Website Tools for NZ Businesses — Fullstack Forge',
@@ -29,17 +30,17 @@ export default function ToolsIndexPage() {
             <Nav />
             <div>
                 {/* Hero */}
-                <section className="text-white py-20 md:py-28" style={{ background: 'linear-gradient(135deg, #0b1220 0%, #0d1f3c 50%, #0b2e6e 100%)' }}>
+                <PageVideoHero videoUrl="/assets/tools-hero.mp4">
                     <div className="max-w-3xl mx-auto px-4 text-center">
                         <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-4">Free Tools</p>
-                        <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
+                        <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight text-white">
                             Free Website Tools for NZ Businesses
                         </h1>
-                        <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
+                        <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto">
                             Check your website health, find SEO opportunities, and calculate your growth potential — all 100% free, no signup required.
                         </p>
                     </div>
-                </section>
+                </PageVideoHero>
 
                 {/* Tools Grid */}
                 <section className="py-16 md:py-20">

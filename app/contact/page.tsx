@@ -1,8 +1,8 @@
 import Nav from '../../components/Nav'
 import Contact from '../../components/Contact'
 import Footer from '../../components/Footer'
-import { PixabayImage } from '../../components/PixabayMedia'
-import { searchPixabayImages } from '../../lib/pixabay'
+import PageVideoHero from '../../components/PageVideoHero'
+import { fetchPexelsVideo } from '../../lib/pexels'
 import { breadcrumbSchema, localBusinessSchema } from '../../lib/schema'
 
 export const metadata = {
@@ -42,8 +42,7 @@ const faqs = [
 ]
 
 export default async function ContactPage() {
-    const images = await searchPixabayImages('person sending email laptop', 3)
-    const heroImg = images[0] || null
+    const heroVideo = await fetchPexelsVideo('business customer support contact office')
 
     return (
         <>
@@ -62,19 +61,8 @@ export default async function ContactPage() {
             <Nav />
             <main>
                 {/* Hero */}
-                <section className="relative pt-36 pb-20 overflow-hidden" style={{ background: 'linear-gradient(135deg, #0b1220, #0d1f3c, #0b5fff)' }}>
-                    {/* Background image */}
-                    {heroImg && (
-                        <div className="absolute inset-0 z-0">
-                            <img
-                                src={heroImg.largeSrc || heroImg.src}
-                                alt={heroImg.alt || 'Person sending an email'}
-                                className="w-full h-full object-cover"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-b from-gray-900/75 via-gray-900/60 to-gray-900/80" />
-                        </div>
-                    )}
-                    <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
+                <PageVideoHero videoUrl={heroVideo?.url}>
+                    <div className="max-w-3xl mx-auto px-4 text-center">
                         <p className="text-blue-300 font-semibold text-sm uppercase tracking-widest mb-3">
                             Let&apos;s Talk
                         </p>
@@ -91,22 +79,7 @@ export default async function ContactPage() {
                             Get in Touch
                         </a>
                     </div>
-                    {/* Pixabay attribution */}
-                    {heroImg && (
-                        <div className="absolute bottom-3 right-4 z-10">
-                            <p className="text-[10px] text-white/50">
-                                Photo by{' '}
-                                <a href={heroImg.pageURL} target="_blank" rel="noopener noreferrer" className="underline hover:text-white/70">
-                                    {heroImg.user}
-                                </a>{' '}
-                                on{' '}
-                                <a href="https://pixabay.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-white/70">
-                                    Pixabay
-                                </a>
-                            </p>
-                        </div>
-                    )}
-                </section>
+                </PageVideoHero>
 
                 {/* Trust Signals */}
                 <section className="pt-12 pb-12">
